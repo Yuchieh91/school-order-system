@@ -15,135 +15,310 @@
 
     body {
       font-family: Arial, "Noto Sans TC", sans-serif;
-      background: #f5f6f8;
-      color: #222;
+      background: #f6f6f4;
+      color: #202020;
     }
 
+    /* ===== 導覽列 ===== */
+
     header {
-      background: white;
-      padding: 18px 7%;
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 1px solid #dddddd;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #eee;
+      justify-content: space-between;
+
+      padding: 0 7%;
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
     }
 
     nav a {
-      margin-left: 20px;
+      color: #444444;
       text-decoration: none;
-      color: #444;
       font-size: 14px;
     }
 
-    .hero {
-      margin: 35px auto;
-      width: 86%;
-      max-width: 1100px;
-      min-height: 330px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #dfe9ff, #f7f9ff);
-      display: flex;
-      align-items: center;
-      padding: 50px;
+    nav a:hover {
+      color: #000000;
     }
 
-    .hero-text {
-      max-width: 600px;
+    /* ===== 主視覺 ===== */
+
+    .hero {
+      width: 86%;
+      max-width: 1150px;
+
+      margin: 45px auto 0;
+
+      min-height: 360px;
+
+      background: #e9ecef;
+
+      display: flex;
+      align-items: center;
+
+      padding: 55px;
+
+      border-radius: 8px;
+    }
+
+    .hero-content {
+      max-width: 620px;
+    }
+
+    .small-title {
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #666666;
+      margin-bottom: 15px;
     }
 
     .hero h1 {
-      font-size: 42px;
-      margin-bottom: 18px;
-    }
-
-    .hero p {
-      font-size: 17px;
-      line-height: 1.8;
-      color: #666;
-      margin-bottom: 25px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 13px 25px;
-      border-radius: 4px;
-      background: #222;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .section {
-      width: 86%;
-      max-width: 1100px;
-      margin: 50px auto;
-    }
-
-    .section-title {
-      font-size: 25px;
+      font-size: 46px;
+      line-height: 1.25;
       margin-bottom: 20px;
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    .hero p {
+      color: #666666;
+      line-height: 1.8;
+      margin-bottom: 28px;
     }
 
-    .card {
-      background: white;
-      border-radius: 6px;
-      padding: 25px;
-      min-height: 150px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
+    .main-button {
+      display: inline-block;
 
-    .card h3 {
-      margin-bottom: 10px;
-    }
+      background: #202020;
+      color: white;
 
-    .card p {
-      color: #777;
-      line-height: 1.6;
+      text-decoration: none;
+
+      padding: 13px 24px;
+
+      border-radius: 4px;
+
       font-size: 14px;
     }
 
-    footer {
-      text-align: center;
-      padding: 35px;
-      color: #888;
+    .main-button:hover {
+      background: #444444;
+    }
+
+    /* ===== 公告 ===== */
+
+    .section {
+      width: 86%;
+      max-width: 1150px;
+      margin: 55px auto;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 23px;
+    }
+
+    .more {
+      font-size: 13px;
+      color: #777777;
+    }
+
+    .announcement {
+      background: white;
+
+      border: 1px solid #dddddd;
+
+      padding: 22px 25px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      border-radius: 5px;
+    }
+
+    .announcement-title {
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+
+    .announcement-text {
+      color: #777777;
+      font-size: 14px;
+    }
+
+    .announcement-date {
+      color: #999999;
       font-size: 13px;
     }
 
-    @media (max-width: 700px) {
-      .hero {
-        padding: 30px;
-      }
+    /* ===== 商品 ===== */
 
-      .hero h1 {
-        font-size: 32px;
-      }
+    .products {
+      display: grid;
 
-      .cards {
-        grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+
+      border: 1px solid #dddddd;
+
+      border-radius: 5px;
+
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 210px;
+
+      background: #eeeeee;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #999999;
+      font-size: 14px;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-name {
+      font-size: 17px;
+      font-weight: 600;
+
+      margin-bottom: 8px;
+    }
+
+    .product-description {
+      color: #888888;
+
+      font-size: 13px;
+
+      margin-bottom: 15px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price {
+      font-weight: 600;
+    }
+
+    .view-button {
+      border: 1px solid #222222;
+
+      background: white;
+
+      padding: 8px 13px;
+
+      border-radius: 3px;
+
+      font-size: 12px;
+
+      cursor: pointer;
+    }
+
+    .view-button:hover {
+      background: #222222;
+      color: white;
+    }
+
+    /* ===== Footer ===== */
+
+    footer {
+      border-top: 1px solid #dddddd;
+
+      margin-top: 80px;
+
+      padding: 30px;
+
+      text-align: center;
+
+      color: #888888;
+
+      font-size: 13px;
+    }
+
+    /* ===== 平板／手機 ===== */
+
+    @media (max-width: 750px) {
+
+      header {
+        padding: 0 5%;
       }
 
       nav {
-        display: none;
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 12px;
+      }
+
+      .hero {
+        width: 90%;
+        padding: 35px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .section {
+        width: 90%;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .announcement {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
       }
     }
   </style>
 </head>
 
+
 <body>
 
+  <!-- 導覽列 -->
+
   <header>
-    <div class="logo">🏫 校園訂購平台</div>
+
+    <div class="logo">
+      🏫 校園訂購平台
+    </div>
 
     <nav>
       <a href="#">首頁</a>
@@ -151,55 +326,207 @@
       <a href="#">我的訂單</a>
       <a href="#">登入</a>
     </nav>
+
   </header>
 
+
+  <!-- 主視覺 -->
+
   <section class="hero">
-    <div class="hero-text">
-      <h1>讓校園訂購<br>變得更簡單</h1>
+
+    <div class="hero-content">
+
+      <div class="small-title">
+        SCHOOL ORDER SYSTEM
+      </div>
+
+      <h1>
+        校園商品<br>
+        簡單訂購
+      </h1>
 
       <p>
         集中管理校園商品訂購，
-        讓同學、班代與學生會都能更方便地處理訂單。
+        讓同學、班代與學生會都能更清楚地處理訂單。
       </p>
 
-      <a href="#" class="button">開始訂購 →</a>
+      <a href="#" class="main-button">
+        開始訂購 →
+      </a>
+
     </div>
+
   </section>
+
+
+  <!-- 最新公告 -->
 
   <section class="section">
 
-    <h2 class="section-title">目前服務</h2>
+    <div class="section-header">
 
-    <div class="cards">
+      <h2 class="section-title">
+        最新公告
+      </h2>
 
-      <div class="card">
-        <h3>🛍️ 校園商品</h3>
-        <p>
-          查看目前開放訂購的商品、尺寸與價格。
-        </p>
+      <span class="more">
+        查看全部 →
+      </span>
+
+    </div>
+
+
+    <div class="announcement">
+
+      <div>
+
+        <div class="announcement-title">
+          📢 115 學年度校園商品訂購
+        </div>
+
+        <div class="announcement-text">
+          目前開放校園商品訂購，請同學確認尺寸與數量後再送出訂單。
+        </div>
+
       </div>
 
-      <div class="card">
-        <h3>📋 我的訂單</h3>
-        <p>
-          查看自己的訂單與過去的訂購紀錄。
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>📢 最新公告</h3>
-        <p>
-          查看學生會發布的訂購相關公告。
-        </p>
+      <div class="announcement-date">
+        2026 / 09 / 15
       </div>
 
     </div>
 
   </section>
+
+
+  <!-- 商品 -->
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <h2 class="section-title">
+        熱門商品
+      </h2>
+
+      <span class="more">
+        查看全部 →
+      </span>
+
+    </div>
+
+
+    <div class="products">
+
+
+      <div class="product">
+
+        <div class="product-image">
+          商品圖片
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-name">
+            校園紀念 T-shirt
+          </div>
+
+          <div class="product-description">
+            115 學年度紀念服
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              NT$ 450
+            </div>
+
+            <button class="view-button">
+              查看商品
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+          商品圖片
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-name">
+            校園紀念外套
+          </div>
+
+          <div class="product-description">
+            校園限定紀念商品
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              NT$ 850
+            </div>
+
+            <button class="view-button">
+              查看商品
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image">
+          商品圖片
+        </div>
+
+        <div class="product-info">
+
+          <div class="product-name">
+            校園紀念帆布袋
+          </div>
+
+          <div class="product-description">
+            日常使用的校園紀念品
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              NT$ 250
+            </div>
+
+            <button class="view-button">
+              查看商品
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
 
   <footer>
     校園訂購平台 © 2026
   </footer>
+
 
 </body>
 </html>
