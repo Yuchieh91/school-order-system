@@ -64,6 +64,7 @@
       margin-bottom: 25px;
       border-radius: 5px;
       font-size: 14px;
+      line-height: 1.7;
     }
 
     .order-card {
@@ -127,10 +128,6 @@
 
     .cancelled {
       background: #f1f1f1;
-      color: #777;
-    }
-
-    .cancelled .status {
       color: #777;
     }
 
@@ -221,6 +218,7 @@
     <br>
 
     在繳費期限以前可以取消訂單。
+    班代是否已經收款，不影響取消權限。
 
   </div>
 
@@ -230,9 +228,9 @@
 
   <button
     class="clear-button"
-    onclick="clearTestOrders()"
+    onclick="clearMyTestOrders()"
   >
-    清除測試訂單
+    清除我的測試訂單
   </button>
 
 </div>
@@ -240,51 +238,93 @@
 
 <script>
 
-  /*
-   * =====================================
-   * 設定繳費截止時間
-   * =====================================
-   *
-   * 之後做管理員後台時，
-   * 這裡會改成從資料庫取得。
-   *
-   */
+  // =====================================
+  // 繳費截止時間
+  // =====================================
 
   const paymentDeadline =
     new Date("2026-10-15T23:59:00");
 
 
+  // =====================================
+  // 取得目前學生 ID
+  // =====================================
+
+  const studentProfile =
+    JSON.parse(
+      localStorage.getItem("studentProfile")
+    );
+
+
   /*
-   * =====================================
-   * 取得訂單
-   * =====================================
+   * 如果沒有學生資料，
+   * 就不能知道目前是哪位學生。
    */
 
-  let orders =
+  if (!studentProfile || !studentProfile.studentId) {
+
+    alert(
+      "請先設定學生資料！"
+    );
+
+    window.location.href =
+      "student-profile.html";
+
+  }
+
+
+  const currentStudentId =
+    studentProfile
+      ? studentProfile.studentId
+      : null;
+
+
+  // =====================================
+  // 取得全部訂單
+  // =====================================
+
+  let allOrders =
     JSON.parse(
       localStorage.getItem("schoolOrders")
     ) || [];
 
 
-  /*
-   * =====================================
-   * 顯示訂單
-   * =====================================
-   */
+  // =====================================
+  // 只留下目前學生的訂單
+  // =====================================
+
+  let myOrders =
+    allOrders.filter(function(order) {
+
+      return (
+        order.studentId ===
+        currentStudentId
+      );
+
+    });
+
+
+  // =====================================
+  // 顯示訂單
+  // =====================================
 
   function displayOrders() {
 
     const container =
-      document.getElementById("ordersContainer");
+      document.getElementById(
+        "ordersContainer"
+      );
 
 
-    if (orders.length === 0) {
+    if (myOrders.length === 0) {
 
       container.innerHTML = `
 
         <div class="empty">
 
-          <p>目前還沒有訂單。</p>
+          <p>
+            目前還沒有你的訂單。
+          </p>
 
           <a
             href="product.html"
@@ -304,21 +344,27 @@
     container.innerHTML = "";
 
 
-    orders.forEach(function(order, index) {
+    myOrders.forEach(function(order) {
 
       const card =
         document.createElement("div");
 
-      card.className = "order-card";
+
+      card.className =
+        "order-card";
 
 
       /*
-       * 如果已取消
+       * 已取消
        */
 
-      if (order.status === "已取消") {
+      if (
+        order.status === "已取消"
+      ) {
 
-        card.classList.add("cancelled");
+        card.classList.add(
+          "cancelled"
+        );
 
       }
 
@@ -327,11 +373,16 @@
        * 收款狀態
        */
 
-      let paymentText = "未收款";
+      let paymentText =
+        "未收款";
 
-      if (order.paymentStatus === "paid") {
 
-        paymentText = "已收款";
+      if (
+        order.paymentStatus === "paid"
+      ) {
+
+        paymentText =
+          "已收款";
 
       }
 
@@ -342,6 +393,7 @@
 
       let sizeText = "";
 
+
       if (order.size) {
 
         sizeText =
@@ -351,10 +403,12 @@
 
 
       /*
-       * 是否可以取消
+       * 判斷能不能取消
        */
 
-      const now = new Date();
+      const now =
+        new Date();
+
 
       const beforeDeadline =
         now < paymentDeadline;
@@ -365,11 +419,8 @@
         beforeDeadline;
 
 
-      /*
-       * 取消按鈕
-       */
-
-      let cancelButton = "";
+      let cancelButton =
+        "";
 
 
       if (canCancel) {
@@ -378,7 +429,7 @@
 
           <button
             class="cancel-button"
-            onclick="cancelOrder(${index})"
+            onclick="cancelOrder('${order.orderNumber}')"
           >
             取消訂單
           </button>
@@ -389,15 +440,8 @@
 
 
       /*
-       * 如果已取消
+       * 建立畫面
        */
-
-      if (order.status === "已取消") {
-
-        cancelButton = "";
-
-      }
-
 
       card.innerHTML = `
 
@@ -443,7 +487,6 @@
 
           <br>
 
-
           <div>
             商品：
             ${order.name}
@@ -471,7 +514,6 @@
             ${paymentText}
           </div>
 
-
           <div class="total">
 
             總金額：
@@ -494,28 +536,60 @@
   }
 
 
-  /*
-   * =====================================
-   * 取消訂單
-   * =====================================
-   */
+  // =====================================
+  // 取消訂單
+  // =====================================
 
-  function cancelOrder(index) {
+  function cancelOrder(orderNumber) {
 
-    const now = new Date();
+    const now =
+      new Date();
 
 
     /*
-     * 再次確認是否超過截止時間
+     * 再次確認截止時間
      */
 
-    if (now >= paymentDeadline) {
+    if (
+      now >= paymentDeadline
+    ) {
 
       alert(
         "已超過繳費截止時間，無法取消訂單。"
       );
 
       return;
+
+    }
+
+
+    /*
+     * 找到訂單
+     */
+
+    const orderIndex =
+      allOrders.findIndex(
+        function(order) {
+
+          return (
+            order.orderNumber ===
+              orderNumber &&
+            order.studentId ===
+              currentStudentId
+          );
+
+        }
+      );
+
+
+    if (orderIndex === -1) {
+
+      alert(
+        "找不到這筆訂單。"
+      );
+
+      return;
+
     }
 
 
@@ -523,7 +597,10 @@
      * 防止重複取消
      */
 
-    if (orders[index].status === "已取消") {
+    if (
+      allOrders[orderIndex].status ===
+      "已取消"
+    ) {
 
       return;
 
@@ -531,14 +608,17 @@
 
 
     /*
-     * 確認
+     * 確認取消
      */
 
     const confirmCancel =
       confirm(
+
         "確定要取消這筆訂單嗎？\n\n" +
+
         "訂單編號：" +
-        orders[index].orderNumber
+        orderNumber
+
       );
 
 
@@ -550,47 +630,61 @@
 
 
     /*
-     * 不刪除訂單
-     *
-     * 只把狀態改成「已取消」
+     * 修改訂單狀態
      */
 
-    orders[index].status = "已取消";
+    allOrders[orderIndex].status =
+      "已取消";
 
 
     /*
-     * 儲存
+     * 儲存全部訂單
      */
 
     localStorage.setItem(
       "schoolOrders",
-      JSON.stringify(orders)
+      JSON.stringify(
+        allOrders
+      )
     );
 
 
-    alert("訂單已取消。");
+    alert(
+      "訂單已取消。"
+    );
 
 
     /*
-     * 重新顯示
+     * 重新取得自己的訂單
      */
+
+    myOrders =
+      allOrders.filter(
+        function(order) {
+
+          return (
+            order.studentId ===
+            currentStudentId
+          );
+
+        }
+      );
+
 
     displayOrders();
 
   }
 
 
-  /*
-   * =====================================
-   * 清除測試訂單
-   * =====================================
-   */
+  // =====================================
+  // 清除目前學生的測試訂單
+  // =====================================
 
-  function clearTestOrders() {
+  function clearMyTestOrders() {
 
     const confirmClear =
       confirm(
-        "確定要清除所有測試訂單嗎？"
+        "確定要清除你自己的測試訂單嗎？"
       );
 
 
@@ -601,12 +695,41 @@
     }
 
 
-    localStorage.removeItem(
-      "schoolOrders"
+    /*
+     * 保留其他學生的訂單
+     */
+
+    allOrders =
+      allOrders.filter(
+        function(order) {
+
+          return (
+            order.studentId !==
+            currentStudentId
+          );
+
+        }
+      );
+
+
+    /*
+     * 儲存
+     */
+
+    localStorage.setItem(
+      "schoolOrders",
+      JSON.stringify(
+        allOrders
+      )
     );
 
 
-    orders = [];
+    /*
+     * 更新畫面
+
+    */
+
+    myOrders = [];
 
 
     displayOrders();
@@ -614,11 +737,9 @@
   }
 
 
-  /*
-   * =====================================
-   * 開始顯示
-   * =====================================
-   */
+  // =====================================
+  // 開始顯示
+  // =====================================
 
   displayOrders();
 
