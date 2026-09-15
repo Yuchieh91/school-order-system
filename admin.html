@@ -1166,20 +1166,84 @@ function exportCSV() {
 ======================================== */
 
 function exportDetailedOrdersCSV() {
+  const orders = JSON.parse(localStorage.getItem("schoolOrders")) || [];
 
-  // 只匯出有效訂單
-  const orders = allOrders.filter(order => {
-    return order.status !== "已取消";
+  const activeOrders = orders.filter(order => order.status !== "已取消");
+
+  if (activeOrders.length === 0) {
+    alert("目前沒有可以匯出的訂單");
+    return;
+  }
+
+  let csv = "訂單編號,訂單時間,學年度,年級,班級,座號,商品,類別,尺寸,數量,單價,總金額,收款狀態,訂單狀態\n";
+
+  activeOrders.forEach(order => {
+    const paymentText =
+      order.paymentStatus === "paid" ? "已收款" : "未收款";
+
+    const orderStatus =
+      order.status || "訂單成立";
+
+    csv += [
+      order.orderNumber,
+      order.orderTime,
+      order.academicYear,
+      order.grade,
+      order.className,
+      order.seatNumber,
+      order.name,
+      order.category,
+      order.size || "無尺寸",
+      order.quantity,
+      order.price,
+      order.total,
+      paymentText,
+      orderStatus
+    ].map(csvEscape).join(",") + "\n";
   });
 
+  const BOM = "\uFEFF";
+  const blob = new Blob(
+    [BOM + csv],
+    { type: "text/csv;charset=utf-8;" }
+  );
 
-  if (orders.length === 0) {
+  const url = URL.createObjectURL(blob);
 
-    alert("目前沒有可以匯出的訂單");
+  const link = document.createElement("a");
+  link.href = url;
+  link.download =
+    "詳細訂單_" +
+    new Date().toISOString().slice(0, 10) +
+    ".csv";
 
-    return;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 1000);
+}
+
+
+function csvEscape(value) {
+  if (value === null || value === undefined) {
+    return "";
   }
+
+  const text = String(value);
+
+  if (
+    text.includes(",") ||
+    text.includes('"') ||
+    text.includes("\n")
+  ) {
+    return '"' + text.replace(/"/g, '""') + '"';
+  }
+
+  return text;
+}
 
 
   // CSV 標題
