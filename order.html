@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>我的訂單｜校園訂購平台</title>
+  <title>我的訂單｜校園訂購系統</title>
 
   <style>
     * {
@@ -13,27 +13,28 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   "Noto Sans TC", sans-serif;
+      font-family: Arial, "Noto Sans TC", sans-serif;
       background: #f6f6f4;
-      color: #202020;
+      color: #222;
     }
+
+    /* ===== Header ===== */
 
     header {
       height: 72px;
       background: white;
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid #ddd;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 6%;
+      padding: 0 40px;
     }
 
     .logo {
       font-size: 20px;
-      font-weight: 700;
+      font-weight: bold;
     }
 
     nav {
@@ -42,8 +43,8 @@
     }
 
     nav a {
-      color: #333;
       text-decoration: none;
+      color: #333;
       font-size: 15px;
     }
 
@@ -51,10 +52,12 @@
       color: #777;
     }
 
-    .page {
+    /* ===== Main ===== */
+
+    main {
       max-width: 1000px;
-      margin: 0 auto;
-      padding: 50px 25px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
     .page-title {
@@ -62,7 +65,7 @@
     }
 
     .page-title h1 {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       font-size: 32px;
     }
 
@@ -71,85 +74,125 @@
       color: #777;
     }
 
-    .empty {
+    /* ===== Order Card ===== */
+
+    .order-card {
       background: white;
-      border: 1px solid #e3e3e3;
+      border: 1px solid #ddd;
       border-radius: 5px;
 
-      padding: 60px 25px;
-      text-align: center;
-
-      color: #777;
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
-    .empty a {
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      padding-bottom: 18px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .order-number {
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .order-time {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .status {
+      padding: 7px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    /* ===== Product ===== */
+
+    .product-info {
+      padding: 20px 0;
+    }
+
+    .product-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .product-detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* ===== Total ===== */
+
+    .order-total {
+      border-top: 1px solid #eee;
+      padding-top: 18px;
+
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    /* ===== Empty ===== */
+
+    .empty {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .empty p {
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .product-button {
       display: inline-block;
-      margin-top: 20px;
 
-      padding: 10px 18px;
+      padding: 11px 20px;
 
-      background: #202020;
+      background: #222;
       color: white;
 
       text-decoration: none;
-      border-radius: 3px;
+      border-radius: 4px;
     }
 
-    .order-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .order-item {
-      background: white;
-      border: 1px solid #e3e3e3;
-      border-radius: 5px;
-      padding: 22px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .order-name {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .order-info {
-      color: #777;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .order-price {
-      font-size: 18px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
+    /* ===== Test Button ===== */
 
     .clear-button {
-      margin-top: 25px;
+      margin-top: 20px;
 
-      padding: 9px 15px;
+      padding: 10px 16px;
 
       background: white;
-      color: #555;
-
       border: 1px solid #ccc;
-      border-radius: 3px;
+      border-radius: 4px;
 
       cursor: pointer;
     }
 
     .clear-button:hover {
-      background: #f2f2f2;
+      background: #f0f0f0;
     }
 
-    @media (max-width: 600px) {
+    /* ===== Mobile ===== */
+
+    @media (max-width: 700px) {
 
       header {
         padding: 0 20px;
@@ -163,28 +206,31 @@
         font-size: 13px;
       }
 
-      .page {
-        padding: 35px 18px;
+      main {
+        margin-top: 35px;
       }
 
-      .order-item {
-        align-items: flex-start;
+      .order-header {
         flex-direction: column;
+        gap: 12px;
       }
 
-      .order-price {
-        font-size: 17px;
+      .order-total {
+        text-align: left;
       }
     }
   </style>
 </head>
 
+
 <body>
+
+  <!-- ===== Header ===== -->
 
   <header>
 
     <div class="logo">
-      校園訂購平台
+      校園訂購系統
     </div>
 
     <nav>
@@ -197,26 +243,24 @@
   </header>
 
 
-  <main class="page">
+  <!-- ===== Main ===== -->
+
+  <main>
 
     <div class="page-title">
-
       <h1>我的訂單</h1>
-
-      <p>
-        查看你目前加入的商品
-      </p>
-
+      <p>查看你的訂購紀錄與目前訂單狀態</p>
     </div>
 
 
-    <div id="orderContainer"></div>
+    <div id="ordersContainer"></div>
 
+
+    <!-- 測試用 -->
 
     <button
       class="clear-button"
       onclick="clearOrders()"
-      id="clearButton"
     >
       清除測試訂單
     </button>
@@ -226,99 +270,111 @@
 
   <script>
 
-    /*
-     * 從瀏覽器取得之前儲存的訂單
-     */
-
+    // 從瀏覽器取得訂單
     let orders =
       JSON.parse(
         localStorage.getItem("schoolOrders")
       ) || [];
 
 
-    /*
-     * 顯示訂單
-     */
-
-    function showOrders() {
-
-      const container =
-        document.getElementById("orderContainer");
-
-      const clearButton =
-        document.getElementById("clearButton");
+    const container =
+      document.getElementById(
+        "ordersContainer"
+      );
 
 
-      /*
-       * 如果沒有訂單
-       */
+    // 沒有訂單
+    if (orders.length === 0) {
 
-      if (orders.length === 0) {
+      container.innerHTML = `
 
-        container.innerHTML = `
-          <div class="empty">
+        <div class="empty">
 
-            <div>
-              目前還沒有訂單
-            </div>
+          <p>
+            目前還沒有訂單
+          </p>
 
-            <a href="product.html">
-              去看看商品
-            </a>
+          <a
+            href="product.html"
+            class="product-button"
+          >
+            前往商品頁
+          </a>
 
-          </div>
-        `;
+        </div>
 
-        clearButton.style.display = "none";
-
-        return;
-      }
-
-
-      /*
-       * 有訂單
-       */
-
-      clearButton.style.display = "inline-block";
-
-
-      let html = `
-        <div class="order-list">
       `;
 
+    }
+
+
+    // 有訂單
+    else {
 
       orders.forEach(function(order) {
 
-        html += `
+        container.innerHTML += `
 
-          <div class="order-item">
+          <div class="order-card">
 
-            <div>
+            <div class="order-header">
 
-              <div class="order-name">
+              <div>
+
+                <div class="order-number">
+                  訂單編號：${order.orderNumber || "測試訂單"}
+                </div>
+
+                <div class="order-time">
+                  下單時間：
+                  ${order.orderTime || "尚未記錄"}
+                </div>
+
+              </div>
+
+
+              <div class="status">
+                ${order.status || "等待處理"}
+              </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+              <div class="product-name">
                 ${order.name}
               </div>
 
-              <div class="order-info">
 
-                分類：${order.category}
-                <br>
+              <div class="product-detail">
 
-                數量：${order.quantity}
+                <span>
+                  商品分類：${order.category}
+                </span>
 
                 ${
                   order.size
-                    ? `<br>尺寸：${order.size}`
-                    : ""
+                  ? `<span>尺寸：${order.size}</span>`
+                  : ""
                 }
+
+                <span>
+                  單價：NT$${order.price}
+                </span>
+
+                <span>
+                  數量：${order.quantity}
+                </span>
 
               </div>
 
             </div>
 
 
-            <div class="order-price">
+            <div class="order-total">
 
+              訂單金額：
               NT$${order.total}
 
             </div>
@@ -329,37 +385,29 @@
 
       });
 
-
-      html += `
-        </div>
-      `;
-
-
-      container.innerHTML = html;
-
     }
 
 
-    /*
-     * 清除測試訂單
-     */
-
+    // 清除測試訂單
     function clearOrders() {
 
-      localStorage.removeItem("schoolOrders");
+      const confirmClear =
+        confirm(
+          "確定要清除所有測試訂單嗎？"
+        );
 
-      orders = [];
 
-      showOrders();
+      if (confirmClear) {
+
+        localStorage.removeItem(
+          "schoolOrders"
+        );
+
+        location.reload();
+
+      }
 
     }
-
-
-    /*
-     * 第一次載入頁面
-     */
-
-    showOrders();
 
   </script>
 
