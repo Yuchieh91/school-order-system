@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>商品詳細｜校園訂購系統</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -21,9 +23,11 @@
       height: 72px;
       background: white;
       border-bottom: 1px solid #ddd;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       padding: 0 40px;
     }
 
@@ -61,7 +65,9 @@
       background: white;
       border: 1px solid #ddd;
       border-radius: 6px;
+
       padding: 30px;
+
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
@@ -70,9 +76,11 @@
     .product-image {
       background: #e5e5e5;
       height: 420px;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       color: #777;
       border-radius: 5px;
     }
@@ -114,7 +122,9 @@
     .size-button {
       background: white;
       border: 1px solid #bbb;
+
       padding: 10px 20px;
+
       cursor: pointer;
       border-radius: 4px;
     }
@@ -134,10 +144,13 @@
     .quantity-box button {
       width: 36px;
       height: 36px;
+
       border: 1px solid #bbb;
       background: white;
+
       cursor: pointer;
       border-radius: 4px;
+
       font-size: 18px;
     }
 
@@ -149,12 +162,16 @@
 
     .add-button {
       width: 100%;
+
       margin-top: 30px;
       padding: 15px;
+
       background: #222;
       color: white;
+
       border: none;
       border-radius: 4px;
+
       cursor: pointer;
       font-size: 16px;
     }
@@ -166,13 +183,16 @@
     .info-box {
       margin-top: 25px;
       padding: 15px;
+
       background: #f1f1f1;
       border-left: 4px solid #555;
+
       font-size: 14px;
       line-height: 1.7;
     }
 
     @media (max-width: 700px) {
+
       header {
         padding: 0 15px;
       }
@@ -190,14 +210,20 @@
       .product-image {
         height: 300px;
       }
+
     }
+
   </style>
 </head>
+
 
 <body>
 
 <header>
-  <div class="logo">校園訂購系統</div>
+
+  <div class="logo">
+    校園訂購系統
+  </div>
 
   <nav>
     <a href="index.html">首頁</a>
@@ -205,11 +231,16 @@
     <a href="orders.html">我的訂單</a>
     <a href="student-profile.html">我的資料</a>
   </nav>
+
 </header>
+
 
 <div class="container">
 
-  <a href="product.html" class="back">← 回到商品列表</a>
+  <a href="product.html" class="back">
+    ← 回到商品列表
+  </a>
+
 
   <div class="product-detail">
 
@@ -217,33 +248,89 @@
       商品圖片
     </div>
 
+
     <div>
 
-      <span class="category" id="productCategory"></span>
+      <span
+        class="category"
+        id="productCategory"
+      ></span>
 
-      <h1 id="productName">商品名稱</h1>
+
+      <h1 id="productName">
+        商品名稱
+      </h1>
+
 
       <div class="price">
-        NT$ <span id="productPrice">0</span>
+
+        NT$
+
+        <span id="productPrice">
+          0
+        </span>
+
       </div>
 
-      <div class="description" id="productDescription"></div>
+
+      <div
+        class="description"
+        id="productDescription"
+      ></div>
+
 
       <div id="sizeSection">
-        <div class="option-title">尺寸</div>
+
+        <div class="option-title">
+          尺寸
+        </div>
+
 
         <div class="size-buttons">
-          <button class="size-button" onclick="selectSize(this)">S</button>
-          <button class="size-button selected" onclick="selectSize(this)">M</button>
-          <button class="size-button" onclick="selectSize(this)">L</button>
-          <button class="size-button" onclick="selectSize(this)">XL</button>
+
+          <button
+            class="size-button"
+            onclick="selectSize(this)"
+          >
+            S
+          </button>
+
+          <button
+            class="size-button selected"
+            onclick="selectSize(this)"
+          >
+            M
+          </button>
+
+          <button
+            class="size-button"
+            onclick="selectSize(this)"
+          >
+            L
+          </button>
+
+          <button
+            class="size-button"
+            onclick="selectSize(this)"
+          >
+            XL
+          </button>
+
         </div>
+
       </div>
 
-      <div class="option-title">數量</div>
+
+      <div class="option-title">
+        數量
+      </div>
+
 
       <div class="quantity-box">
-        <button onclick="changeQuantity(-1)">−</button>
+
+        <button onclick="changeQuantity(-1)">
+          −
+        </button>
 
         <input
           id="quantity"
@@ -253,17 +340,29 @@
           readonly
         >
 
-        <button onclick="changeQuantity(1)">＋</button>
+        <button onclick="changeQuantity(1)">
+          ＋
+        </button>
+
       </div>
 
-      <button class="add-button" onclick="addOrder()">
+
+      <button
+        class="add-button"
+        onclick="addOrder()"
+      >
         立即下單
       </button>
 
+
       <div class="info-box">
+
         下單後，訂單會交由班級幹部統一確認與收款。
+
         <br>
+
         請確認「我的資料」中的學年度、班級與座號正確。
+
       </div>
 
     </div>
@@ -272,11 +371,13 @@
 
 </div>
 
+
 <script>
 
-  // =========================
+
+  // =====================================
   // 商品資料
-  // =========================
+  // =====================================
 
   const products = {
 
@@ -331,102 +432,151 @@
   };
 
 
-  // =========================
+  // =====================================
   // 取得商品
-  // =========================
+  // =====================================
 
-  const params = new URLSearchParams(window.location.search);
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
-  const productId = params.get("product");
 
-  const product = products[productId];
+  const productId =
+    params.get("product");
+
+
+  const product =
+    products[productId];
 
 
   if (!product) {
 
-    document.getElementById("productName").textContent = "找不到商品";
+    document.getElementById(
+      "productName"
+    ).textContent = "找不到商品";
 
   } else {
 
-    document.getElementById("productName").textContent = product.name;
+    document.getElementById(
+      "productName"
+    ).textContent = product.name;
 
-    document.getElementById("productPrice").textContent =
-      product.price;
 
-    document.getElementById("productCategory").textContent =
-      product.category;
+    document.getElementById(
+      "productPrice"
+    ).textContent = product.price;
 
-    document.getElementById("productDescription").textContent =
-      product.description;
+
+    document.getElementById(
+      "productCategory"
+    ).textContent = product.category;
+
+
+    document.getElementById(
+      "productDescription"
+    ).textContent = product.description;
+
 
     if (!product.hasSize) {
-      document.getElementById("sizeSection").style.display = "none";
+
+      document.getElementById(
+        "sizeSection"
+      ).style.display = "none";
+
     }
 
   }
 
 
-  // =========================
-  // 尺寸選擇
-  // =========================
+  // =====================================
+  // 尺寸
+  // =====================================
 
   let selectedSize = "M";
 
 
   function selectSize(button) {
 
-    document.querySelectorAll(".size-button").forEach(function(btn) {
-      btn.classList.remove("selected");
-    });
+    document
+      .querySelectorAll(".size-button")
+      .forEach(function(btn) {
+
+        btn.classList.remove("selected");
+
+      });
+
 
     button.classList.add("selected");
 
-    selectedSize = button.textContent.trim();
+
+    selectedSize =
+      button.textContent.trim();
 
   }
 
 
-  // =========================
+  // =====================================
   // 數量
-  // =========================
+  // =====================================
 
   function changeQuantity(change) {
 
     const quantityInput =
       document.getElementById("quantity");
 
+
     let quantity =
       parseInt(quantityInput.value);
 
+
     quantity += change;
 
+
     if (quantity < 1) {
+
       quantity = 1;
+
     }
 
-    quantityInput.value = quantity;
+
+    quantityInput.value =
+      quantity;
 
   }
 
 
-  // =========================
+  // =====================================
   // 建立訂單
-  // =========================
+  // =====================================
 
   function addOrder() {
 
+
     if (!product) {
+
       alert("找不到商品！");
       return;
+
     }
 
 
-    // 讀取「我的資料」
+    // -------------------------------------
+    // 取得學生資料
+    // -------------------------------------
+
     const profile =
-      JSON.parse(localStorage.getItem("studentProfile"));
+      JSON.parse(
+        localStorage.getItem(
+          "studentProfile"
+        )
+      );
 
 
-    // 如果還沒有設定學生資料
+    // -------------------------------------
+    // 如果還沒有學生資料
+    // -------------------------------------
+
     if (!profile) {
 
       alert(
@@ -434,95 +584,176 @@
         "接下來會前往「我的資料」。"
       );
 
+
       window.location.href =
         "student-profile.html";
 
+
       return;
+
     }
 
 
-    // 檢查班級
-    if (!profile.className) {
+    // -------------------------------------
+    // 檢查學生 ID
+    // -------------------------------------
 
-      alert("請先填寫班級！");
-      window.location.href =
-        "student-profile.html";
+    if (!profile.studentId) {
 
-      return;
-    }
-
-
-    // 檢查座號
-    if (!profile.seatNumber) {
-
-      alert("請先填寫座號！");
-      window.location.href =
-        "student-profile.html";
-
-      return;
-    }
-
-
-    // 取得目前數量
-    const quantity =
-      parseInt(
-        document.getElementById("quantity").value
+      alert(
+        "目前還沒有學生識別資料。\n\n" +
+        "請先重新儲存一次「我的資料」。"
       );
 
 
-    // 取得目前訂單
+      window.location.href =
+        "student-profile.html";
+
+
+      return;
+
+    }
+
+
+    // -------------------------------------
+    // 檢查班級
+    // -------------------------------------
+
+    if (!profile.className) {
+
+      alert("請先填寫班級！");
+
+
+      window.location.href =
+        "student-profile.html";
+
+
+      return;
+
+    }
+
+
+    // -------------------------------------
+    // 檢查座號
+    // -------------------------------------
+
+    if (!profile.seatNumber) {
+
+      alert("請先填寫座號！");
+
+
+      window.location.href =
+        "student-profile.html";
+
+
+      return;
+
+    }
+
+
+    // -------------------------------------
+    // 取得數量
+    // -------------------------------------
+
+    const quantity =
+      parseInt(
+        document.getElementById(
+          "quantity"
+        ).value
+      );
+
+
+    // -------------------------------------
+    // 取得舊訂單
+    // -------------------------------------
+
     const orders =
       JSON.parse(
-        localStorage.getItem("schoolOrders")
+        localStorage.getItem(
+          "schoolOrders"
+        )
       ) || [];
 
 
+    // -------------------------------------
     // 建立訂單編號
+    // -------------------------------------
+
     const orderNumber =
       profile.academicYear +
-      String(orders.length + 1).padStart(4, "0");
+      String(
+        orders.length + 1
+      ).padStart(4, "0");
 
 
-    // 訂單建立時間
+    // -------------------------------------
+    // 下單時間
+    // -------------------------------------
+
     const orderTime =
-      new Date().toLocaleString("zh-TW");
+      new Date().toLocaleString(
+        "zh-TW"
+      );
 
 
-    // =========================
+    // -------------------------------------
     // 建立新訂單
-    // =========================
+    // -------------------------------------
 
     const newOrder = {
 
-      orderNumber: orderNumber,
+      // 學生識別 ID
+      studentId:
+        profile.studentId,
 
-      orderTime: orderTime,
 
-      status: "等待班代收款",
+      // 訂單基本資料
+      orderNumber:
+        orderNumber,
 
-      paymentStatus: "unpaid",
+      orderTime:
+        orderTime,
 
-      // 從「我的資料」取得
-      academicYear: profile.academicYear,
+      status:
+        "等待班代收款",
 
-      grade: profile.grade,
+      paymentStatus:
+        "unpaid",
 
-      className: profile.className,
 
-      seatNumber: String(profile.seatNumber),
+      // 學校資料
+      academicYear:
+        profile.academicYear,
 
-      // 商品資訊
-      name: product.name,
+      grade:
+        profile.grade,
 
-      category: product.category,
+      className:
+        profile.className,
 
-      price: product.price,
+      seatNumber:
+        String(
+          profile.seatNumber
+        ),
 
-      quantity: quantity,
 
-      size: product.hasSize
-        ? selectedSize
-        : "",
+      // 商品資料
+      name:
+        product.name,
+
+      category:
+        product.category,
+
+      price:
+        product.price,
+
+      quantity:
+        quantity,
+
+      size:
+        product.hasSize
+          ? selectedSize
+          : "",
 
       total:
         product.price * quantity
@@ -530,35 +761,55 @@
     };
 
 
+    // -------------------------------------
     // 加入訂單
-    orders.push(newOrder);
+    // -------------------------------------
+
+    orders.push(
+      newOrder
+    );
 
 
+    // -------------------------------------
     // 儲存訂單
+    // -------------------------------------
+
     localStorage.setItem(
       "schoolOrders",
-      JSON.stringify(orders)
+      JSON.stringify(
+        orders
+      )
     );
 
 
+    // -------------------------------------
     // 成功提示
+    // -------------------------------------
+
     alert(
+
       "訂單建立成功！\n\n" +
+
       "訂單編號：" +
       orderNumber +
+
       "\n\n" +
-      "學年度：" +
-      profile.academicYear +
-      "\n" +
+
       "班級：" +
       profile.className +
+
       "\n" +
+
       "座號：" +
       profile.seatNumber
+
     );
 
 
+    // -------------------------------------
     // 前往我的訂單
+    // -------------------------------------
+
     window.location.href =
       "orders.html";
 
