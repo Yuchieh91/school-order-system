@@ -13,7 +13,12 @@
 
     body {
       margin: 0;
-      font-family: Arial, "Noto Sans TC", sans-serif;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        sans-serif;
       background: #f6f6f4;
       color: #222;
     }
@@ -30,32 +35,33 @@
 
     .logo {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 700;
     }
 
     nav {
       display: flex;
       gap: 24px;
+      align-items: center;
     }
 
     nav a {
-      color: #333;
       text-decoration: none;
-      font-size: 14px;
+      color: #333;
+      font-size: 15px;
     }
 
     nav a:hover {
       text-decoration: underline;
     }
 
-    .container {
+    main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 24px 60px;
+      padding: 40px 24px 80px;
     }
 
     .page-title {
-      margin-bottom: 30px;
+      margin-bottom: 28px;
     }
 
     .page-title h1 {
@@ -66,14 +72,16 @@
     .page-title p {
       margin: 0;
       color: #777;
-      font-size: 14px;
+      font-size: 15px;
     }
 
-    .stats {
+    /* 統計卡片 */
+
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     .stat-card {
@@ -84,43 +92,38 @@
     }
 
     .stat-title {
-      color: #777;
       font-size: 14px;
-      margin-bottom: 12px;
+      color: #777;
+      margin-bottom: 10px;
     }
 
     .stat-number {
       font-size: 30px;
-      font-weight: bold;
+      font-weight: 700;
     }
+
+    /* 區塊 */
 
     .section {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 5px;
-      margin-bottom: 24px;
-      overflow: hidden;
+      padding: 24px;
+      margin-bottom: 28px;
     }
 
-    .section-header {
-      padding: 20px 22px;
-      border-bottom: 1px solid #ddd;
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 21px;
     }
 
-    .section-header h2 {
-      margin: 0 0 5px;
-      font-size: 20px;
-    }
-
-    .section-header p {
-      margin: 0;
+    .section-description {
+      margin: -8px 0 20px;
       color: #777;
-      font-size: 13px;
+      font-size: 14px;
     }
 
-    .section-content {
-      padding: 22px;
-    }
+    /* 班級狀態 */
 
     .class-grid {
       display: grid;
@@ -130,111 +133,74 @@
 
     .class-card {
       border: 1px solid #ddd;
+      border-radius: 5px;
       padding: 18px;
       background: #fafafa;
     }
 
     .class-name {
       font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
 
     .class-info {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 7px;
       font-size: 14px;
+      line-height: 1.8;
+      color: #555;
     }
 
-    .class-info span:first-child {
-      color: #777;
+    .paid {
+      color: #267a45;
+      font-weight: 600;
     }
 
-    .empty {
-      padding: 20px;
-      text-align: center;
-      color: #777;
-      border: 1px dashed #ccc;
+    .unpaid {
+      color: #a33a3a;
+      font-weight: 600;
     }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .feature-card {
-      border: 1px solid #ddd;
-      padding: 22px;
-      background: #fafafa;
-    }
-
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 17px;
-    }
-
-    .feature-card p {
-      margin: 0 0 18px;
-      color: #777;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .feature-button {
-      display: inline-block;
-      padding: 9px 14px;
-      background: #222;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 13px;
-      border: none;
-      cursor: pointer;
-    }
-
-    .feature-button:hover {
-      opacity: 0.85;
-    }
-
-    /* 統計控制區 */
+    /* 篩選區 */
 
     .filter-area {
       display: flex;
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .filter-area label {
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 600;
     }
 
     .product-select {
       min-width: 240px;
-      padding: 10px 12px;
+      height: 42px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      background: white;
-      font-size: 14px;
+      background: #fff;
+      padding: 0 12px;
+      font-size: 15px;
     }
 
     .export-button {
-      padding: 10px 16px;
-      border: none;
+      height: 42px;
+      padding: 0 18px;
+      border: 1px solid #333;
+      background: #333;
+      color: #fff;
       border-radius: 4px;
-      background: #222;
-      color: white;
       cursor: pointer;
       font-size: 14px;
     }
 
     .export-button:hover {
-      opacity: 0.85;
+      background: #111;
     }
+
+    /* 表格 */
 
     .table-wrapper {
       width: 100%;
@@ -245,97 +211,113 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 650px;
-      background: white;
+      min-width: 700px;
+      background: #fff;
     }
 
     th,
     td {
-      padding: 12px 14px;
-      border-bottom: 1px solid #ddd;
+      padding: 13px 12px;
+      border-bottom: 1px solid #e5e5e5;
       text-align: center;
       font-size: 14px;
       white-space: nowrap;
     }
 
     th {
-      background: #f1f1f1;
-      font-weight: bold;
+      background: #f3f3f3;
+      font-weight: 600;
     }
 
-    td:first-child,
-    th:first-child {
-      text-align: left;
+    tr:last-child td {
+      border-bottom: none;
     }
 
-    tbody tr:hover {
+    .empty-message {
+      padding: 30px;
+      text-align: center;
+      color: #888;
+      border: 1px solid #ddd;
       background: #fafafa;
     }
 
-    tfoot {
-      font-weight: bold;
+    /* 管理功能 */
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
     }
 
-    tfoot td {
-      background: #f1f1f1;
-      border-top: 2px solid #ccc;
+    .feature-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      background: #fafafa;
     }
 
-    .no-data {
-      padding: 25px;
-      text-align: center;
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .feature-card p {
+      margin: 0;
       color: #777;
-      border: 1px dashed #ccc;
-    }
-
-    .note {
-      margin-top: 12px;
-      color: #777;
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.6;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 900px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .class-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
       header {
-        padding: 0 18px;
+        padding: 0 16px;
+        height: auto;
+        min-height: 72px;
+        align-items: flex-start;
+        padding-top: 18px;
+        padding-bottom: 18px;
+        flex-direction: column;
+        gap: 14px;
       }
 
       nav {
-        gap: 12px;
+        gap: 14px;
+        flex-wrap: wrap;
       }
 
-      nav a:nth-child(1),
-      nav a:nth-child(2),
-      nav a:nth-child(3) {
-        display: none;
+      main {
+        padding: 28px 16px 60px;
       }
 
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .class-grid,
       .feature-grid {
         grid-template-columns: 1fr;
       }
-    }
 
-    @media (max-width: 500px) {
-      .container {
-        padding: 28px 16px 50px;
+      .section {
+        padding: 18px;
       }
 
-      .stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-      }
-
-      .stat-card {
-        padding: 16px;
-      }
-
-      .stat-number {
-        font-size: 24px;
+      .page-title h1 {
+        font-size: 26px;
       }
 
       .filter-area {
@@ -354,34 +336,34 @@
 <body>
 
 <header>
-  <div class="logo">校園訂購系統｜管理後台</div>
+  <div class="logo">校園訂購系統｜管理員</div>
 
   <nav>
     <a href="index.html">首頁</a>
     <a href="product.html">商品</a>
-    <a href="class-rep.html">班代端</a>
+    <a href="class-rep.html">班代後台</a>
     <a href="orders.html">學生訂單</a>
   </nav>
 </header>
 
 
-<div class="container">
+<main>
+
+  <!-- 頁面標題 -->
 
   <div class="page-title">
     <h1>管理員後台</h1>
-    <p>查看目前訂購狀況與班級收款進度</p>
+    <p>查看全校訂單、收款狀態與訂貨統計</p>
   </div>
 
 
-  <!-- =========================
-       訂單總覽
-  ========================== -->
+  <!-- 總體統計 -->
 
-  <div class="stats">
+  <section class="stats-grid">
 
     <div class="stat-card">
       <div class="stat-title">有效訂單</div>
-      <div class="stat-number" id="totalOrders">0</div>
+      <div class="stat-number" id="validOrders">0</div>
     </div>
 
     <div class="stat-card">
@@ -399,1098 +381,1262 @@
       <div class="stat-number" id="cancelledOrders">0</div>
     </div>
 
-  </div>
+  </section>
 
 
-  <!-- =========================
-       班級訂單狀況
-  ========================== -->
+  <!-- 班級收款狀態 -->
 
-  <div class="section">
+  <section class="section">
 
-    <div class="section-header">
-      <h2>班級訂購狀況</h2>
-      <p>目前系統中的各班訂單統計</p>
+    <h2 class="section-title">班級收款狀態</h2>
+
+    <p class="section-description">
+      目前訂單依學年度與班級整理。
+    </p>
+
+    <div id="classStatusContainer"></div>
+
+  </section>
+
+
+  <!-- 訂貨統計 -->
+
+  <section class="section">
+
+    <h2 class="section-title">訂貨統計</h2>
+
+    <p class="section-description">
+      選擇商品後，可以查看各班級的訂購數量。
+    </p>
+
+    <div class="filter-area">
+
+      <label for="productSelect">
+        選擇商品
+      </label>
+
+      <select
+        id="productSelect"
+        class="product-select"
+        onchange="showProductStatistics()"
+      >
+        <option value="">請選擇商品</option>
+      </select>
+
+      <button
+        class="export-button"
+        onclick="exportCSV()"
+      >
+        匯出訂貨統計
+      </button>
+
+      <button
+        class="export-button"
+        onclick="exportDetailedOrdersCSV()"
+      >
+        匯出詳細訂單
+      </button>
+
     </div>
 
-    <div class="section-content">
+    <div id="statisticsContainer">
 
-      <div id="classList" class="class-grid"></div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       訂貨統計
-  ========================== -->
-
-  <div class="section">
-
-    <div class="section-header">
-      <h2>📊 訂貨統計</h2>
-      <p>依照「商品 × 尺寸 × 班級」統計實際訂購數量</p>
-    </div>
-
-    <div class="section-content">
-
-      <div class="filter-area">
-
-  <label for="productSelect">
-    選擇商品
-  </label>
-
-  <select
-    id="productSelect"
-    class="product-select"
-    onchange="showProductStatistics()"
-  >
-    <option value="">請選擇商品</option>
-  </select>
-
-  <button
-    class="export-button"
-    onclick="exportCSV()"
-  >
-    匯出訂貨統計
-  </button>
-
-  <button
-    class="export-button"
-    onclick="exportDetailedOrdersCSV()"
-  >
-    匯出詳細訂單
-  </button>
-
-</div>
-
-
-      <div id="statisticsArea">
-
-        <div class="no-data">
-          請先選擇商品
-        </div>
-
-      </div>
-
-
-      <div class="note">
-        ※ 已取消的訂單不會計入統計。<br>
-        ※ 有尺寸的商品會依 S、M、L、XL 分開統計。<br>
-        ※ 沒有尺寸的商品則直接統計商品數量。
+      <div class="empty-message">
+        請先選擇商品
       </div>
 
     </div>
 
-  </div>
+  </section>
 
 
-  <!-- =========================
-       管理功能
-  ========================== -->
+  <!-- 其他管理功能 -->
 
-  <div class="section">
+  <section class="section">
 
-    <div class="section-header">
-      <h2>管理功能</h2>
-      <p>之後會逐步加入完整的管理工具</p>
-    </div>
+    <h2 class="section-title">系統管理</h2>
 
-    <div class="section-content">
+    <div class="feature-grid">
 
-      <div class="feature-grid">
+      <div class="feature-card">
+        <h3>商品管理</h3>
+        <p>
+          未來可以在這裡新增、修改或下架校園商品。
+        </p>
+      </div>
 
-        <div class="feature-card">
-          <h3>📦 商品管理</h3>
+      <div class="feature-card">
+        <h3>公告管理</h3>
+        <p>
+          未來可以管理首頁公告與重要通知。
+        </p>
+      </div>
 
-          <p>
-            新增商品、修改價格、尺寸與商品資訊。
-          </p>
-
-          <a href="#" class="feature-button">
-            即將開放
-          </a>
-        </div>
-
-
-        <div class="feature-card">
-          <h3>📋 訂單管理</h3>
-
-          <p>
-            查看訂單、付款狀態與訂購明細。
-          </p>
-
-          <a href="#" class="feature-button">
-            即將開放
-          </a>
-        </div>
-
-
-        <div class="feature-card">
-          <h3>📢 公告管理</h3>
-
-          <p>
-            修改首頁公告與目前的訂購活動資訊。
-          </p>
-
-          <a href="#" class="feature-button">
-            即將開放
-          </a>
-        </div>
-
+      <div class="feature-card">
+        <h3>網站設定</h3>
+        <p>
+          未來可以設定網站背景、主題與其他介面內容。
+        </p>
       </div>
 
     </div>
 
-  </div>
+  </section>
 
-</div>
+</main>
 
 
 <script>
 
-/* ========================================
-   取得所有訂單
-======================================== */
+  /* =========================================
+     讀取訂單資料
+  ========================================= */
 
-const allOrders =
-  JSON.parse(localStorage.getItem("schoolOrders")) || [];
-
-
-/* ========================================
-   訂單總覽
-======================================== */
-
-const activeOrders =
-  allOrders.filter(order => {
-    return order.status !== "已取消";
-  });
+  let allOrders =
+    JSON.parse(localStorage.getItem("schoolOrders")) || [];
 
 
-const cancelledOrders =
-  allOrders.filter(order => {
-    return order.status === "已取消";
-  });
+  /* =========================================
+     取得有效訂單
+  ========================================= */
 
+  function getActiveOrders() {
 
-const unpaidOrders =
-  activeOrders.filter(order => {
-    return order.paymentStatus !== "paid";
-  });
+    return allOrders.filter(function(order) {
 
+      return order.status !== "已取消";
 
-const paidOrders =
-  activeOrders.filter(order => {
-    return order.paymentStatus === "paid";
-  });
-
-
-document.getElementById("totalOrders").textContent =
-  activeOrders.length;
-
-
-document.getElementById("unpaidOrders").textContent =
-  unpaidOrders.length;
-
-
-document.getElementById("paidOrders").textContent =
-  paidOrders.length;
-
-
-document.getElementById("cancelledOrders").textContent =
-  cancelledOrders.length;
-
-
-/* ========================================
-   班級統計
-======================================== */
-
-const classList =
-  document.getElementById("classList");
-
-
-const classData = {};
-
-
-activeOrders.forEach(order => {
-
-  const academicYear =
-    order.academicYear || "未知";
-
-  const className =
-    order.className || "未設定";
-
-  const classKey =
-    academicYear + "-" + className;
-
-
-  if (!classData[classKey]) {
-
-    classData[classKey] = {
-
-      academicYear: academicYear,
-
-      className: className,
-
-      students: new Set(),
-
-      products: 0,
-
-      total: 0,
-
-      unpaid: 0
-
-    };
+    });
 
   }
 
 
-  if (order.seatNumber) {
+  /* =========================================
+     更新首頁統計
+  ========================================= */
 
-    classData[classKey].students.add(
-      order.seatNumber
-    );
+  function updateStatistics() {
 
-  }
+    const activeOrders = getActiveOrders();
 
+    const cancelledOrders =
+      allOrders.filter(function(order) {
 
-  classData[classKey].products +=
-    Number(order.quantity) || 0;
+        return order.status === "已取消";
 
-
-  classData[classKey].total +=
-    Number(order.total) || 0;
-
-
-  if (order.paymentStatus !== "paid") {
-
-    classData[classKey].unpaid++;
-
-  }
-
-});
+      });
 
 
-const classes =
-  Object.values(classData);
+    const unpaidOrders =
+      activeOrders.filter(function(order) {
+
+        return order.paymentStatus !== "paid";
+
+      });
 
 
-if (classes.length === 0) {
+    const paidOrders =
+      activeOrders.filter(function(order) {
 
-  classList.innerHTML = `
-    <div class="empty">
-      目前還沒有訂單資料
-    </div>
-  `;
+        return order.paymentStatus === "paid";
 
-} else {
-
-  classes.sort((a, b) => {
-
-    return (
-      a.academicYear + a.className
-    ).localeCompare(
-      b.academicYear + b.className
-    );
-
-  });
+      });
 
 
-  classes.forEach(classInfo => {
+    document.getElementById("validOrders").textContent =
+      activeOrders.length;
 
-    const card =
-      document.createElement("div");
+    document.getElementById("unpaidOrders").textContent =
+      unpaidOrders.length;
 
-    card.className =
-      "class-card";
+    document.getElementById("paidOrders").textContent =
+      paidOrders.length;
 
-
-    card.innerHTML = `
-
-      <div class="class-name">
-        ${classInfo.academicYear}
-        ${classInfo.className}
-      </div>
-
-      <div class="class-info">
-        <span>訂購學生</span>
-        <strong>
-          ${classInfo.students.size} 人
-        </strong>
-      </div>
-
-      <div class="class-info">
-        <span>商品數量</span>
-        <strong>
-          ${classInfo.products} 件
-        </strong>
-      </div>
-
-      <div class="class-info">
-        <span>訂單金額</span>
-        <strong>
-          NT$ ${classInfo.total.toLocaleString()}
-        </strong>
-      </div>
-
-      <div class="class-info">
-        <span>未收款</span>
-        <strong>
-          ${classInfo.unpaid} 筆
-        </strong>
-      </div>
-
-    `;
-
-
-    classList.appendChild(card);
-
-  });
-
-}
-
-
-/* ========================================
-   商品清單
-======================================== */
-
-const productSelect =
-  document.getElementById("productSelect");
-
-
-const productMap = {};
-
-
-activeOrders.forEach(order => {
-
-  if (!productMap[order.name]) {
-
-    productMap[order.name] = {
-
-      name: order.name,
-
-      category: order.category || ""
-
-    };
+    document.getElementById("cancelledOrders").textContent =
+      cancelledOrders.length;
 
   }
 
-});
+
+  /* =========================================
+     建立班級統計
+  ========================================= */
+
+  function showClassStatus() {
+
+    const container =
+      document.getElementById("classStatusContainer");
+
+    const activeOrders = getActiveOrders();
 
 
-Object.values(productMap).forEach(product => {
+    if (activeOrders.length === 0) {
 
-  const option =
-    document.createElement("option");
+      container.innerHTML =
+        '<div class="empty-message">目前沒有有效訂單</div>';
 
-  option.value =
-    product.name;
-
-  option.textContent =
-    product.name;
-
-  productSelect.appendChild(option);
-
-});
+      return;
+    }
 
 
-/* ========================================
-   顯示商品統計
-======================================== */
-
-let currentStatistics = null;
+    const classMap = {};
 
 
-function showProductStatistics() {
+    activeOrders.forEach(function(order) {
 
-  const selectedProduct =
-    productSelect.value;
+      const key =
+        (order.academicYear || "未知") +
+        "-" +
+        (order.className || "未知");
+
+      if (!classMap[key]) {
+
+        classMap[key] = {
+
+          academicYear:
+            order.academicYear || "未知",
+
+          className:
+            order.className || "未知",
+
+          orders: [],
+
+          students: {}
+
+        };
+
+      }
 
 
-  const statisticsArea =
-    document.getElementById("statisticsArea");
+      classMap[key].orders.push(order);
 
 
-  if (!selectedProduct) {
+      if (order.seatNumber !== undefined &&
+          order.seatNumber !== null &&
+          order.seatNumber !== "") {
 
-    statisticsArea.innerHTML = `
-      <div class="no-data">
-        請先選擇商品
-      </div>
-    `;
+        classMap[key].students[
+          String(order.seatNumber)
+        ] = true;
 
-    currentStatistics = null;
-
-    return;
-
-  }
-
-
-  const productOrders =
-    activeOrders.filter(order => {
-
-      return order.name === selectedProduct;
+      }
 
     });
 
 
-  if (productOrders.length === 0) {
+    const classes =
+      Object.values(classMap);
 
-    statisticsArea.innerHTML = `
-      <div class="no-data">
-        目前沒有這項商品的有效訂單
-      </div>
-    `;
 
-    currentStatistics = null;
+    classes.sort(function(a, b) {
 
-    return;
+      const yearCompare =
+        String(a.academicYear)
+          .localeCompare(
+            String(b.academicYear),
+            "zh-Hant"
+          );
+
+      if (yearCompare !== 0) {
+        return yearCompare;
+      }
+
+      return String(a.className)
+        .localeCompare(
+          String(b.className),
+          "zh-Hant"
+        );
+
+    });
+
+
+    let html =
+      '<div class="class-grid">';
+
+
+    classes.forEach(function(classData) {
+
+      const unpaid =
+        classData.orders.filter(function(order) {
+
+          return order.paymentStatus !== "paid";
+
+        }).length;
+
+
+      const paid =
+        classData.orders.filter(function(order) {
+
+          return order.paymentStatus === "paid";
+
+        }).length;
+
+
+      let statusText;
+      let statusClass;
+
+
+      if (unpaid === 0) {
+
+        statusText = "已收齊";
+        statusClass = "paid";
+
+      } else {
+
+        statusText =
+          "尚有 " + unpaid + " 筆未收款";
+
+        statusClass = "unpaid";
+
+      }
+
+
+      html += `
+        <div class="class-card">
+
+          <div class="class-name">
+            ${escapeHTML(classData.academicYear)}
+            學年度
+            ${escapeHTML(classData.className)}
+          </div>
+
+          <div class="class-info">
+
+            訂單數量：
+            ${classData.orders.length}
+            筆
+            <br>
+
+            訂購學生：
+            ${Object.keys(classData.students).length}
+            人
+            <br>
+
+            已收款：
+            ${paid}
+            筆
+            <br>
+
+            未收款：
+            ${unpaid}
+            筆
+            <br>
+
+            <span class="${statusClass}">
+              ${statusText}
+            </span>
+
+          </div>
+
+        </div>
+      `;
+
+    });
+
+
+    html += "</div>";
+
+    container.innerHTML = html;
 
   }
 
 
-  /* --------------------------------
-     判斷是否有尺寸
-  -------------------------------- */
+  /* =========================================
+     商品選單
+  ========================================= */
 
-  const hasSize =
-    productOrders.some(order => {
+  function loadProductSelect() {
 
-      return (
-        order.size === "S" ||
-        order.size === "M" ||
-        order.size === "L" ||
-        order.size === "XL"
+    const select =
+      document.getElementById("productSelect");
+
+
+    const activeOrders =
+      getActiveOrders();
+
+
+    const productMap = {};
+
+
+    activeOrders.forEach(function(order) {
+
+      if (!order.name) {
+        return;
+      }
+
+      productMap[order.name] = {
+
+        name: order.name,
+
+        category:
+          order.category || "",
+
+        hasSize:
+          !!order.size
+
+      };
+
+    });
+
+
+    const products =
+      Object.values(productMap);
+
+
+    products.sort(function(a, b) {
+
+      return a.name.localeCompare(
+        b.name,
+        "zh-Hant"
       );
 
     });
 
 
-  const sizes =
-    hasSize
-      ? ["S", "M", "L", "XL"]
-      : ["數量"];
+    products.forEach(function(product) {
+
+      const option =
+        document.createElement("option");
+
+      option.value = product.name;
+
+      option.textContent = product.name;
+
+      select.appendChild(option);
+
+    });
+
+  }
 
 
-  /* --------------------------------
-     建立班級資料
-  -------------------------------- */
+  /* =========================================
+     顯示商品訂貨統計
+  ========================================= */
 
-  const data = {};
+  function showProductStatistics() {
 
+    const select =
+      document.getElementById("productSelect");
 
-  productOrders.forEach(order => {
-
-    const academicYear =
-      order.academicYear || "未知";
-
-    const className =
-      order.className || "未設定";
+    const productName =
+      select.value;
 
 
-    const classKey =
-      academicYear + "-" + className;
+    const container =
+      document.getElementById("statisticsContainer");
 
 
-    if (!data[classKey]) {
+    if (!productName) {
 
-      data[classKey] = {
+      container.innerHTML =
+        '<div class="empty-message">請先選擇商品</div>';
 
-        academicYear: academicYear,
+      return;
 
-        className: className,
-
-        quantities: {},
-
-        total: 0
-
-      };
+    }
 
 
-      sizes.forEach(size => {
+    const activeOrders =
+      getActiveOrders().filter(function(order) {
 
-        data[classKey].quantities[size] = 0;
+        return order.name === productName;
+
+      });
+
+
+    if (activeOrders.length === 0) {
+
+      container.innerHTML =
+        '<div class="empty-message">目前沒有這個商品的訂單</div>';
+
+      return;
+
+    }
+
+
+    /*
+      判斷是不是有尺寸的商品
+    */
+
+    const hasSize =
+      activeOrders.some(function(order) {
+
+        return (
+          order.size === "S" ||
+          order.size === "M" ||
+          order.size === "L" ||
+          order.size === "XL"
+        );
+
+      });
+
+
+    /*
+      依照學年度 + 班級分組
+    */
+
+    const classMap = {};
+
+
+    activeOrders.forEach(function(order) {
+
+      const academicYear =
+        order.academicYear || "未知";
+
+      const className =
+        order.className || "未知";
+
+      const key =
+        academicYear + "-" + className;
+
+
+      if (!classMap[key]) {
+
+        classMap[key] = {
+
+          academicYear:
+            academicYear,
+
+          className:
+            className,
+
+          S: 0,
+          M: 0,
+          L: 0,
+          XL: 0,
+
+          quantity: 0
+
+        };
+
+      }
+
+
+      const quantity =
+        Number(order.quantity) || 0;
+
+
+      if (hasSize) {
+
+        if (order.size === "S") {
+          classMap[key].S += quantity;
+        }
+
+        if (order.size === "M") {
+          classMap[key].M += quantity;
+        }
+
+        if (order.size === "L") {
+          classMap[key].L += quantity;
+        }
+
+        if (order.size === "XL") {
+          classMap[key].XL += quantity;
+        }
+
+      } else {
+
+        classMap[key].quantity += quantity;
+
+      }
+
+    });
+
+
+    const classes =
+      Object.values(classMap);
+
+
+    classes.sort(function(a, b) {
+
+      const yearCompare =
+        String(a.academicYear)
+          .localeCompare(
+            String(b.academicYear),
+            "zh-Hant"
+          );
+
+      if (yearCompare !== 0) {
+        return yearCompare;
+      }
+
+      return String(a.className)
+        .localeCompare(
+          String(b.className),
+          "zh-Hant"
+        );
+
+    });
+
+
+    let schoolTotal = 0;
+
+
+    let html =
+      '<div class="table-wrapper">';
+
+    html += "<table>";
+
+    html += "<thead>";
+
+    html += "<tr>";
+
+    html += "<th>學年度</th>";
+
+    html += "<th>班級</th>";
+
+
+    if (hasSize) {
+
+      html += "<th>S</th>";
+      html += "<th>M</th>";
+      html += "<th>L</th>";
+      html += "<th>XL</th>";
+
+    } else {
+
+      html += "<th>數量</th>";
+
+    }
+
+
+    html += "<th>班級總計</th>";
+
+    html += "</tr>";
+
+    html += "</thead>";
+
+    html += "<tbody>";
+
+
+    classes.forEach(function(classData) {
+
+      let classTotal = 0;
+
+
+      if (hasSize) {
+
+        classTotal =
+          classData.S +
+          classData.M +
+          classData.L +
+          classData.XL;
+
+      } else {
+
+        classTotal =
+          classData.quantity;
+
+      }
+
+
+      schoolTotal += classTotal;
+
+
+      html += "<tr>";
+
+      html +=
+        "<td>" +
+        escapeHTML(classData.academicYear) +
+        "</td>";
+
+      html +=
+        "<td>" +
+        escapeHTML(classData.className) +
+        "</td>";
+
+
+      if (hasSize) {
+
+        html +=
+          "<td>" + classData.S + "</td>";
+
+        html +=
+          "<td>" + classData.M + "</td>";
+
+        html +=
+          "<td>" + classData.L + "</td>";
+
+        html +=
+          "<td>" + classData.XL + "</td>";
+
+      } else {
+
+        html +=
+          "<td>" +
+          classData.quantity +
+          "</td>";
+
+      }
+
+
+      html +=
+        "<td><strong>" +
+        classTotal +
+        "</strong></td>";
+
+      html += "</tr>";
+
+    });
+
+
+    /*
+      全校總計
+    */
+
+    html += "<tr>";
+
+    html +=
+      '<td colspan="2"><strong>全校總計</strong></td>';
+
+
+    if (hasSize) {
+
+      let totalS = 0;
+      let totalM = 0;
+      let totalL = 0;
+      let totalXL = 0;
+
+
+      classes.forEach(function(classData) {
+
+        totalS += classData.S;
+        totalM += classData.M;
+        totalL += classData.L;
+        totalXL += classData.XL;
+
+      });
+
+
+      html +=
+        "<td><strong>" +
+        totalS +
+        "</strong></td>";
+
+      html +=
+        "<td><strong>" +
+        totalM +
+        "</strong></td>";
+
+      html +=
+        "<td><strong>" +
+        totalL +
+        "</strong></td>";
+
+      html +=
+        "<td><strong>" +
+        totalXL +
+        "</strong></td>";
+
+    } else {
+
+      html +=
+        "<td><strong>" +
+        schoolTotal +
+        "</strong></td>";
+
+    }
+
+
+    html +=
+      "<td><strong>" +
+      schoolTotal +
+      "</strong></td>";
+
+    html += "</tr>";
+
+    html += "</tbody>";
+
+    html += "</table>";
+
+    html += "</div>";
+
+
+    container.innerHTML = html;
+
+  }
+
+
+  /* =========================================
+     匯出訂貨統計 CSV
+  ========================================= */
+
+  function exportCSV() {
+
+    const select =
+      document.getElementById("productSelect");
+
+    const productName =
+      select.value;
+
+
+    if (!productName) {
+
+      alert("請先選擇商品");
+
+      return;
+
+    }
+
+
+    const activeOrders =
+      getActiveOrders().filter(function(order) {
+
+        return order.name === productName;
+
+      });
+
+
+    if (activeOrders.length === 0) {
+
+      alert("目前沒有這個商品的訂單");
+
+      return;
+
+    }
+
+
+    const hasSize =
+      activeOrders.some(function(order) {
+
+        return (
+          order.size === "S" ||
+          order.size === "M" ||
+          order.size === "L" ||
+          order.size === "XL"
+        );
+
+      });
+
+
+    const classMap = {};
+
+
+    activeOrders.forEach(function(order) {
+
+      const academicYear =
+        order.academicYear || "未知";
+
+      const className =
+        order.className || "未知";
+
+      const key =
+        academicYear + "-" + className;
+
+
+      if (!classMap[key]) {
+
+        classMap[key] = {
+
+          academicYear,
+          className,
+
+          S: 0,
+          M: 0,
+          L: 0,
+          XL: 0,
+
+          quantity: 0
+
+        };
+
+      }
+
+
+      const quantity =
+        Number(order.quantity) || 0;
+
+
+      if (hasSize) {
+
+        if (order.size === "S") {
+          classMap[key].S += quantity;
+        }
+
+        if (order.size === "M") {
+          classMap[key].M += quantity;
+        }
+
+        if (order.size === "L") {
+          classMap[key].L += quantity;
+        }
+
+        if (order.size === "XL") {
+          classMap[key].XL += quantity;
+        }
+
+      } else {
+
+        classMap[key].quantity += quantity;
+
+      }
+
+    });
+
+
+    const classes =
+      Object.values(classMap);
+
+
+    let csv = "";
+
+
+    if (hasSize) {
+
+      csv =
+        "學年度,班級,S,M,L,XL,班級總計\n";
+
+
+      classes.forEach(function(classData) {
+
+        const total =
+          classData.S +
+          classData.M +
+          classData.L +
+          classData.XL;
+
+
+        csv +=
+          csvEscape(classData.academicYear) + "," +
+          csvEscape(classData.className) + "," +
+          csvEscape(classData.S) + "," +
+          csvEscape(classData.M) + "," +
+          csvEscape(classData.L) + "," +
+          csvEscape(classData.XL) + "," +
+          csvEscape(total) +
+          "\n";
+
+      });
+
+    } else {
+
+      csv =
+        "學年度,班級,數量\n";
+
+
+      classes.forEach(function(classData) {
+
+        csv +=
+          csvEscape(classData.academicYear) + "," +
+          csvEscape(classData.className) + "," +
+          csvEscape(classData.quantity) +
+          "\n";
 
       });
 
     }
 
 
-    const quantity =
-      Number(order.quantity) || 0;
+    downloadCSV(
+      csv,
+      "訂貨統計_" +
+      safeFileName(productName) +
+      "_" +
+      getTodayString() +
+      ".csv"
+    );
+
+  }
 
 
-    if (hasSize) {
+  /* =========================================
+     匯出詳細訂單 CSV
+  ========================================= */
 
-      const size =
-        order.size || "未設定";
+  function exportDetailedOrdersCSV() {
+
+    /*
+      重新讀取一次資料，
+      確保不是使用舊資料。
+    */
+
+    const orders =
+      JSON.parse(
+        localStorage.getItem("schoolOrders")
+      ) || [];
 
 
-      if (
-        data[classKey].quantities[size]
-        !== undefined
-      ) {
+    const activeOrders =
+      orders.filter(function(order) {
 
-        data[classKey].quantities[size] +=
-          quantity;
+        return order.status !== "已取消";
 
-      }
+      });
 
-    } else {
 
-      data[classKey].quantities["數量"] +=
-        quantity;
+    if (activeOrders.length === 0) {
+
+      alert("目前沒有可以匯出的訂單");
+
+      return;
 
     }
 
 
-    data[classKey].total +=
-      quantity;
+    let csv =
+      "訂單編號,訂單時間,學年度,年級,班級,座號,商品,類別,尺寸,數量,單價,總金額,收款狀態,訂單狀態\n";
 
-  });
 
+    activeOrders.forEach(function(order) {
 
-  const rows =
-    Object.values(data);
+      const paymentText =
+        order.paymentStatus === "paid"
+          ? "已收款"
+          : "未收款";
 
 
-  rows.sort((a, b) => {
+      const orderStatus =
+        order.status || "訂單成立";
 
-    return (
-      a.academicYear + a.className
-    ).localeCompare(
-      b.academicYear + b.className
-    );
 
-  });
+      const row = [
 
+        order.orderNumber || "",
 
-  /* --------------------------------
-     全校總數
-  -------------------------------- */
+        order.orderTime || "",
 
-  const schoolTotal = {};
+        order.academicYear || "",
 
+        order.grade || "",
 
-  sizes.forEach(size => {
+        order.className || "",
 
-    schoolTotal[size] = 0;
+        order.seatNumber || "",
 
-  });
+        order.name || "",
 
+        order.category || "",
 
-  let schoolGrandTotal = 0;
+        order.size || "無尺寸",
 
+        order.quantity || 0,
 
-  rows.forEach(row => {
+        order.price || 0,
 
-    sizes.forEach(size => {
+        order.total || 0,
 
-      schoolTotal[size] +=
-        row.quantities[size] || 0;
+        paymentText,
 
-    });
+        orderStatus
 
+      ];
 
-    schoolGrandTotal +=
-      row.total;
-
-  });
-
-
-  /* --------------------------------
-     建立表格
-  -------------------------------- */
-
-  let tableHTML = `
-
-    <div class="table-wrapper">
-
-      <table>
-
-        <thead>
-
-          <tr>
-
-            <th>班級</th>
-  `;
-
-
-  sizes.forEach(size => {
-
-    tableHTML += `
-      <th>${size}</th>
-    `;
-
-  });
-
-
-  tableHTML += `
-
-            <th>班級總數</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-  `;
-
-
-  rows.forEach(row => {
-
-    tableHTML += `
-
-      <tr>
-
-        <td>
-          ${row.academicYear}
-          ${row.className}
-        </td>
-
-    `;
-
-
-    sizes.forEach(size => {
-
-      tableHTML += `
-
-        <td>
-          ${row.quantities[size] || 0}
-        </td>
-
-      `;
-
-    });
-
-
-    tableHTML += `
-
-        <td>
-          ${row.total}
-        </td>
-
-      </tr>
-
-    `;
-
-  });
-
-
-  tableHTML += `
-
-        </tbody>
-
-        <tfoot>
-
-          <tr>
-
-            <td>全校總數</td>
-
-  `;
-
-
-  sizes.forEach(size => {
-
-    tableHTML += `
-
-      <td>
-        ${schoolTotal[size]}
-      </td>
-
-    `;
-
-  });
-
-
-  tableHTML += `
-
-            <td>
-              ${schoolGrandTotal}
-            </td>
-
-          </tr>
-
-        </tfoot>
-
-      </table>
-
-    </div>
-
-  `;
-
-
-  statisticsArea.innerHTML =
-    tableHTML;
-
-
-  /* --------------------------------
-     保存目前統計
-  -------------------------------- */
-
-  currentStatistics = {
-
-    productName: selectedProduct,
-
-    sizes: sizes,
-
-    rows: rows,
-
-    schoolTotal: schoolTotal,
-
-    schoolGrandTotal: schoolGrandTotal
-
-  };
-
-}
-
-
-/* ========================================
-   匯出 CSV
-======================================== */
-
-function exportCSV() {
-
-  if (!currentStatistics) {
-
-    alert("請先選擇商品");
-
-    return;
-
-  }
-
-/* ========================================
-   匯出詳細訂單 CSV
-======================================== */
-
-function exportDetailedOrdersCSV() {
-  const orders = JSON.parse(localStorage.getItem("schoolOrders")) || [];
-
-  const activeOrders = orders.filter(order => order.status !== "已取消");
-
-  if (activeOrders.length === 0) {
-    alert("目前沒有可以匯出的訂單");
-    return;
-  }
-
-  let csv = "訂單編號,訂單時間,學年度,年級,班級,座號,商品,類別,尺寸,數量,單價,總金額,收款狀態,訂單狀態\n";
-
-  activeOrders.forEach(order => {
-    const paymentText =
-      order.paymentStatus === "paid" ? "已收款" : "未收款";
-
-    const orderStatus =
-      order.status || "訂單成立";
-
-    csv += [
-      order.orderNumber,
-      order.orderTime,
-      order.academicYear,
-      order.grade,
-      order.className,
-      order.seatNumber,
-      order.name,
-      order.category,
-      order.size || "無尺寸",
-      order.quantity,
-      order.price,
-      order.total,
-      paymentText,
-      orderStatus
-    ].map(csvEscape).join(",") + "\n";
-  });
-
-  const BOM = "\uFEFF";
-  const blob = new Blob(
-    [BOM + csv],
-    { type: "text/csv;charset=utf-8;" }
-  );
-
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement("a");
-  link.href = url;
-  link.download =
-    "詳細訂單_" +
-    new Date().toISOString().slice(0, 10) +
-    ".csv";
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  setTimeout(() => {
-    URL.revokeObjectURL(url);
-  }, 1000);
-}
-
-
-function csvEscape(value) {
-  if (value === null || value === undefined) {
-    return "";
-  }
-
-  const text = String(value);
-
-  if (
-    text.includes(",") ||
-    text.includes('"') ||
-    text.includes("\n")
-  ) {
-    return '"' + text.replace(/"/g, '""') + '"';
-  }
-
-  return text;
-}
-
-
-  // CSV 標題
-  let csv =
-    "訂單編號," +
-    "訂單時間," +
-    "學年度," +
-    "年級," +
-    "班級," +
-    "座號," +
-    "商品," +
-    "類別," +
-    "尺寸," +
-    "數量," +
-    "單價," +
-    "總金額," +
-    "收款狀態," +
-    "訂單狀態\n";
-
-
-  // 每一筆訂單
-  orders.forEach(order => {
-
-    const paymentText =
-      order.paymentStatus === "paid"
-        ? "已收款"
-        : "未收款";
-
-
-    const orderStatus =
-      order.status || "訂單成立";
-
-
-    csv +=
-      csvEscape(order.orderNumber) + "," +
-      csvEscape(order.orderTime) + "," +
-      csvEscape(order.academicYear) + "," +
-      csvEscape(order.grade) + "," +
-      csvEscape(order.className) + "," +
-      csvEscape(order.seatNumber) + "," +
-      csvEscape(order.name) + "," +
-      csvEscape(order.category) + "," +
-      csvEscape(order.size || "無尺寸") + "," +
-      csvEscape(order.quantity) + "," +
-      csvEscape(order.price) + "," +
-      csvEscape(order.total) + "," +
-      csvEscape(paymentText) + "," +
-      csvEscape(orderStatus) +
-      "\n";
-
-  });
-
-
-  // Excel / Google Sheets 比較容易正確讀取中文
-  const BOM =
-    "\uFEFF";
-
-
-  const blob =
-    new Blob(
-      [BOM + csv],
-      {
-        type: "text/csv;charset=utf-8;"
-      }
-    );
-
-
-  const url =
-    URL.createObjectURL(blob);
-
-
-  const link =
-    document.createElement("a");
-
-
-  link.href = url;
-
-
-  link.download =
-    "詳細訂單_" +
-    new Date().toISOString().slice(0, 10) +
-    ".csv";
-
-
-  document.body.appendChild(link);
-
-  link.click();
-
-  document.body.removeChild(link);
-
-
-  URL.revokeObjectURL(url);
-
-}
-
-
-/* ========================================
-   CSV 文字處理
-======================================== */
-
-function csvEscape(value) {
-
-  if (value === null || value === undefined) {
-
-    return "";
-
-  }
-
-
-  const text =
-    String(value);
-
-
-  // 如果內容包含逗號、雙引號或換行
-  // 就用雙引號包起來
-  if (
-    text.includes(",") ||
-    text.includes('"') ||
-    text.includes("\n")
-  ) {
-
-    return '"' +
-      text.replace(/"/g, '""') +
-      '"';
-
-  }
-
-
-  return text;
-
-}
-  const data =
-    currentStatistics;
-
-
-  let csv = "";
-
-
-  /* 標題 */
-
-  csv +=
-    "商品," +
-    data.productName +
-    "\n\n";
-
-
-  /* 欄位 */
-
-  csv += "班級";
-
-
-  data.sizes.forEach(size => {
-
-    csv += "," + size;
-
-  });
-
-
-  csv += ",班級總數\n";
-
-
-  /* 班級資料 */
-
-  data.rows.forEach(row => {
-
-    csv +=
-      row.academicYear +
-      " " +
-      row.className;
-
-
-    data.sizes.forEach(size => {
 
       csv +=
-        "," +
-        (row.quantities[size] || 0);
+        row
+          .map(csvEscape)
+          .join(",") +
+        "\n";
 
     });
 
 
-    csv +=
-      "," +
-      row.total +
-      "\n";
-
-  });
-
-
-  /* 全校總數 */
-
-  csv += "全校總數";
-
-
-  data.sizes.forEach(size => {
-
-    csv +=
-      "," +
-      data.schoolTotal[size];
-
-  });
-
-
-  csv +=
-    "," +
-    data.schoolGrandTotal +
-    "\n";
-
-
-  /* --------------------------------
-     下載檔案
-  -------------------------------- */
-
-  const BOM =
-    "\uFEFF";
-
-
-  const blob =
-    new Blob(
-      [BOM + csv],
-      {
-        type: "text/csv;charset=utf-8;"
-      }
+    downloadCSV(
+      csv,
+      "詳細訂單_" +
+      getTodayString() +
+      ".csv"
     );
 
-
-  const url =
-    URL.createObjectURL(blob);
+  }
 
 
-  const link =
-    document.createElement("a");
+  /* =========================================
+     CSV 下載
+  ========================================= */
+
+  function downloadCSV(csv, fileName) {
+
+    const BOM = "\uFEFF";
 
 
-  link.href = url;
+    const blob =
+      new Blob(
+        [BOM + csv],
+        {
+          type:
+            "text/csv;charset=utf-8;"
+        }
+      );
 
 
-  link.download =
-    data.productName +
-    "_訂貨統計.csv";
+    const url =
+      URL.createObjectURL(blob);
 
 
-  link.click();
+    const link =
+      document.createElement("a");
 
 
-  URL.revokeObjectURL(url);
+    link.href = url;
 
-}
+    link.download = fileName;
+
+    link.style.display = "none";
+
+
+    document.body.appendChild(link);
+
+
+    link.click();
+
+
+    document.body.removeChild(link);
+
+
+    setTimeout(function() {
+
+      URL.revokeObjectURL(url);
+
+    }, 1000);
+
+  }
+
+
+  /* =========================================
+     CSV 特殊字元處理
+  ========================================= */
+
+  function csvEscape(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
+      return "";
+
+    }
+
+
+    const text =
+      String(value);
+
+
+    if (
+      text.includes(",") ||
+      text.includes('"') ||
+      text.includes("\n") ||
+      text.includes("\r")
+    ) {
+
+      return (
+        '"' +
+        text.replace(/"/g, '""') +
+        '"'
+      );
+
+    }
+
+
+    return text;
+
+  }
+
+
+  /* =========================================
+     防止 HTML 文字造成問題
+  ========================================= */
+
+  function escapeHTML(value) {
+
+    if (
+      value === null ||
+      value === undefined
+    ) {
+
+      return "";
+
+    }
+
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+
+  }
+
+
+  /* =========================================
+     檔名處理
+  ========================================= */
+
+  function safeFileName(value) {
+
+    return String(value)
+      .replace(/[\\/:*?"<>|]/g, "_")
+      .replace(/\s+/g, "_");
+
+  }
+
+
+  /* =========================================
+     今天日期
+  ========================================= */
+
+  function getTodayString() {
+
+    const now =
+      new Date();
+
+
+    const year =
+      now.getFullYear();
+
+
+    const month =
+      String(
+        now.getMonth() + 1
+      ).padStart(2, "0");
+
+
+    const day =
+      String(
+        now.getDate()
+      ).padStart(2, "0");
+
+
+    return (
+      year +
+      "-" +
+      month +
+      "-" +
+      day
+    );
+
+  }
+
+
+  /* =========================================
+     頁面初始化
+  ========================================= */
+
+  function initAdminPage() {
+
+    /*
+      每次重新進入頁面，
+      都重新讀取最新訂單。
+    */
+
+    allOrders =
+      JSON.parse(
+        localStorage.getItem("schoolOrders")
+      ) || [];
+
+
+    updateStatistics();
+
+    showClassStatus();
+
+    loadProductSelect();
+
+  }
+
+
+  initAdminPage();
 
 </script>
 
