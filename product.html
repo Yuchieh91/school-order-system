@@ -19,8 +19,6 @@
       color: #202020;
     }
 
-    /* ===== Header ===== */
-
     header {
       height: 72px;
       background: white;
@@ -53,9 +51,6 @@
       color: #777;
     }
 
-
-    /* ===== Page ===== */
-
     .page {
       max-width: 1100px;
       margin: 0 auto;
@@ -75,9 +70,6 @@
       margin: 0;
       color: #777;
     }
-
-
-    /* ===== Category ===== */
 
     .categories {
       display: flex;
@@ -101,17 +93,11 @@
       border-color: #202020;
     }
 
-
-    /* ===== Product Grid ===== */
-
     .product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
-
-
-    /* ===== Product Card ===== */
 
     .product-card {
       background: white;
@@ -159,22 +145,15 @@
       font-weight: 700;
     }
 
-
-    /* ===== Button ===== */
-
     .view-button {
       background: #202020;
       color: white;
-
       border: none;
       padding: 9px 15px;
-
       border-radius: 3px;
-
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-
       font-size: 14px;
     }
 
@@ -182,20 +161,13 @@
       background: #444;
     }
 
-
-    /* ===== Responsive ===== */
-
     @media (max-width: 800px) {
-
       .product-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-
     }
 
-
     @media (max-width: 550px) {
-
       header {
         padding: 0 20px;
       }
@@ -219,16 +191,11 @@
       .product-grid {
         grid-template-columns: 1fr;
       }
-
     }
-
   </style>
 </head>
 
-
 <body>
-
-  <!-- ===== Header ===== -->
 
   <header>
 
@@ -246,8 +213,6 @@
   </header>
 
 
-  <!-- ===== Main ===== -->
-
   <main class="page">
 
     <div class="page-title">
@@ -256,39 +221,21 @@
     </div>
 
 
-    <!-- ===== Category ===== -->
-
     <div class="categories">
 
-      <button class="category active">
-        全部
-      </button>
-
-      <button class="category">
-        上衣
-      </button>
-
-      <button class="category">
-        外套
-      </button>
-
-      <button class="category">
-        文具
-      </button>
-
-      <button class="category">
-        其他
-      </button>
+      <button class="category active">全部</button>
+      <button class="category">上衣</button>
+      <button class="category">外套</button>
+      <button class="category">文具</button>
+      <button class="category">其他</button>
 
     </div>
 
 
-    <!-- ===== Products ===== -->
-
     <div class="product-grid">
 
 
-      <!-- 商品 1 -->
+      <!-- 商品 1：T-shirt -->
 
       <div class="product-card">
 
@@ -311,7 +258,7 @@
             </div>
 
             <a
-              href="product-detail.html"
+              href="product-detail.html?product=tshirt"
               class="view-button"
             >
               查看商品
@@ -324,7 +271,7 @@
       </div>
 
 
-      <!-- 商品 2 -->
+      <!-- 商品 2：外套 -->
 
       <div class="product-card">
 
@@ -347,7 +294,7 @@
             </div>
 
             <a
-              href="product-detail.html"
+              href="product-detail.html?product=jacket"
               class="view-button"
             >
               查看商品
@@ -360,7 +307,7 @@
       </div>
 
 
-      <!-- 商品 3 -->
+      <!-- 商品 3：帆布袋 -->
 
       <div class="product-card">
 
@@ -383,7 +330,7 @@
             </div>
 
             <a
-              href="product-detail.html"
+              href="product-detail.html?product=canvasbag"
               class="view-button"
             >
               查看商品
@@ -396,7 +343,7 @@
       </div>
 
 
-      <!-- 商品 4 -->
+      <!-- 商品 4：筆記本 -->
 
       <div class="product-card">
 
@@ -419,7 +366,7 @@
             </div>
 
             <a
-              href="product-detail.html"
+              href="product-detail.html?product=notebook"
               class="view-button"
             >
               查看商品
@@ -432,7 +379,7 @@
       </div>
 
 
-      <!-- 商品 5 -->
+      <!-- 商品 5：徽章 -->
 
       <div class="product-card">
 
@@ -455,7 +402,7 @@
             </div>
 
             <a
-              href="product-detail.html"
+              href="product-detail.html?product=badge"
               class="view-button"
             >
               查看商品
@@ -468,7 +415,7 @@
       </div>
 
 
-      <!-- 商品 6 -->
+      <!-- 商品 6：帆布袋 -->
 
       <div class="product-card">
 
@@ -491,7 +438,7 @@
             </div>
 
             <a
-              href="product-detail.html"
+              href="product-detail.html?product=bag"
               class="view-button"
             >
               查看商品
