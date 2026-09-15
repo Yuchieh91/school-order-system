@@ -9,12 +9,12 @@
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: Arial, "Noto Sans TC", sans-serif;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Noto Sans TC", sans-serif;
       background: #f6f6f4;
       color: #202020;
     }
@@ -22,11 +22,13 @@
     header {
       height: 72px;
       background: white;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid #e5e5e5;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 7%;
+
+      padding: 0 6%;
     }
 
     .logo {
@@ -40,128 +42,141 @@
     }
 
     nav a {
-      color: #444;
+      color: #333;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     nav a:hover {
-      color: #000;
+      color: #777;
     }
 
     .page {
-      width: 86%;
-      max-width: 1100px;
-      margin: 50px auto;
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 45px 25px;
     }
 
-    .back {
+    .back-link {
       display: inline-block;
-      color: #666;
+      margin-bottom: 25px;
+      color: #555;
       text-decoration: none;
       font-size: 14px;
-      margin-bottom: 30px;
+    }
+
+    .back-link:hover {
+      color: #000;
     }
 
     .product-detail {
       background: white;
-      border: 1px solid #ddd;
+      border: 1px solid #e3e3e3;
+      border-radius: 5px;
+
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      padding: 35px;
+
+      overflow: hidden;
     }
 
     .product-image {
-      min-height: 430px;
-      background: #eeeeee;
+      min-height: 500px;
+      background: #e9e9e9;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
       color: #999;
-      font-size: 15px;
     }
 
-    .product-info {
-      padding: 15px 5px;
+    .product-content {
+      padding: 45px;
     }
 
-    .product-name {
-      font-size: 32px;
+    .product-category {
+      color: #888;
+      font-size: 14px;
       margin-bottom: 12px;
     }
 
-    .product-description {
-      color: #777;
-      line-height: 1.8;
-      margin-bottom: 25px;
+    .product-title {
+      margin: 0 0 15px;
+      font-size: 32px;
     }
 
-    .price {
+    .product-price {
       font-size: 24px;
-      font-weight: 600;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+
+    .description {
+      color: #666;
+      line-height: 1.8;
       margin-bottom: 30px;
     }
 
     .option-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
       margin-bottom: 10px;
     }
 
-    .sizes {
+    .size-options {
       display: flex;
       gap: 8px;
-      margin-bottom: 28px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
     }
 
-    .size {
-      width: 52px;
-      height: 40px;
+    .size-button {
+      min-width: 50px;
+      padding: 9px 14px;
 
+      border: 1px solid #d5d5d5;
       background: white;
-      border: 1px solid #ccc;
 
       border-radius: 3px;
-
       cursor: pointer;
     }
 
-    .size:hover,
-    .size.selected {
+    .size-button.selected {
       background: #202020;
       color: white;
       border-color: #202020;
     }
 
-    .quantity {
+    .quantity-area {
       display: flex;
       align-items: center;
+      gap: 12px;
       margin-bottom: 30px;
     }
 
-    .quantity button {
-      width: 38px;
-      height: 38px;
+    .quantity-button {
+      width: 36px;
+      height: 36px;
 
+      border: 1px solid #d5d5d5;
       background: white;
-      border: 1px solid #ccc;
+
+      border-radius: 3px;
+      cursor: pointer;
 
       font-size: 18px;
-      cursor: pointer;
     }
 
-    .quantity span {
-      width: 45px;
+    .quantity-number {
+      min-width: 25px;
       text-align: center;
     }
 
-    .order-button {
+    .add-button {
       width: 100%;
 
-      padding: 15px;
+      padding: 13px;
 
       background: #202020;
       color: white;
@@ -169,44 +184,38 @@
       border: none;
       border-radius: 3px;
 
-      font-size: 15px;
       cursor: pointer;
+      font-size: 15px;
     }
 
-    .order-button:hover {
+    .add-button:hover {
       background: #444;
     }
 
-    .description-section {
-      margin-top: 45px;
+    .introduction {
+      margin-top: 30px;
       background: white;
-      border: 1px solid #ddd;
+
+      border: 1px solid #e3e3e3;
+      border-radius: 5px;
+
       padding: 30px;
     }
 
-    .description-section h2 {
+    .introduction h2 {
+      margin-top: 0;
       font-size: 20px;
-      margin-bottom: 15px;
     }
 
-    .description-section p {
+    .introduction p {
       color: #666;
       line-height: 1.8;
-    }
-
-    footer {
-      margin-top: 80px;
-      border-top: 1px solid #ddd;
-      padding: 30px;
-      text-align: center;
-      color: #888;
-      font-size: 13px;
     }
 
     @media (max-width: 750px) {
 
       header {
-        padding: 0 5%;
+        padding: 0 20px;
       }
 
       nav {
@@ -214,24 +223,27 @@
       }
 
       nav a {
-        font-size: 12px;
+        font-size: 13px;
       }
 
       .page {
-        width: 90%;
+        padding: 30px 18px;
       }
 
       .product-detail {
         grid-template-columns: 1fr;
-        padding: 20px;
       }
 
       .product-image {
-        min-height: 280px;
+        min-height: 300px;
       }
 
-      .product-name {
-        font-size: 27px;
+      .product-content {
+        padding: 30px 25px;
+      }
+
+      .product-title {
+        font-size: 26px;
       }
     }
   </style>
@@ -242,7 +254,7 @@
   <header>
 
     <div class="logo">
-      🏫 校園訂購平台
+      校園訂購平台
     </div>
 
     <nav>
@@ -257,7 +269,7 @@
 
   <main class="page">
 
-    <a href="product.html" class="back">
+    <a href="product.html" class="back-link">
       ← 返回商品
     </a>
 
@@ -269,43 +281,50 @@
       </div>
 
 
-      <div class="product-info">
+      <div class="product-content">
 
-        <h1 class="product-name">
-          校園紀念 T-shirt
+        <div class="product-category" id="productCategory">
+          商品分類
+        </div>
+
+        <h1 class="product-title" id="productName">
+          商品名稱
         </h1>
 
-        <p class="product-description">
-          115 學年度校園紀念服。<br>
-          適合校園日常穿著，也可以作為學年度紀念。
+        <div class="product-price" id="productPrice">
+          NT$0
+        </div>
+
+        <p class="description" id="productDescription">
+          商品介紹
         </p>
 
-        <div class="price">
-          NT$ 450
-        </div>
 
+        <div id="sizeArea">
 
-        <div class="option-title">
-          尺寸
-        </div>
+          <div class="option-title">
+            尺寸
+          </div>
 
-        <div class="sizes">
+          <div class="size-options">
 
-          <button class="size">
-            S
-          </button>
+            <button class="size-button" onclick="selectSize(this)">
+              S
+            </button>
 
-          <button class="size selected">
-            M
-          </button>
+            <button class="size-button selected" onclick="selectSize(this)">
+              M
+            </button>
 
-          <button class="size">
-            L
-          </button>
+            <button class="size-button" onclick="selectSize(this)">
+              L
+            </button>
 
-          <button class="size">
-            XL
-          </button>
+            <button class="size-button" onclick="selectSize(this)">
+              XL
+            </button>
+
+          </div>
 
         </div>
 
@@ -314,24 +333,36 @@
           數量
         </div>
 
-        <div class="quantity">
+        <div class="quantity-area">
 
-          <button onclick="changeQuantity(-1)">
+          <button
+            class="quantity-button"
+            onclick="changeQuantity(-1)"
+          >
             −
           </button>
 
-          <span id="quantity">
+          <div
+            class="quantity-number"
+            id="quantity"
+          >
             1
-          </span>
+          </div>
 
-          <button onclick="changeQuantity(1)">
-            +
+          <button
+            class="quantity-button"
+            onclick="changeQuantity(1)"
+          >
+            ＋
           </button>
 
         </div>
 
 
-        <button class="order-button" onclick="addOrder()">
+        <button
+          class="add-button"
+          onclick="addOrder()"
+        >
           加入訂單
         </button>
 
@@ -340,30 +371,170 @@
     </div>
 
 
-    <section class="description-section">
+    <div class="introduction">
 
       <h2>
         商品介紹
       </h2>
 
-      <p>
-        這是 115 學年度校園紀念商品。
-        商品尺寸、價格與訂購期限可以依照學生會實際提供的資訊修改。
+      <p id="productLongDescription">
+        商品詳細介紹。
       </p>
 
-    </section>
+    </div>
 
   </main>
 
 
-  <footer>
-    校園訂購平台 © 2026
-  </footer>
-
-
   <script>
 
+    /*
+     * 取得網址中的商品種類
+     *
+     * 例如：
+     * product-detail.html?product=tshirt
+     *
+     * 就會得到：
+     * tshirt
+     */
+
+    const params = new URLSearchParams(
+      window.location.search
+    );
+
+    const productType = params.get("product");
+
+
+    /*
+     * 商品資料
+     *
+     * 目前先把資料寫在 JavaScript 裡。
+     * 之後我們會把這裡升級成真正的資料庫。
+     */
+
+    const products = {
+
+      tshirt: {
+        name: "校園紀念 T-shirt",
+        price: 450,
+        category: "上衣",
+        description: "校園紀念 T-shirt，適合日常穿著與校園活動。",
+        longDescription: "這是一款校園紀念 T-shirt，可以作為校慶、社團活動或日常穿著使用。",
+        hasSize: true
+      },
+
+      jacket: {
+        name: "校園紀念外套",
+        price: 850,
+        category: "外套",
+        description: "適合秋冬穿著的校園紀念外套。",
+        longDescription: "校園紀念外套，適合天氣較涼時穿著，也可以作為班級或校園活動服裝。",
+        hasSize: true
+      },
+
+      canvasbag: {
+        name: "校園紀念帆布袋",
+        price: 250,
+        category: "其他",
+        description: "簡單實用的校園紀念帆布袋。",
+        longDescription: "可以用來放置課本、筆記本或日常用品，適合學生平常使用。",
+        hasSize: false
+      },
+
+      notebook: {
+        name: "校園筆記本",
+        price: 120,
+        category: "文具",
+        description: "適合上課、讀書與日常筆記使用。",
+        longDescription: "校園筆記本可以用於課堂筆記、讀書計畫或其他學習紀錄。",
+        hasSize: false
+      },
+
+      badge: {
+        name: "校園徽章",
+        price: 80,
+        category: "其他",
+        description: "校園紀念徽章。",
+        longDescription: "可以別在書包、衣服或其他地方，作為校園紀念品。",
+        hasSize: false
+      },
+
+      bag: {
+        name: "校園帆布袋",
+        price: 250,
+        category: "其他",
+        description: "實用的校園帆布袋。",
+        longDescription: "適合上學、購物或日常使用的帆布袋。",
+        hasSize: false
+      }
+
+    };
+
+
+    /*
+     * 找到目前商品
+     */
+
+    const product = products[productType];
+
+
+    /*
+     * 如果找不到商品，
+     * 就回到商品列表。
+     */
+
+    if (!product) {
+
+      alert("找不到這個商品");
+
+      window.location.href = "product.html";
+
+    }
+
+
+    /*
+     * 把商品資料放進畫面
+     */
+
+    if (product) {
+
+      document.getElementById("productName").textContent =
+        product.name;
+
+      document.getElementById("productPrice").textContent =
+        "NT$" + product.price;
+
+      document.getElementById("productCategory").textContent =
+        product.category;
+
+      document.getElementById("productDescription").textContent =
+        product.description;
+
+      document.getElementById("productLongDescription").textContent =
+        product.longDescription;
+
+
+      /*
+       * 如果商品沒有尺寸，
+       * 就把尺寸選擇區隱藏。
+       */
+
+      if (!product.hasSize) {
+
+        document.getElementById("sizeArea").style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /*
+     * 數量
+     */
+
     let quantity = 1;
+
 
     function changeQuantity(number) {
 
@@ -373,36 +544,63 @@
         quantity = 1;
       }
 
-      document.getElementById("quantity").textContent = quantity;
-    }
-
-
-    function addOrder() {
-
-      alert(
-        "已加入訂單！\n\n" +
-        "校園紀念 T-shirt\n" +
-        "數量：" + quantity
-      );
+      document.getElementById("quantity").textContent =
+        quantity;
 
     }
 
 
-    const sizes = document.querySelectorAll(".size");
+    /*
+     * 選擇尺寸
+     */
 
-    sizes.forEach(function(size) {
+    function selectSize(button) {
 
-      size.addEventListener("click", function() {
+      const buttons =
+        document.querySelectorAll(".size-button");
 
-        sizes.forEach(function(item) {
-          item.classList.remove("selected");
-        });
+      buttons.forEach(function(item) {
 
-        this.classList.add("selected");
+        item.classList.remove("selected");
 
       });
 
-    });
+      button.classList.add("selected");
+
+    }
+
+
+    /*
+     * 加入訂單
+     *
+     * 目前只是測試功能。
+     * 真正的訂單資料庫之後再做。
+     */
+
+    function addOrder() {
+
+      let selectedSize = "";
+
+      const selectedButton =
+        document.querySelector(".size-button.selected");
+
+      if (selectedButton) {
+
+        selectedSize =
+          selectedButton.textContent;
+
+      }
+
+      alert(
+        "已加入訂單！\n\n" +
+        "商品：" + product.name + "\n" +
+        "數量：" + quantity +
+        (selectedSize
+          ? "\n尺寸：" + selectedSize
+          : "")
+      );
+
+    }
 
   </script>
 
