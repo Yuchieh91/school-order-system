@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
   <title>我的訂單｜校園訂購系統</title>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -17,8 +18,6 @@
       background: #f6f6f4;
       color: #222;
     }
-
-    /* ===== Header ===== */
 
     header {
       height: 72px;
@@ -37,262 +36,255 @@
       font-weight: bold;
     }
 
-    nav {
-      display: flex;
-      gap: 28px;
-    }
-
     nav a {
+      margin-left: 24px;
       text-decoration: none;
       color: #333;
       font-size: 15px;
     }
 
     nav a:hover {
-      color: #777;
+      text-decoration: underline;
     }
 
-    /* ===== Main ===== */
-
-    main {
+    .container {
       max-width: 1000px;
-      margin: 50px auto;
+      margin: 40px auto;
       padding: 0 20px;
     }
 
-    .page-title {
-      margin-bottom: 30px;
+    h1 {
+      margin-bottom: 10px;
     }
 
-    .page-title h1 {
-      margin: 0 0 8px;
-      font-size: 32px;
+    .deadline {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 5px;
+      font-size: 14px;
     }
-
-    .page-title p {
-      margin: 0;
-      color: #777;
-    }
-
-    /* ===== Order Card ===== */
 
     .order-card {
       background: white;
       border: 1px solid #ddd;
       border-radius: 5px;
 
-      padding: 24px;
-      margin-bottom: 20px;
+      padding: 22px;
+      margin-bottom: 18px;
     }
 
     .order-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
 
-      padding-bottom: 18px;
+      padding-bottom: 15px;
       border-bottom: 1px solid #eee;
+      margin-bottom: 15px;
     }
 
     .order-number {
-      font-size: 17px;
       font-weight: bold;
-    }
-
-    .order-time {
-      margin-top: 6px;
-      font-size: 13px;
-      color: #888;
     }
 
     .status {
-      padding: 7px 12px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 13px;
-    }
-
-    /* ===== Product ===== */
-
-    .product-info {
-      padding: 20px 0;
-    }
-
-    .product-name {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 12px;
-    }
-
-    .product-detail {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-
-      color: #666;
       font-size: 14px;
-    }
-
-    /* ===== Total ===== */
-
-    .order-total {
-      border-top: 1px solid #eee;
-      padding-top: 18px;
-
-      text-align: right;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    /* ===== Empty ===== */
-
-    .empty {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .empty p {
-      color: #777;
-      margin-bottom: 25px;
-    }
-
-    .product-button {
-      display: inline-block;
-
-      padding: 11px 20px;
-
-      background: #222;
-      color: white;
-
-      text-decoration: none;
+      padding: 5px 9px;
+      border: 1px solid #bbb;
       border-radius: 4px;
     }
 
-    /* ===== Test Button ===== */
+    .order-info {
+      line-height: 1.9;
+      font-size: 15px;
+    }
 
-    .clear-button {
-      margin-top: 20px;
+    .total {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
 
-      padding: 10px 16px;
+    .cancel-button {
+      margin-top: 18px;
+
+      padding: 10px 18px;
 
       background: white;
-      border: 1px solid #ccc;
+      color: #b00000;
+
+      border: 1px solid #b00000;
       border-radius: 4px;
 
       cursor: pointer;
     }
 
-    .clear-button:hover {
-      background: #f0f0f0;
+    .cancel-button:hover {
+      background: #f8eeee;
     }
 
-    /* ===== Mobile ===== */
+    .cancelled {
+      background: #f1f1f1;
+      color: #777;
+    }
+
+    .cancelled .status {
+      color: #777;
+    }
+
+    .empty {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 40px;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .product-button {
+      display: inline-block;
+      margin-top: 20px;
+
+      background: #222;
+      color: white;
+
+      padding: 11px 20px;
+
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .clear-button {
+      margin-top: 20px;
+
+      padding: 9px 15px;
+
+      background: white;
+      border: 1px solid #bbb;
+
+      cursor: pointer;
+      border-radius: 4px;
+    }
 
     @media (max-width: 700px) {
 
       header {
-        padding: 0 20px;
-      }
-
-      nav {
-        gap: 12px;
+        padding: 0 15px;
       }
 
       nav a {
+        margin-left: 9px;
         font-size: 13px;
       }
 
-      main {
-        margin-top: 35px;
-      }
-
       .order-header {
+        align-items: flex-start;
+        gap: 10px;
         flex-direction: column;
-        gap: 12px;
       }
 
-      .order-total {
-        text-align: left;
-      }
     }
+
   </style>
 </head>
 
 
 <body>
 
-  <!-- ===== Header ===== -->
+<header>
 
-  <header>
+  <div class="logo">
+    校園訂購系統
+  </div>
 
-    <div class="logo">
-      校園訂購系統
-    </div>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="product.html">商品</a>
+    <a href="orders.html">我的訂單</a>
+    <a href="student-profile.html">我的資料</a>
+  </nav>
 
-    <nav>
-      <a href="index.html">首頁</a>
-      <a href="product.html">商品</a>
-      <a href="orders.html">我的訂單</a>
-      <a href="#">登入</a>
-    </nav>
-
-  </header>
+</header>
 
 
-  <!-- ===== Main ===== -->
+<div class="container">
 
-  <main>
+  <h1>我的訂單</h1>
 
-    <div class="page-title">
-      <h1>我的訂單</h1>
-      <p>查看你的訂購紀錄與目前訂單狀態</p>
-    </div>
+  <div class="deadline">
 
+    <strong>本次繳費截止時間：</strong>
 
-    <div id="ordersContainer"></div>
+    2026/10/15 23:59
 
+    <br>
 
-    <!-- 測試用 -->
+    在繳費期限以前可以取消訂單。
 
-    <button
-      class="clear-button"
-      onclick="clearOrders()"
-    >
-      清除測試訂單
-    </button>
-
-  </main>
+  </div>
 
 
-  <script>
+  <div id="ordersContainer"></div>
 
-    // 從瀏覽器取得訂單
-    let orders =
-      JSON.parse(
-        localStorage.getItem("schoolOrders")
-      ) || [];
 
+  <button
+    class="clear-button"
+    onclick="clearTestOrders()"
+  >
+    清除測試訂單
+  </button>
+
+</div>
+
+
+<script>
+
+  /*
+   * =====================================
+   * 設定繳費截止時間
+   * =====================================
+   *
+   * 之後做管理員後台時，
+   * 這裡會改成從資料庫取得。
+   *
+   */
+
+  const paymentDeadline =
+    new Date("2026-10-15T23:59:00");
+
+
+  /*
+   * =====================================
+   * 取得訂單
+   * =====================================
+   */
+
+  let orders =
+    JSON.parse(
+      localStorage.getItem("schoolOrders")
+    ) || [];
+
+
+  /*
+   * =====================================
+   * 顯示訂單
+   * =====================================
+   */
+
+  function displayOrders() {
 
     const container =
-      document.getElementById(
-        "ordersContainer"
-      );
+      document.getElementById("ordersContainer");
 
 
-    // 沒有訂單
     if (orders.length === 0) {
 
       container.innerHTML = `
 
         <div class="empty">
 
-          <p>
-            目前還沒有訂單
-          </p>
+          <p>目前還沒有訂單。</p>
 
           <a
             href="product.html"
@@ -305,111 +297,332 @@
 
       `;
 
+      return;
     }
 
 
-    // 有訂單
-    else {
-
-      orders.forEach(function(order) {
-
-        container.innerHTML += `
-
-          <div class="order-card">
-
-            <div class="order-header">
-
-              <div>
-
-                <div class="order-number">
-                  訂單編號：${order.orderNumber || "測試訂單"}
-                </div>
-
-                <div class="order-time">
-                  下單時間：
-                  ${order.orderTime || "尚未記錄"}
-                </div>
-
-              </div>
+    container.innerHTML = "";
 
 
-              <div class="status">
-                ${order.status || "等待處理"}
-              </div>
+    orders.forEach(function(order, index) {
 
-            </div>
+      const card =
+        document.createElement("div");
 
-
-            <div class="product-info">
-
-              <div class="product-name">
-                ${order.name}
-              </div>
+      card.className = "order-card";
 
 
-              <div class="product-detail">
+      /*
+       * 如果已取消
+       */
 
-                <span>
-                  商品分類：${order.category}
-                </span>
+      if (order.status === "已取消") {
 
-                ${
-                  order.size
-                  ? `<span>尺寸：${order.size}</span>`
-                  : ""
-                }
-
-                <span>
-                  單價：NT$${order.price}
-                </span>
-
-                <span>
-                  數量：${order.quantity}
-                </span>
-
-              </div>
-
-            </div>
-
-
-            <div class="order-total">
-
-              訂單金額：
-              NT$${order.total}
-
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-    }
-
-
-    // 清除測試訂單
-    function clearOrders() {
-
-      const confirmClear =
-        confirm(
-          "確定要清除所有測試訂單嗎？"
-        );
-
-
-      if (confirmClear) {
-
-        localStorage.removeItem(
-          "schoolOrders"
-        );
-
-        location.reload();
+        card.classList.add("cancelled");
 
       }
 
+
+      /*
+       * 收款狀態
+       */
+
+      let paymentText = "未收款";
+
+      if (order.paymentStatus === "paid") {
+
+        paymentText = "已收款";
+
+      }
+
+
+      /*
+       * 尺寸
+       */
+
+      let sizeText = "";
+
+      if (order.size) {
+
+        sizeText =
+          `<div>尺寸：${order.size}</div>`;
+
+      }
+
+
+      /*
+       * 是否可以取消
+       */
+
+      const now = new Date();
+
+      const beforeDeadline =
+        now < paymentDeadline;
+
+
+      const canCancel =
+        order.status !== "已取消" &&
+        beforeDeadline;
+
+
+      /*
+       * 取消按鈕
+       */
+
+      let cancelButton = "";
+
+
+      if (canCancel) {
+
+        cancelButton = `
+
+          <button
+            class="cancel-button"
+            onclick="cancelOrder(${index})"
+          >
+            取消訂單
+          </button>
+
+        `;
+
+      }
+
+
+      /*
+       * 如果已取消
+       */
+
+      if (order.status === "已取消") {
+
+        cancelButton = "";
+
+      }
+
+
+      card.innerHTML = `
+
+        <div class="order-header">
+
+          <div class="order-number">
+
+            訂單編號：
+            ${order.orderNumber}
+
+          </div>
+
+          <div class="status">
+
+            ${order.status}
+
+          </div>
+
+        </div>
+
+
+        <div class="order-info">
+
+          <div>
+            下單時間：
+            ${order.orderTime}
+          </div>
+
+          <div>
+            學年度：
+            ${order.academicYear}
+          </div>
+
+          <div>
+            班級：
+            ${order.className}
+          </div>
+
+          <div>
+            座號：
+            ${order.seatNumber}
+          </div>
+
+          <br>
+
+
+          <div>
+            商品：
+            ${order.name}
+          </div>
+
+          <div>
+            類別：
+            ${order.category}
+          </div>
+
+          ${sizeText}
+
+          <div>
+            單價：
+            NT$ ${order.price}
+          </div>
+
+          <div>
+            數量：
+            ${order.quantity}
+          </div>
+
+          <div>
+            收款狀態：
+            ${paymentText}
+          </div>
+
+
+          <div class="total">
+
+            總金額：
+            NT$ ${order.total}
+
+          </div>
+
+        </div>
+
+
+        ${cancelButton}
+
+      `;
+
+
+      container.appendChild(card);
+
+    });
+
+  }
+
+
+  /*
+   * =====================================
+   * 取消訂單
+   * =====================================
+   */
+
+  function cancelOrder(index) {
+
+    const now = new Date();
+
+
+    /*
+     * 再次確認是否超過截止時間
+     */
+
+    if (now >= paymentDeadline) {
+
+      alert(
+        "已超過繳費截止時間，無法取消訂單。"
+      );
+
+      return;
     }
 
-  </script>
+
+    /*
+     * 防止重複取消
+     */
+
+    if (orders[index].status === "已取消") {
+
+      return;
+
+    }
+
+
+    /*
+     * 確認
+     */
+
+    const confirmCancel =
+      confirm(
+        "確定要取消這筆訂單嗎？\n\n" +
+        "訂單編號：" +
+        orders[index].orderNumber
+      );
+
+
+    if (!confirmCancel) {
+
+      return;
+
+    }
+
+
+    /*
+     * 不刪除訂單
+     *
+     * 只把狀態改成「已取消」
+     */
+
+    orders[index].status = "已取消";
+
+
+    /*
+     * 儲存
+     */
+
+    localStorage.setItem(
+      "schoolOrders",
+      JSON.stringify(orders)
+    );
+
+
+    alert("訂單已取消。");
+
+
+    /*
+     * 重新顯示
+     */
+
+    displayOrders();
+
+  }
+
+
+  /*
+   * =====================================
+   * 清除測試訂單
+   * =====================================
+   */
+
+  function clearTestOrders() {
+
+    const confirmClear =
+      confirm(
+        "確定要清除所有測試訂單嗎？"
+      );
+
+
+    if (!confirmClear) {
+
+      return;
+
+    }
+
+
+    localStorage.removeItem(
+      "schoolOrders"
+    );
+
+
+    orders = [];
+
+
+    displayOrders();
+
+  }
+
+
+  /*
+   * =====================================
+   * 開始顯示
+   * =====================================
+   */
+
+  displayOrders();
+
+</script>
 
 </body>
 </html>
