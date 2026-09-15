@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>商品｜校園訂購平台</title>
+  <title>商品｜校園訂購系統</title>
 
   <style>
     * {
@@ -13,183 +13,217 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   "Noto Sans TC", sans-serif;
-      background: #f6f6f4;
-      color: #202020;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans TC",
+        sans-serif;
+      background: #f5f6f8;
+      color: #222;
     }
 
-    header {
-      height: 72px;
-      background: white;
-      border-bottom: 1px solid #e5e5e5;
+    /* ===== 頂部 ===== */
 
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-
-      padding: 0 6%;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .logo {
       font-size: 20px;
       font-weight: 700;
+      color: #222;
     }
 
     nav {
       display: flex;
-      gap: 28px;
+      gap: 18px;
     }
 
     nav a {
-      color: #333;
       text-decoration: none;
-      font-size: 15px;
+      color: #555;
+      font-size: 14px;
     }
 
     nav a:hover {
-      color: #777;
+      color: #111;
     }
 
-    .page {
+    /* ===== 主內容 ===== */
+
+    main {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 55px 25px;
+      padding: 40px 24px 60px;
     }
 
     .page-title {
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .page-title h1 {
-      margin: 0 0 10px;
-      font-size: 34px;
+      margin: 0 0 8px;
+      font-size: 30px;
     }
 
     .page-title p {
       margin: 0;
       color: #777;
+      font-size: 14px;
     }
+
+    /* ===== 分類 ===== */
 
     .categories {
       display: flex;
       gap: 10px;
-      margin-bottom: 35px;
       flex-wrap: wrap;
+      margin-bottom: 28px;
     }
 
-    .category {
-      padding: 9px 18px;
-      border: 1px solid #d8d8d8;
-      background: white;
-      border-radius: 3px;
+    .category-btn {
+      border: 1px solid #d7d9dd;
+      background: #fff;
+      padding: 9px 16px;
       cursor: pointer;
       font-size: 14px;
+      color: #444;
     }
 
-    .category.active {
-      background: #202020;
+    .category-btn:hover {
+      background: #f0f1f3;
+    }
+
+    .category-btn.active {
+      background: #222;
       color: white;
-      border-color: #202020;
+      border-color: #222;
     }
 
-    .product-grid {
+    /* ===== 商品 ===== */
+
+    .products-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      gap: 20px;
     }
 
     .product-card {
-      background: white;
-      border: 1px solid #e3e3e3;
-      border-radius: 5px;
-      overflow: hidden;
+      background: #fff;
+      border: 1px solid #e2e4e8;
+      padding: 0;
+      transition: 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
     }
 
     .product-image {
-      height: 230px;
-      background: #e9e9e9;
-
+      height: 210px;
+      background: #eceef1;
       display: flex;
       align-items: center;
       justify-content: center;
-
       color: #999;
       font-size: 14px;
     }
 
     .product-info {
-      padding: 20px;
-    }
-
-    .product-info h2 {
-      margin: 0 0 8px;
-      font-size: 18px;
+      padding: 18px;
     }
 
     .product-category {
-      font-size: 13px;
+      font-size: 12px;
       color: #888;
-      margin-bottom: 15px;
+      margin-bottom: 8px;
     }
 
-    .product-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+    .product-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    .price {
+    .product-price {
       font-size: 17px;
       font-weight: 700;
+      margin-bottom: 16px;
     }
 
-    .view-button {
-      background: #202020;
+    .view-btn {
+      display: block;
+      text-align: center;
+      background: #222;
       color: white;
-      border: none;
-      padding: 9px 15px;
-      border-radius: 3px;
-      cursor: pointer;
       text-decoration: none;
-      display: inline-block;
+      padding: 11px;
       font-size: 14px;
     }
 
-    .view-button:hover {
+    .view-btn:hover {
       background: #444;
     }
 
-    @media (max-width: 800px) {
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    /* ===== 狀態 ===== */
+
+    .message {
+      text-align: center;
+      padding: 60px 20px;
+      color: #777;
     }
 
-    @media (max-width: 550px) {
+    .error {
+      color: #b42318;
+      background: #fff0ee;
+      border: 1px solid #f2c4bd;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* ===== 平板 ===== */
+
+    @media (max-width: 800px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       header {
-        padding: 0 20px;
+        padding: 16px 20px;
       }
 
       nav {
-        gap: 12px;
+        gap: 10px;
+      }
+    }
+
+    /* ===== 手機 ===== */
+
+    @media (max-width: 520px) {
+      main {
+        padding: 30px 16px 50px;
       }
 
-      nav a {
-        font-size: 13px;
-      }
-
-      .page {
-        padding: 40px 18px;
+      .products-grid {
+        grid-template-columns: 1fr;
       }
 
       .page-title h1 {
-        font-size: 28px;
+        font-size: 26px;
       }
 
-      .product-grid {
-        grid-template-columns: 1fr;
+      nav a {
+        font-size: 12px;
       }
     }
   </style>
@@ -197,47 +231,253 @@
 
 <body>
 
-  <header>
+<header>
+  <div class="logo">校園訂購系統</div>
 
-    <div class="logo">
-      校園訂購平台
-    </div>
-
-    <nav>
-      <a href="index.html">首頁</a>
-      <a href="product.html">商品</a>
-      <a href="order.html">我的訂單</a>
-      <a href="#">登入</a>
-    </nav>
-
-  </header>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="orders.html">我的訂單</a>
+    <a href="student-profile.html">個人資料</a>
+  </nav>
+</header>
 
 
-  <main class="page">
+<main>
 
-    <div class="page-title">
-      <h1>商品</h1>
-      <p>瀏覽目前開放訂購的校園商品</p>
-    </div>
-
-
-    <div class="categories">
-
-      <button class="category active">全部</button>
-      <button class="category">上衣</button>
-      <button class="category">外套</button>
-      <button class="category">文具</button>
-      <button class="category">其他</button>
-
-    </div>
+  <div class="page-title">
+    <h1>商品</h1>
+    <p>瀏覽目前可以訂購的校園商品</p>
+  </div>
 
 
-    <div class="product-grid">
+  <!-- 商品分類 -->
+
+  <div class="categories" id="categories">
+    <button class="category-btn active" data-category="全部">
+      全部
+    </button>
+  </div>
 
 
-      <!-- 商品 1：T-shirt -->
+  <!-- 商品 -->
 
-      <div class="product-card">
+  <div id="message" class="message">
+    商品讀取中……
+  </div>
+
+  <div
+    id="productsGrid"
+    class="products-grid"
+    style="display:none;"
+  ></div>
+
+</main>
+
+
+<script>
+
+  /* =====================================
+     Supabase 設定
+     ===================================== */
+
+  const SUPABASE_URL = "https://oanccvcpiixtameutjdl.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_PdSvLOKj8kYTJWan7ivnbQ_G5QIO2ma";
+
+
+  /* =====================================
+     全部商品
+     ===================================== */
+
+  let allProducts = [];
+
+
+  /* =====================================
+     讀取商品
+     ===================================== */
+
+  async function loadProducts() {
+
+    const message = document.getElementById("message");
+    const productsGrid = document.getElementById("productsGrid");
+
+    try {
+
+      const response = await fetch(
+        SUPABASE_URL +
+        "/rest/v1/products?select=id,name,category,price,has_size,description&active=eq.true&order=id",
+        {
+          method: "GET",
+
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": "Bearer " + SUPABASE_KEY
+          }
+        }
+      );
+
+
+      if (!response.ok) {
+
+        const errorText = await response.text();
+
+        throw new Error(
+          "Supabase 連線失敗：" +
+          response.status +
+          "\n" +
+          errorText
+        );
+
+      }
+
+
+      allProducts = await response.json();
+
+
+      if (allProducts.length === 0) {
+
+        message.textContent = "目前沒有可以訂購的商品。";
+        return;
+
+      }
+
+
+      createCategories();
+
+      renderProducts(allProducts);
+
+
+    } catch (error) {
+
+      console.error(error);
+
+      message.innerHTML =
+        `<div class="error">
+          商品讀取失敗。<br><br>
+          ${error.message}
+        </div>`;
+
+    }
+
+  }
+
+
+  /* =====================================
+     建立分類按鈕
+     ===================================== */
+
+  function createCategories() {
+
+    const categoriesElement =
+      document.getElementById("categories");
+
+    const categories = [
+      ...new Set(
+        allProducts.map(product => product.category)
+      )
+    ];
+
+
+    categories.forEach(category => {
+
+      const button =
+        document.createElement("button");
+
+      button.className = "category-btn";
+
+      button.textContent = category;
+
+      button.dataset.category = category;
+
+
+      button.addEventListener("click", () => {
+
+        document
+          .querySelectorAll(".category-btn")
+          .forEach(btn => {
+            btn.classList.remove("active");
+          });
+
+        button.classList.add("active");
+
+
+        if (category === "全部") {
+
+          renderProducts(allProducts);
+
+        } else {
+
+          const filtered =
+            allProducts.filter(
+              product =>
+                product.category === category
+            );
+
+          renderProducts(filtered);
+
+        }
+
+      });
+
+
+      categoriesElement.appendChild(button);
+
+    });
+
+
+    /* 全部按鈕 */
+
+    const allButton =
+      document.querySelector(
+        '.category-btn[data-category="全部"]'
+      );
+
+
+    allButton.addEventListener("click", () => {
+
+      document
+        .querySelectorAll(".category-btn")
+        .forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+      allButton.classList.add("active");
+
+      renderProducts(allProducts);
+
+    });
+
+  }
+
+
+  /* =====================================
+     顯示商品
+     ===================================== */
+
+  function renderProducts(products) {
+
+    const message =
+      document.getElementById("message");
+
+    const grid =
+      document.getElementById("productsGrid");
+
+
+    message.style.display = "none";
+
+    grid.style.display = "grid";
+
+    grid.innerHTML = "";
+
+
+    products.forEach(product => {
+
+      const card =
+        document.createElement("div");
+
+      card.className = "product-card";
+
+
+      card.innerHTML = `
 
         <div class="product-image">
           商品圖片
@@ -245,215 +485,60 @@
 
         <div class="product-info">
 
-          <h2>校園紀念 T-shirt</h2>
-
           <div class="product-category">
-            上衣
+            ${escapeHTML(product.category)}
           </div>
 
-          <div class="product-bottom">
-
-            <div class="price">
-              NT$450
-            </div>
-
-            <a
-              href="product-detail.html?product=tshirt"
-              class="view-button"
-            >
-              查看商品
-            </a>
-
+          <div class="product-name">
+            ${escapeHTML(product.name)}
           </div>
+
+          <div class="product-price">
+            NT$ ${Number(product.price).toLocaleString()}
+          </div>
+
+          <a
+            class="view-btn"
+            href="product-detail.html?productId=${product.id}"
+          >
+            查看商品
+          </a>
 
         </div>
 
-      </div>
+      `;
 
 
-      <!-- 商品 2：外套 -->
+      grid.appendChild(card);
 
-      <div class="product-card">
+    });
 
-        <div class="product-image">
-          商品圖片
-        </div>
+  }
 
-        <div class="product-info">
 
-          <h2>校園紀念外套</h2>
+  /* =====================================
+     防止 HTML 注入
+     ===================================== */
 
-          <div class="product-category">
-            外套
-          </div>
+  function escapeHTML(value) {
 
-          <div class="product-bottom">
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
 
-            <div class="price">
-              NT$850
-            </div>
+  }
 
-            <a
-              href="product-detail.html?product=jacket"
-              class="view-button"
-            >
-              查看商品
-            </a>
 
-          </div>
+  /* =====================================
+     啟動
+     ===================================== */
 
-        </div>
+  loadProducts();
 
-      </div>
-
-
-      <!-- 商品 3：帆布袋 -->
-
-      <div class="product-card">
-
-        <div class="product-image">
-          商品圖片
-        </div>
-
-        <div class="product-info">
-
-          <h2>校園紀念帆布袋</h2>
-
-          <div class="product-category">
-            其他
-          </div>
-
-          <div class="product-bottom">
-
-            <div class="price">
-              NT$250
-            </div>
-
-            <a
-              href="product-detail.html?product=canvasbag"
-              class="view-button"
-            >
-              查看商品
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- 商品 4：筆記本 -->
-
-      <div class="product-card">
-
-        <div class="product-image">
-          商品圖片
-        </div>
-
-        <div class="product-info">
-
-          <h2>校園筆記本</h2>
-
-          <div class="product-category">
-            文具
-          </div>
-
-          <div class="product-bottom">
-
-            <div class="price">
-              NT$120
-            </div>
-
-            <a
-              href="product-detail.html?product=notebook"
-              class="view-button"
-            >
-              查看商品
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- 商品 5：徽章 -->
-
-      <div class="product-card">
-
-        <div class="product-image">
-          商品圖片
-        </div>
-
-        <div class="product-info">
-
-          <h2>校園徽章</h2>
-
-          <div class="product-category">
-            其他
-          </div>
-
-          <div class="product-bottom">
-
-            <div class="price">
-              NT$80
-            </div>
-
-            <a
-              href="product-detail.html?product=badge"
-              class="view-button"
-            >
-              查看商品
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- 商品 6：帆布袋 -->
-
-      <div class="product-card">
-
-        <div class="product-image">
-          商品圖片
-        </div>
-
-        <div class="product-info">
-
-          <h2>校園帆布袋</h2>
-
-          <div class="product-category">
-            其他
-          </div>
-
-          <div class="product-bottom">
-
-            <div class="price">
-              NT$250
-            </div>
-
-            <a
-              href="product-detail.html?product=bag"
-              class="view-button"
-            >
-              查看商品
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </main>
+</script>
 
 </body>
 </html>
