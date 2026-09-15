@@ -3,982 +3,341 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>校園訂購系統</title>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
-
-    /* ==================================================
-       ① 基本設定
-       ================================================== */
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        "Noto Sans TC",
-        sans-serif;
-
-      background: #f5f5f3;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        "Microsoft JhengHei", sans-serif;
+      background: #f5f6f8;
       color: #222;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-
-    /* ==================================================
-       ② Header 導覽列
-       ================================================== */
-
-    header {
-      height: 72px;
-
-      background: #ffffff;
-
-      border-bottom: 1px solid #dedede;
-
+    .header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 24px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-
-      padding: 0 40px;
-
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      align-items: center;
     }
 
     .logo {
       font-size: 20px;
       font-weight: 700;
-      letter-spacing: 0.5px;
     }
 
-    nav {
+    .login-area {
       display: flex;
       align-items: center;
-      gap: 26px;
-    }
-
-    nav a {
-      font-size: 14px;
-      color: #444;
-
-      transition: color 0.2s;
-    }
-
-    nav a:hover {
-      color: #111;
-    }
-
-    .login-button {
-      padding: 9px 16px;
-
-      border: 1px solid #222;
-      border-radius: 4px;
-
-      background: #222;
-      color: white;
-    }
-
-    .login-button:hover {
-      background: #444;
-    }
-
-
-    /* ==================================================
-       ③ 首頁主要區域
-       ================================================== */
-
-    main {
-      max-width: 1180px;
-
-      margin: 0 auto;
-
-      padding: 42px 24px 80px;
-    }
-
-
-    /* ==================================================
-       ④ Hero 主視覺
-       ================================================== */
-
-    .hero {
-      min-height: 330px;
-
-      background: #e8ebed;
-
-      border-radius: 8px;
-
-      padding: 58px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 40px;
-
-      overflow: hidden;
-    }
-
-    .hero-text {
-      max-width: 570px;
-    }
-
-    .hero-label {
-      font-size: 13px;
-
-      color: #666;
-
-      letter-spacing: 1.5px;
-
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      margin: 0 0 18px;
-
-      font-size: 42px;
-
-      line-height: 1.25;
-
-      letter-spacing: -1px;
-    }
-
-    .hero p {
-      margin: 0 0 26px;
-
-      color: #666;
-
-      font-size: 16px;
-
-      line-height: 1.8;
-    }
-
-    .hero-button {
-      display: inline-block;
-
-      padding: 12px 22px;
-
-      background: #222;
-
-      color: white;
-
-      border-radius: 4px;
-
-      font-size: 14px;
-
-      transition:
-        transform 0.2s,
-        background 0.2s;
-    }
-
-    .hero-button:hover {
-      background: #444;
-
-      transform: translateY(-2px);
-    }
-
-    .hero-visual {
-      width: 330px;
-      height: 230px;
-
-      background: #d4d8da;
-
-      border-radius: 5px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #777;
-
-      font-size: 14px;
-
-      flex-shrink: 0;
-    }
-
-
-    /* ==================================================
-       ⑤ 公告區
-       ================================================== */
-
-    .section {
-      margin-top: 46px;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-
-      margin-bottom: 18px;
-    }
-
-    .section-title {
-      margin: 0;
-
-      font-size: 23px;
-    }
-
-    .section-more {
-      font-size: 13px;
-
-      color: #777;
-    }
-
-    .section-more:hover {
-      color: #222;
-    }
-
-    .announcement {
-      background: white;
-
-      border: 1px solid #ddd;
-
-      border-radius: 5px;
-
-      padding: 20px 22px;
-
-      display: flex;
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 20px;
-    }
-
-    .announcement-left {
-      display: flex;
-      align-items: center;
-
-      gap: 14px;
-    }
-
-    .announcement-tag {
-      padding: 5px 9px;
-
-      background: #eeeeec;
-
-      border-radius: 3px;
-
-      font-size: 12px;
-
-      color: #555;
-    }
-
-    .announcement-title {
-      font-size: 15px;
-
-      font-weight: 600;
-    }
-
-    .announcement-date {
-      color: #888;
-
-      font-size: 13px;
-    }
-
-
-    /* ==================================================
-       ⑥ 商品區
-       ================================================== */
-
-    .product-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 18px;
-    }
-
-    .product-card {
-      background: white;
-
-      border: 1px solid #ddd;
-
-      border-radius: 5px;
-
-      overflow: hidden;
-
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-    }
-
-    .product-card:hover {
-      transform: translateY(-3px);
-
-      box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.07);
-    }
-
-    .product-image {
-      height: 210px;
-
-      background: #e4e5e3;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color: #888;
-
-      font-size: 13px;
-    }
-
-    .product-info {
-      padding: 18px;
-    }
-
-    .product-category {
-      font-size: 12px;
-
-      color: #888;
-
-      margin-bottom: 7px;
-    }
-
-    .product-name {
-      margin: 0 0 10px;
-
-      font-size: 17px;
-
-      font-weight: 600;
-    }
-
-    .product-bottom {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
       gap: 12px;
     }
 
-    .product-price {
-      font-size: 15px;
-
-      font-weight: 600;
-    }
-
-    .product-button {
-      padding: 8px 13px;
-
-      border: 1px solid #333;
-
-      border-radius: 4px;
-
-      background: white;
-
-      font-size: 13px;
-
-      transition:
-        background 0.2s,
-        color 0.2s;
-    }
-
-    .product-button:hover {
-      background: #222;
-
-      color: white;
-    }
-
-
-    /* ==================================================
-       ⑦ 系統特色
-       ================================================== */
-
-    .feature-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 18px;
-    }
-
-    .feature {
-      background: white;
-
-      border: 1px solid #ddd;
-
-      border-radius: 5px;
-
-      padding: 24px;
-    }
-
-    .feature-number {
-      font-size: 13px;
-
-      color: #999;
-
-      margin-bottom: 14px;
-    }
-
-    .feature h3 {
-      margin: 0 0 9px;
-
-      font-size: 17px;
-    }
-
-    .feature p {
-      margin: 0;
-
-      color: #777;
-
+    .user-email {
       font-size: 14px;
-
-      line-height: 1.7;
+      color: #555;
     }
 
+    button {
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: inherit;
+    }
 
-    /* ==================================================
-       ⑧ Footer
-       ================================================== */
-
-    footer {
+    .google-btn {
       background: #222;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 4px;
+    }
 
-      color: #ddd;
+    .google-btn:hover {
+      opacity: 0.85;
+    }
 
-      padding: 32px 24px;
+    .logout-btn {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 9px 15px;
+      border-radius: 4px;
+    }
 
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .hero {
+      background: white;
+      padding: 50px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .hero h1 {
+      margin: 0 0 15px;
+      font-size: 36px;
+    }
+
+    .hero p {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
       margin-top: 30px;
     }
 
-    .footer-inner {
-      max-width: 1180px;
-
-      margin: 0 auto;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      gap: 20px;
+    .menu a {
+      display: block;
+      background: white;
+      border: 1px solid #e5e7eb;
+      padding: 25px;
+      text-decoration: none;
+      color: #222;
+      transition: 0.2s;
     }
 
-    .footer-title {
-      font-size: 15px;
+    .menu a:hover {
+      border-color: #999;
+      transform: translateY(-2px);
+    }
 
+    .menu-title {
+      font-size: 18px;
       font-weight: 600;
+      margin-bottom: 8px;
     }
 
-    .footer-text {
-      color: #999;
-
-      font-size: 12px;
+    .menu-text {
+      color: #777;
+      font-size: 14px;
     }
 
+    .login-message {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f3f4f6;
+      color: #555;
+      font-size: 14px;
+    }
 
-    /* ==================================================
-       ⑨ iPad / 平板
-       ================================================== */
+    @media (max-width: 700px) {
+      .header {
+        padding: 15px;
+      }
 
-    @media (max-width: 900px) {
+      .user-email {
+        display: none;
+      }
 
-      header {
-        padding: 0 24px;
+      .container {
+        padding: 30px 15px;
       }
 
       .hero {
-        padding: 42px;
+        padding: 30px 20px;
       }
 
       .hero h1 {
-        font-size: 34px;
+        font-size: 28px;
       }
 
-      .hero-visual {
-        width: 260px;
-        height: 200px;
-      }
-
-      .product-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .feature-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-    }
-
-
-    /* ==================================================
-       ⑩ 手機
-       ================================================== */
-
-    @media (max-width: 600px) {
-
-      header {
-        height: auto;
-
-        padding: 18px 16px;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 14px;
-      }
-
-      nav {
-        width: 100%;
-
-        gap: 16px;
-
-        flex-wrap: wrap;
-      }
-
-      main {
-        padding:
-          24px
-          16px
-          60px;
-      }
-
-      .hero {
-        padding: 32px 24px;
-
-        min-height: auto;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-      .hero h1 {
-        font-size: 30px;
-      }
-
-      .hero-visual {
-        width: 100%;
-
-        height: 180px;
-      }
-
-      .announcement {
-        align-items: flex-start;
-
-        flex-direction: column;
-      }
-
-      .announcement-left {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 8px;
-      }
-
-      .product-grid {
+      .menu {
         grid-template-columns: 1fr;
       }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
     }
-
   </style>
 </head>
 
-
 <body>
 
+  <header class="header">
+    <div class="logo">校園訂購系統</div>
 
-  <!-- ==================================================
-       Header
-       ================================================== -->
-
-  <header>
-
-    <div class="logo">
-      校園訂購系統
+    <div class="login-area" id="loginArea">
+      <button class="google-btn" id="googleLoginBtn">
+        使用 Google 登入
+      </button>
     </div>
+  </header>
 
-    <nav>
+  <main class="container">
 
-      <a href="index.html">
-        首頁
-      </a>
+    <section class="hero">
+      <h1>校園訂購系統</h1>
+
+      <p>
+        在這裡可以查看校園商品、建立訂單，
+        並查看自己的訂購紀錄。
+      </p>
+
+      <div id="loginMessage" class="login-message">
+        請先使用 Google 帳號登入。
+      </div>
+    </section>
+
+    <section class="menu">
 
       <a href="product.html">
-        商品
+        <div class="menu-title">商品瀏覽</div>
+        <div class="menu-text">
+          查看目前可以購買的校園商品
+        </div>
       </a>
 
       <a href="orders.html">
-        我的訂單
+        <div class="menu-title">我的訂單</div>
+        <div class="menu-text">
+          查看自己的訂購紀錄
+        </div>
       </a>
 
       <a href="student-profile.html">
-        我的資料
+        <div class="menu-title">學生資料</div>
+        <div class="menu-text">
+          查看與設定學生基本資料
+        </div>
       </a>
 
-      <a href="#">
-        登入
-      </a>
-
-    </nav>
-
-  </header>
-
-
-  <main>
-
-
-    <!-- ==================================================
-         Hero
-         ================================================== -->
-
-    <section class="hero">
-
-      <div class="hero-text">
-
-        <div class="hero-label">
-          SCHOOL ORDERING SYSTEM
-        </div>
-
-        <h1>
-          更簡單的校園訂購方式
-        </h1>
-
-        <p>
-          商品、訂單與班級收款集中管理，
-          讓學生、班代與學生會都能更有效率地完成訂購流程。
-        </p>
-
-        <a
-          href="product.html"
-          class="hero-button"
-        >
-          查看商品
-        </a>
-
-      </div>
-
-
-      <div class="hero-visual">
-        首頁主視覺圖片
-      </div>
-
     </section>
-
-
-    <!-- ==================================================
-         公告
-         ================================================== -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <h2 class="section-title">
-          最新公告
-        </h2>
-
-        <a
-          href="#"
-          class="section-more"
-        >
-          查看全部
-        </a>
-
-      </div>
-
-
-      <div class="announcement">
-
-        <div class="announcement-left">
-
-          <span class="announcement-tag">
-            公告
-          </span>
-
-          <span class="announcement-title">
-            校園紀念商品開始接受訂購
-          </span>
-
-        </div>
-
-        <div class="announcement-date">
-          2026.09.15
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         熱門商品
-         ================================================== -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <h2 class="section-title">
-          熱門商品
-        </h2>
-
-        <a
-          href="product.html"
-          class="section-more"
-        >
-          查看全部商品 →
-        </a>
-
-      </div>
-
-
-      <div class="product-grid">
-
-
-        <!-- 商品 1 -->
-
-        <div class="product-card">
-
-          <div class="product-image">
-            商品圖片
-          </div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              上衣
-            </div>
-
-            <h3 class="product-name">
-              校園紀念 T-shirt
-            </h3>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                NT$450
-              </div>
-
-              <a
-                href="product-detail.html?product=tshirt"
-                class="product-button"
-              >
-                查看商品
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 商品 2 -->
-
-        <div class="product-card">
-
-          <div class="product-image">
-            商品圖片
-          </div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              外套
-            </div>
-
-            <h3 class="product-name">
-              校園紀念外套
-            </h3>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                NT$850
-              </div>
-
-              <a
-                href="product-detail.html?product=jacket"
-                class="product-button"
-              >
-                查看商品
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 商品 3 -->
-
-        <div class="product-card">
-
-          <div class="product-image">
-            商品圖片
-          </div>
-
-          <div class="product-info">
-
-            <div class="product-category">
-              其他
-            </div>
-
-            <h3 class="product-name">
-              校園紀念帆布袋
-            </h3>
-
-            <div class="product-bottom">
-
-              <div class="product-price">
-                NT$250
-              </div>
-
-              <a
-                href="product-detail.html?product=canvasbag"
-                class="product-button"
-              >
-                查看商品
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- ==================================================
-         系統特色
-         ================================================== -->
-
-    <section class="section">
-
-      <div class="section-header">
-
-        <h2 class="section-title">
-          系統特色
-        </h2>
-
-      </div>
-
-
-      <div class="feature-grid">
-
-
-        <div class="feature">
-
-          <div class="feature-number">
-            01
-          </div>
-
-          <h3>
-            線上訂購
-          </h3>
-
-          <p>
-            學生可以直接查看商品並建立自己的訂單，
-            減少紙本登記與人工整理。
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-number">
-            02
-          </div>
-
-          <h3>
-            班級管理
-          </h3>
-
-          <p>
-            班代可以查看自己班級的訂單與收款狀態，
-            更容易整理訂購資料。
-          </p>
-
-        </div>
-
-
-        <div class="feature">
-
-          <div class="feature-number">
-            03
-          </div>
-
-          <h3>
-            統計整理
-          </h3>
-
-          <p>
-            管理員可以依照商品與班級查看訂購數量，
-            並匯出統計資料。
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
 
   </main>
 
+  <script>
 
-  <!-- ==================================================
-       Footer
-       ================================================== -->
+    // ==============================
+    // ① 填入你的 Supabase 資訊
+    // ==============================
 
-  <footer>
+    const SUPABASE_URL = "https://oanccvcpiixtameutjdl.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_PdSvLOKj8kYTJWan7ivnbQ_G5QIO2ma";
 
-    <div class="footer-inner">
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
-      <div class="footer-title">
-        校園訂購系統
-      </div>
 
-      <div class="footer-text">
-        School Ordering System
-      </div>
+    // ==============================
+    // ② Google 登入
+    // ==============================
 
-    </div>
+    const googleLoginBtn =
+      document.getElementById("googleLoginBtn");
 
-  </footer>
+    googleLoginBtn.addEventListener("click", async () => {
 
+      const { error } =
+        await supabaseClient.auth.signInWithOAuth({
+          provider: "google",
+          options: {
+            redirectTo: window.location.origin + "/index.html"
+          }
+        });
+
+      if (error) {
+        alert("登入失敗：" + error.message);
+      }
+
+    });
+
+
+    // ==============================
+    // ③ 顯示目前登入狀態
+    // ==============================
+
+    async function updateLoginStatus() {
+
+      const {
+        data: { session }
+      } = await supabaseClient.auth.getSession();
+
+      const loginArea =
+        document.getElementById("loginArea");
+
+      const loginMessage =
+        document.getElementById("loginMessage");
+
+
+      if (session) {
+
+        const user = session.user;
+
+        loginArea.innerHTML = `
+          <span class="user-email">
+            ${user.email || ""}
+          </span>
+
+          <button class="logout-btn" id="logoutBtn">
+            登出
+          </button>
+        `;
+
+        loginMessage.innerHTML =
+          "已登入，可以開始使用校園訂購系統。";
+
+        document
+          .getElementById("logoutBtn")
+          .addEventListener("click", async () => {
+
+            await supabaseClient.auth.signOut();
+
+            location.reload();
+
+          });
+
+      } else {
+
+        loginArea.innerHTML = `
+          <button class="google-btn" id="googleLoginBtn">
+            使用 Google 登入
+          </button>
+        `;
+
+        document
+          .getElementById("googleLoginBtn")
+          .addEventListener("click", async () => {
+
+            const { error } =
+              await supabaseClient.auth.signInWithOAuth({
+                provider: "google",
+                options: {
+                  redirectTo:
+                    window.location.origin + "/index.html"
+                }
+              });
+
+            if (error) {
+              alert("登入失敗：" + error.message);
+            }
+
+          });
+
+      }
+
+    }
+
+
+    // ==============================
+    // ④ 啟動
+    // ==============================
+
+    updateLoginStatus();
+
+  </script>
 
 </body>
 </html>
