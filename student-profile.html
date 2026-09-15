@@ -1,510 +1,404 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>學生資料</title>
 
-  <title>我的資料｜校園訂購系統</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: Arial, "Noto Sans TC", sans-serif;
-      background: #f6f6f4;
+      font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC",
+        "Microsoft JhengHei", sans-serif;
+      background: #f5f6f8;
       color: #222;
     }
 
-    header {
-      height: 72px;
+    .header {
       background: white;
-      border-bottom: 1px solid #ddd;
-
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 24px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-
-      padding: 0 40px;
+      align-items: center;
     }
 
     .logo {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 700;
     }
 
-    nav a {
-      margin-left: 24px;
+    .back {
+      color: #555;
       text-decoration: none;
-      color: #333;
-      font-size: 15px;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
+      font-size: 14px;
     }
 
     .container {
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 45px 20px;
     }
 
-    .profile-card {
+    .card {
       background: white;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      padding: 30px;
+      border: 1px solid #e5e7eb;
+      padding: 35px;
     }
 
     h1 {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-size: 28px;
     }
 
     .description {
-      color: #666;
-      line-height: 1.7;
-      margin-bottom: 25px;
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 30px;
     }
 
-    .form-group {
+    .field {
       margin-bottom: 20px;
     }
 
     label {
       display: block;
-      font-weight: bold;
+      font-size: 14px;
+      font-weight: 600;
       margin-bottom: 8px;
     }
 
     input,
     select {
       width: 100%;
-      padding: 11px;
-      border: 1px solid #bbb;
-      border-radius: 4px;
-      font-size: 15px;
+      padding: 12px;
+      border: 1px solid #d8dbe0;
       background: white;
+      font-size: 15px;
+      font-family: inherit;
     }
 
-    .save-button {
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #777;
+    }
+
+    .save-btn {
       width: 100%;
       padding: 13px;
-
       background: #222;
       color: white;
-
       border: none;
-      border-radius: 4px;
-
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15px;
+      margin-top: 10px;
     }
 
-    .save-button:hover {
-      background: #444;
+    .save-btn:hover {
+      opacity: 0.85;
     }
 
     .message {
-      margin-top: 15px;
+      margin-top: 18px;
       padding: 12px;
-      background: #f1f1f1;
-      border: 1px solid #ddd;
-
+      background: #f3f4f6;
+      font-size: 14px;
       display: none;
     }
 
-    .student-id-box {
-      margin-top: 25px;
-      padding: 15px;
-      background: #f5f5f5;
-      border: 1px solid #ddd;
-
+    .user-info {
+      margin-bottom: 25px;
+      padding: 14px;
+      background: #f7f7f7;
       font-size: 14px;
-      line-height: 1.7;
+      color: #555;
     }
 
-    .student-id {
-      font-family: monospace;
-      font-weight: bold;
-      word-break: break-all;
+    .loading {
+      text-align: center;
+      padding: 30px;
+      color: #777;
     }
 
-    @media (max-width: 700px) {
-
-      header {
-        padding: 0 15px;
+    @media (max-width: 600px) {
+      .header {
+        padding: 15px;
       }
 
-      nav a {
-        margin-left: 9px;
-        font-size: 13px;
+      .card {
+        padding: 25px 20px;
       }
-
-      .profile-card {
-        padding: 20px;
-      }
-
     }
-
   </style>
 </head>
 
-
 <body>
 
-<header>
-
-  <div class="logo">
-    校園訂購系統
-  </div>
-
-  <nav>
-    <a href="index.html">首頁</a>
-    <a href="product.html">商品</a>
-    <a href="orders.html">我的訂單</a>
-    <a href="student-profile.html">我的資料</a>
-  </nav>
-
+<header class="header">
+  <div class="logo">學生資料</div>
+  <a href="index.html" class="back">返回首頁</a>
 </header>
 
+<main class="container">
 
-<div class="container">
+  <div class="card">
 
-  <div class="profile-card">
-
-    <h1>我的資料</h1>
+    <h1>學生資料</h1>
 
     <div class="description">
-
       請填寫目前學年度的班級資料。
-      <br>
-      如果未來升級、轉班或座號改變，
-      可以直接修改這裡。
-      <br>
-      舊訂單會保留當時的資料，不會跟著改變。
-
     </div>
 
-
-    <!-- 學年度 -->
-
-    <div class="form-group">
-
-      <label for="academicYear">
-        學年度
-      </label>
-
-      <select id="academicYear">
-
-        <option value="115">
-          115
-        </option>
-
-        <option value="116">
-          116
-        </option>
-
-        <option value="117">
-          117
-        </option>
-
-      </select>
-
+    <div id="loading" class="loading">
+      載入中...
     </div>
 
+    <div id="content" style="display:none;">
 
-    <!-- 年級 -->
+      <div class="user-info" id="userInfo"></div>
 
-    <div class="form-group">
-
-      <label for="grade">
-        年級
-      </label>
-
-      <select id="grade">
-
-        <option value="高一">
-          高一
-        </option>
-
-        <option value="高二">
-          高二
-        </option>
-
-        <option value="高三">
-          高三
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <!-- 班級 -->
-
-    <div class="form-group">
-
-      <label for="className">
-        班級
-      </label>
-
-      <input
-        id="className"
-        type="text"
-        placeholder="例如：305"
-      >
-
-    </div>
-
-
-    <!-- 座號 -->
-
-    <div class="form-group">
-
-      <label for="seatNumber">
-        座號
-      </label>
-
-      <input
-        id="seatNumber"
-        type="number"
-        min="1"
-        max="99"
-        placeholder="例如：3"
-      >
-
-    </div>
-
-
-    <button
-      class="save-button"
-      onclick="saveProfile()"
-    >
-      儲存資料
-    </button>
-
-
-    <div
-      class="message"
-      id="message"
-    >
-      資料已儲存！
-    </div>
-
-
-    <!-- 學生識別 ID -->
-
-    <div class="student-id-box">
-
-      <strong>學生識別 ID</strong>
-
-      <br>
-
-      這組 ID 是目前測試版用來辨識你的資料。
-      <br>
-      之後接上 Google 登入後，會改成真正的帳號識別。
-
-      <div
-        class="student-id"
-        id="studentId"
-      >
-        建立中...
+      <div class="field">
+        <label for="academicYear">學年度</label>
+        <input
+          type="text"
+          id="academicYear"
+          value="115"
+          placeholder="例如：115"
+        >
       </div>
+
+      <div class="field">
+        <label for="grade">年級</label>
+        <select id="grade">
+          <option value="">請選擇年級</option>
+          <option value="1">一年級</option>
+          <option value="2">二年級</option>
+          <option value="3">三年級</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="className">班級</label>
+        <input
+          type="text"
+          id="className"
+          placeholder="例如：305"
+        >
+      </div>
+
+      <div class="field">
+        <label for="seatNumber">座號</label>
+        <input
+          type="number"
+          id="seatNumber"
+          min="1"
+          placeholder="例如：12"
+        >
+      </div>
+
+      <button class="save-btn" id="saveBtn">
+        儲存學生資料
+      </button>
+
+      <div class="message" id="message"></div>
 
     </div>
 
   </div>
 
-</div>
-
+</main>
 
 <script>
 
-  /*
-   * =====================================
-   * 建立學生識別 ID
-   * =====================================
-   *
-   * 如果第一次使用，就建立一組 ID。
-   *
-   * 之後即使修改班級或座號，
-   * ID 仍然保持不變。
-   *
-   */
+  // ==========================================
+  // Supabase 設定
+  // ==========================================
 
-  function getStudentId() {
+  const SUPABASE_URL = "你的 Project URL";
+  const SUPABASE_KEY = "你的 Publishable key";
 
-    let studentId =
-      localStorage.getItem("studentId");
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 
-    if (!studentId) {
+  // ==========================================
+  // 取得目前登入者
+  // ==========================================
 
-      studentId =
-        "student_" +
-        Date.now() +
-        "_" +
-        Math.random()
-          .toString(36)
-          .substring(2, 8);
+  async function loadProfile() {
 
+    const {
+      data: { session },
+      error: sessionError
+    } = await supabaseClient.auth.getSession();
 
-      localStorage.setItem(
-        "studentId",
-        studentId
-      );
-
+    if (sessionError) {
+      showError("無法取得登入狀態：" + sessionError.message);
+      return;
     }
 
+    if (!session) {
+      alert("請先使用 Google 登入。");
+      window.location.href = "index.html";
+      return;
+    }
 
-    return studentId;
+    const user = session.user;
 
+    document.getElementById("userInfo").textContent =
+      "目前登入帳號：" + (user.email || "");
+
+    // ==========================================
+    // 從 Supabase 取得自己的學生資料
+    // ==========================================
+
+    const {
+      data,
+      error
+    } = await supabaseClient
+      .from("student_profiles")
+      .select("academic_year, grade, class_name, seat_number")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      showError("讀取學生資料失敗：" + error.message);
+      return;
+    }
+
+    // 如果之前已經填過，就帶入資料
+    if (data) {
+
+      document.getElementById("academicYear").value =
+        data.academic_year || "";
+
+      document.getElementById("grade").value =
+        data.grade || "";
+
+      document.getElementById("className").value =
+        data.class_name || "";
+
+      document.getElementById("seatNumber").value =
+        data.seat_number || "";
+    }
+
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("content").style.display = "block";
   }
 
 
-  /*
-   * =====================================
-   * 顯示學生 ID
-   * =====================================
-   */
+  // ==========================================
+  // 儲存學生資料
+  // ==========================================
 
-  document.getElementById("studentId").textContent =
-    getStudentId();
+  document
+    .getElementById("saveBtn")
+    .addEventListener("click", async () => {
 
+      const {
+        data: { session }
+      } = await supabaseClient.auth.getSession();
 
-  /*
-   * =====================================
-   * 讀取原本的資料
-   * =====================================
-   */
+      if (!session) {
+        alert("請先登入。");
+        return;
+      }
 
-  const savedProfile =
-    JSON.parse(
-      localStorage.getItem("studentProfile")
-    );
+      const user = session.user;
 
+      const academicYear =
+        document.getElementById("academicYear").value.trim();
 
-  if (savedProfile) {
+      const grade =
+        document.getElementById("grade").value;
 
-    document.getElementById("academicYear").value =
-      savedProfile.academicYear || "115";
+      const className =
+        document.getElementById("className").value.trim();
 
-    document.getElementById("grade").value =
-      savedProfile.grade || "高一";
-
-    document.getElementById("className").value =
-      savedProfile.className || "";
-
-    document.getElementById("seatNumber").value =
-      savedProfile.seatNumber || "";
-
-  }
+      const seatNumber =
+        document.getElementById("seatNumber").value;
 
 
-  /*
-   * =====================================
-   * 儲存資料
-   * =====================================
-   */
+      // ==========================================
+      // 基本檢查
+      // ==========================================
 
-  function saveProfile() {
-
-    const academicYear =
-      document.getElementById("academicYear").value;
-
-    const grade =
-      document.getElementById("grade").value;
-
-    const className =
-      document.getElementById("className").value.trim();
-
-    const seatNumber =
-      document.getElementById("seatNumber").value;
+      if (!academicYear || !grade || !className || !seatNumber) {
+        showMessage("請把所有欄位填寫完整。");
+        return;
+      }
 
 
-    /*
-     * 檢查班級
-     */
+      // ==========================================
+      // 儲存 / 更新
+      // ==========================================
 
-    if (!className) {
+      const {
+        error
+      } = await supabaseClient
+        .from("student_profiles")
+        .upsert(
+          {
+            user_id: user.id,
+            academic_year: academicYear,
+            grade: Number(grade),
+            class_name: className,
+            seat_number: Number(seatNumber),
+            updated_at: new Date().toISOString()
+          },
+          {
+            onConflict: "user_id"
+          }
+        );
 
-      alert("請輸入班級！");
-      return;
+      if (error) {
+        showError("儲存失敗：" + error.message);
+        return;
+      }
 
-    }
-
-
-    /*
-     * 檢查座號
-     */
-
-    if (!seatNumber) {
-
-      alert("請輸入座號！");
-      return;
-
-    }
-
-
-    /*
-     * 取得學生 ID
-     */
-
-    const studentId =
-      getStudentId();
-
-
-    /*
-     * 儲存學生資料
-     */
-
-    const profile = {
-
-      studentId: studentId,
-
-      academicYear: academicYear,
-
-      grade: grade,
-
-      className: className,
-
-      seatNumber: seatNumber
-
-    };
+      showMessage("學生資料已成功儲存！");
+    });
 
 
-    localStorage.setItem(
-      "studentProfile",
-      JSON.stringify(profile)
-    );
+  // ==========================================
+  // 顯示訊息
+  // ==========================================
 
-
-    /*
-     * 顯示成功訊息
-     */
+  function showMessage(text) {
 
     const message =
       document.getElementById("message");
 
     message.style.display = "block";
-
-    message.textContent =
-      "資料已儲存！";
-
-
-    /*
-     * 重新顯示 ID
-     */
-
-    document.getElementById("studentId").textContent =
-      studentId;
-
+    message.textContent = text;
   }
+
+
+  function showError(text) {
+
+    const message =
+      document.getElementById("message");
+
+    message.style.display = "block";
+    message.textContent = text;
+  }
+
+
+  // ==========================================
+  // 啟動
+  // ==========================================
+
+  loadProfile();
 
 </script>
 
