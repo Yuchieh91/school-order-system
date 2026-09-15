@@ -811,114 +811,83 @@
 
     function addOrder() {
 
+  // 取得選擇的尺寸
+  let selectedSize = "";
 
-      /*
-       * 取得選擇的尺寸
-       */
+  const selectedButton =
+    document.querySelector(".size-button.selected");
 
-      let selectedSize = "";
-
-
-      const selectedButton =
-        document.querySelector(
-          ".size-button.selected"
-        );
+  if (selectedButton) {
+    selectedSize =
+      selectedButton.textContent.trim();
+  }
 
 
-      if (selectedButton) {
-
-        selectedSize =
-          selectedButton.textContent.trim();
-
-      }
-
-
-      /*
-       * 取得之前已經儲存的訂單
-       */
-
-      let orders =
-        JSON.parse(
-          localStorage.getItem(
-            "schoolOrders"
-          )
-        ) || [];
+  // 取得之前的訂單
+  let orders =
+    JSON.parse(
+      localStorage.getItem("schoolOrders")
+    ) || [];
 
 
-      /*
-       * 建立新的訂單
-       */
-
-      const newOrder = {
-
-
-        name:
-          product.name,
+  // 建立訂單編號
+  const orderNumber =
+    "115" +
+    String(orders.length + 1).padStart(4, "0");
 
 
-        category:
-          product.category,
+  // 建立下單時間
+  const orderTime =
+    new Date().toLocaleString("zh-TW");
 
 
-        price:
-          product.price,
+  // 建立新的訂單
+  const newOrder = {
+
+    orderNumber: orderNumber,
+
+    orderTime: orderTime,
+
+    status: "等待班代收款",
+
+    name: product.name,
+
+    category: product.category,
+
+    price: product.price,
+
+    quantity: quantity,
+
+    size: selectedSize,
+
+    total: product.price * quantity
+
+  };
 
 
-        quantity:
-          quantity,
+  // 加入訂單
+  orders.push(newOrder);
 
 
-        size:
-          selectedSize,
+  // 儲存訂單
+  localStorage.setItem(
+    "schoolOrders",
+    JSON.stringify(orders)
+  );
 
 
-        total:
-          product.price * quantity
-
-      };
-
-
-      /*
-       * 把新商品加入訂單
-       */
-
-      orders.push(
-        newOrder
-      );
+  // 顯示成功訊息
+  alert(
+    "訂單建立成功！\n\n" +
+    "訂單編號：" + orderNumber
+  );
 
 
-      /*
-       * 儲存訂單
-       */
+  // 前往我的訂單
+  window.location.href =
+    "orders.html";
 
-      localStorage.setItem(
-
-        "schoolOrders",
-
-        JSON.stringify(
-          orders
-        )
-
-      );
-
-
-      /*
-       * 提示使用者
-       */
-
-      alert(
-        "已加入訂單！"
-      );
-
-
-      /*
-       * 前往我的訂單
-       */
-
-      window.location.href =
-        "orders.html";
-
-    }
+}
 
   </script>
 
