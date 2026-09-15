@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supabase 測試</title>
+</head>
+
+<body>
+
+  <h1>Supabase 商品測試</h1>
+
+  <div id="result">讀取中...</div>
+
+  <script>
+    const SUPABASE_URL = "https://oanccvcpiixtameutjdl.supabase.co/rest/v1/";
+    const SUPABASE_KEY = "sb_publishable_PdSvLOKj8kYTJWan7ivnbQ_G5QIO2ma";
+
+    async function loadProducts() {
+
+      const response = await fetch(
+        SUPABASE_URL + "/rest/v1/products?select=id,name,category,price,has_size",
+        {
+          headers: {
+            "apikey": SUPABASE_KEY,
+            "Authorization": "Bearer " + SUPABASE_KEY
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Supabase 連線失敗：" + response.status);
+      }
+
+      const products = await response.json();
+
+      document.getElementById("result").innerHTML =
+        products.map(product => `
+          <p>
+            ${product.name}｜
+            NT$${product.price}｜
+            ${product.category}
+          </p>
+        `).join("");
+    }
+
+    loadProducts().catch(error => {
+      document.getElementById("result").textContent = error.message;
+    });
+  </script>
+
+</body>
+</html>
