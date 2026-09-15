@@ -173,10 +173,13 @@
     .payment-button {
       margin-left: 8px;
       padding: 7px 12px;
+
       background: #222;
       color: white;
+
       border: none;
       border-radius: 4px;
+
       cursor: pointer;
     }
 
@@ -200,10 +203,13 @@
 
     .collect-button {
       padding: 12px 20px;
+
       background: #222;
       color: white;
+
       border: none;
       border-radius: 4px;
+
       cursor: pointer;
     }
 
@@ -377,17 +383,11 @@
             <tr>
 
               <th>座號</th>
-
               <th>訂單編號</th>
-
               <th>商品</th>
-
               <th>尺寸</th>
-
               <th>數量</th>
-
               <th>金額</th>
-
               <th>收款狀態</th>
 
             </tr>
@@ -404,10 +404,7 @@
       </div>
 
 
-      <div
-        class="bottom-summary"
-        id="summary"
-      >
+      <div class="bottom-summary">
 
         <div>
 
@@ -447,16 +444,17 @@
 
   <script>
 
-    /*
-      目前班代測試帳號
-      只查看 115 年 305 班
-    */
+    // =========================
+    // 班代目前管理的班級
+    // =========================
 
     const currentAcademicYear = "115";
     const currentClass = "305";
 
 
-    // 讀取學生訂單
+    // =========================
+    // 讀取所有訂單
+    // =========================
 
     let allOrders =
       JSON.parse(
@@ -464,7 +462,9 @@
       ) || [];
 
 
-    // 只留下 115 年 305 班
+    // =========================
+    // 只取得 115 年 305 班
+    // =========================
 
     let classOrders =
       allOrders.filter(function(order) {
@@ -481,7 +481,9 @@
       document.getElementById("orderTable");
 
 
-    // 沒有訂單
+    // =========================
+    // 顯示訂單
+    // =========================
 
     if (classOrders.length === 0) {
 
@@ -502,15 +504,63 @@
 
     }
 
-
-    // 有訂單
-
     else {
 
       classOrders.forEach(function(order, index) {
 
+        // 如果以前的訂單沒有 paymentStatus
+        // 就預設為未收款
+
+        if (!order.paymentStatus) {
+
+          order.paymentStatus =
+            "unpaid";
+
+        }
+
+
         const row =
           document.createElement("tr");
+
+
+        let paymentHTML = "";
+
+
+        if (order.paymentStatus === "paid") {
+
+          paymentHTML = `
+
+            <span
+              class="paid"
+            >
+              已收款
+            </span>
+
+          `;
+
+        }
+
+        else {
+
+          paymentHTML = `
+
+            <span
+              id="payment-${index}"
+              class="unpaid"
+            >
+              未收款
+            </span>
+
+            <button
+              class="payment-button"
+              onclick="markPaid(${index})"
+            >
+              標記已收
+            </button>
+
+          `;
+
+        }
 
 
         row.innerHTML = `
@@ -540,21 +590,7 @@
           </td>
 
           <td>
-
-            <span
-              id="payment-${index}"
-              class="unpaid"
-            >
-              未收款
-            </span>
-
-            <button
-              class="payment-button"
-              onclick="markPaid(${index})"
-            >
-              標記已收
-            </button>
-
+            ${paymentHTML}
           </td>
 
         `;
@@ -564,101 +600,171 @@
 
       });
 
+
+      // 把更新後的狀態存回去
+
+      saveOrders();
+
     }
 
 
-    // ===== 計算統計資料 =====
+    // =========================
+    // 計算統計
+    // =========================
 
-    let studentSet =
-      new Set();
-
-    let productCount = 0;
-    let totalAmount = 0;
+    updateStatistics();
 
 
-    classOrders.forEach(function(order) {
+    function updateStatistics() {
 
-      // 用座號判斷不同學生
+      let studentSet =
+        new Set();
 
-      studentSet.add(
-        order.seatNumber
-      );
-
-      productCount +=
-        Number(order.quantity);
-
-      totalAmount +=
-        Number(order.total);
-
-    });
+      let productCount = 0;
+      let totalAmount = 0;
+      let paidAmount = 0;
+      let unpaidAmount = 0;
 
 
-    document.getElementById(
-      "studentCount"
-    ).textContent =
-      studentSet.size + " 人";
+      classOrders.forEach(function(order) {
 
-
-    document.getElementById(
-      "productCount"
-    ).textContent =
-      productCount + " 件";
-
-
-    document.getElementById(
-      "totalAmount"
-    ).textContent =
-      "NT$" + totalAmount;
-
-
-    document.getElementById(
-      "bottomTotal"
-    ).textContent =
-      "應收：NT$" + totalAmount;
-
-
-    document.getElementById(
-      "unpaidAmount"
-    ).textContent =
-      "未收：NT$" + totalAmount;
-
-
-    // ===== 標記已收 =====
-
-    function markPaid(index) {
-
-      const payment =
-        document.getElementById(
-          "payment-" + index
+        studentSet.add(
+          order.seatNumber
         );
 
 
-      if (!payment) {
+        productCount +=
+          Number(order.quantity);
+
+
+        totalAmount +=
+          Number(order.total);
+
+
+        if (order.paymentStatus === "paid") {
+
+          paidAmount +=
+            Number(order.total);
+
+        }
+
+        else {
+
+          unpaidAmount +=
+            Number(order.total);
+
+        }
+
+      });
+
+
+      document.getElementById(
+        "studentCount"
+      ).textContent =
+        studentSet.size + " 人";
+
+
+      document.getElementById(
+        "productCount"
+      ).textContent =
+        productCount + " 件";
+
+
+      document.getElementById(
+        "totalAmount"
+      ).textContent =
+        "NT$" + totalAmount;
+
+
+      document.getElementById(
+        "paidAmount"
+      ).textContent =
+        "已收：NT$" + paidAmount;
+
+
+      document.getElementById(
+        "unpaidAmount"
+      ).textContent =
+        "未收：NT$" + unpaidAmount;
+
+
+      document.getElementById(
+        "bottomTotal"
+      ).textContent =
+        "應收：NT$" + totalAmount;
+
+    }
+
+
+    // =========================
+    // 標記某筆訂單已收款
+    // =========================
+
+    function markPaid(index) {
+
+      if (!classOrders[index]) {
         return;
       }
 
 
-      payment.textContent =
-        "已收款";
+      // 修改訂單狀態
 
-      payment.className =
+      classOrders[index].paymentStatus =
         "paid";
 
 
-      const button =
-        payment.nextElementSibling;
+      // 找到原本的訂單
 
-      button.remove();
+      const targetOrder =
+        allOrders.find(function(order) {
+
+          return (
+            order.orderNumber ===
+            classOrders[index].orderNumber
+          );
+
+        });
 
 
-      alert(
-        "這筆訂單已標記為已收款！"
+      // 修改原始訂單
+
+      if (targetOrder) {
+
+        targetOrder.paymentStatus =
+          "paid";
+
+      }
+
+
+      // 儲存
+
+      saveOrders();
+
+
+      // 重新整理畫面
+
+      location.reload();
+
+    }
+
+
+    // =========================
+    // 儲存訂單
+    // =========================
+
+    function saveOrders() {
+
+      localStorage.setItem(
+        "schoolOrders",
+        JSON.stringify(allOrders)
       );
 
     }
 
 
-    // ===== 標記整班已收齊 =====
+    // =========================
+    // 標記整班已收齊
+    // =========================
 
     function finishCollection() {
 
@@ -673,19 +779,30 @@
       }
 
 
-      const result =
-        confirm(
-          "確定 305 班已經收齊所有款項嗎？"
-        );
+      const unpaidOrders =
+        classOrders.filter(function(order) {
+
+          return order.paymentStatus !== "paid";
+
+        });
 
 
-      if (result) {
+      if (unpaidOrders.length > 0) {
 
         alert(
-          "305 班已標記為「已收齊」！"
+          "目前還有 " +
+          unpaidOrders.length +
+          " 筆訂單尚未收款。"
         );
 
+        return;
+
       }
+
+
+      alert(
+        "305 班已經全部收款完成！"
+      );
 
     }
 
