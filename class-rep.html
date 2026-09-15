@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>班代訂單｜校園訂購系統</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Sans TC", sans-serif;
+      background: #f6f6f4;
+      color: #222;
+    }
+
+    /* ===== Header ===== */
+
+    header {
+      height: 72px;
+      background: white;
+      border-bottom: 1px solid #ddd;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 40px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #777;
+    }
+
+    /* ===== Main ===== */
+
+    main {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      margin-bottom: 30px;
+    }
+
+    .page-title h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+    }
+
+    .page-title p {
+      margin: 0;
+      color: #777;
+    }
+
+    /* ===== Class Info ===== */
+
+    .class-info {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+
+    .class-info h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .class-info p {
+      margin: 0;
+      color: #777;
+    }
+
+    /* ===== Statistics ===== */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 22px;
+    }
+
+    .stat-title {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .stat-number {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    /* ===== Order Table ===== */
+
+    .order-section {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .section-title {
+      padding: 22px;
+      border-bottom: 1px solid #eee;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+
+    th,
+    td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    th {
+      background: #fafafa;
+      font-weight: bold;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ===== Payment ===== */
+
+    .paid {
+      display: inline-block;
+      padding: 6px 10px;
+
+      border: 1px solid #bbb;
+      border-radius: 4px;
+
+      font-size: 13px;
+      background: #f5f5f5;
+    }
+
+    .unpaid {
+      display: inline-block;
+      padding: 6px 10px;
+
+      border: 1px solid #ccc;
+      border-radius: 4px;
+
+      font-size: 13px;
+      background: white;
+    }
+
+    .payment-button {
+      padding: 7px 12px;
+
+      background: #222;
+      color: white;
+
+      border: none;
+      border-radius: 4px;
+
+      cursor: pointer;
+    }
+
+    .payment-button:hover {
+      background: #444;
+    }
+
+    /* ===== Bottom ===== */
+
+    .bottom-summary {
+      padding: 24px;
+
+      border-top: 1px solid #eee;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .amount {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .collect-button {
+      padding: 12px 20px;
+
+      background: #222;
+      color: white;
+
+      border: none;
+      border-radius: 4px;
+
+      cursor: pointer;
+    }
+
+    .collect-button:hover {
+      background: #444;
+    }
+
+    /* ===== Mobile ===== */
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 0 20px;
+      }
+
+      nav {
+        gap: 12px;
+      }
+
+      nav a {
+        font-size: 13px;
+      }
+
+      main {
+        margin-top: 35px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+  <!-- ===== Header ===== -->
+
+  <header>
+
+    <div class="logo">
+      校園訂購系統
+    </div>
+
+    <nav>
+
+      <a href="index.html">
+        首頁
+      </a>
+
+      <a href="product.html">
+        商品
+      </a>
+
+      <a href="orders.html">
+        我的訂單
+      </a>
+
+      <a href="#">
+        班代
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ===== Main ===== -->
+
+  <main>
+
+    <div class="page-title">
+
+      <h1>
+        班代訂單管理
+      </h1>
+
+      <p>
+        查看本班學生的訂單與收款狀況
+      </p>
+
+    </div>
+
+
+    <!-- 班級資訊 -->
+
+    <div class="class-info">
+
+      <h2>
+        115 年 305 班
+      </h2>
+
+      <p>
+        班代：測試帳號
+      </p>
+
+    </div>
+
+
+    <!-- 統計 -->
+
+    <div class="stats">
+
+      <div class="stat-card">
+
+        <div class="stat-title">
+          訂購人數
+        </div>
+
+        <div class="stat-number">
+          3 人
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-title">
+          商品總數
+        </div>
+
+        <div class="stat-number">
+          4 件
+        </div>
+
+      </div>
+
+
+      <div class="stat-card">
+
+        <div class="stat-title">
+          應收金額
+        </div>
+
+        <div class="stat-number">
+          NT$1,750
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- 訂單 -->
+
+    <div class="order-section">
+
+      <div class="section-title">
+        本班訂單
+      </div>
+
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                座號
+              </th>
+
+              <th>
+                訂單編號
+              </th>
+
+              <th>
+                商品
+              </th>
+
+              <th>
+                尺寸
+              </th>
+
+              <th>
+                數量
+              </th>
+
+              <th>
+                金額
+              </th>
+
+              <th>
+                收款狀態
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+
+            <tr>
+
+              <td>
+                03
+              </td>
+
+              <td>
+                1150001
+              </td>
+
+              <td>
+                校園紀念 T-shirt
+              </td>
+
+              <td>
+                M
+              </td>
+
+              <td>
+                1
+              </td>
+
+              <td>
+                NT$450
+              </td>
+
+              <td>
+
+                <span
+                  class="unpaid"
+                  id="payment-1"
+                >
+                  未收款
+                </span>
+
+                <button
+                  class="payment-button"
+                  onclick="markPaid(1)"
+                >
+                  標記已收
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                08
+              </td>
+
+              <td>
+                1150002
+              </td>
+
+              <td>
+                校園紀念外套
+              </td>
+
+              <td>
+                L
+              </td>
+
+              <td>
+                1
+              </td>
+
+              <td>
+                NT$850
+              </td>
+
+              <td>
+
+                <span class="paid">
+                  已收款
+                </span>
+
+              </td>
+
+            </tr>
+
+
+            <tr>
+
+              <td>
+                15
+              </td>
+
+              <td>
+                1150003
+              </td>
+
+              <td>
+                校園徽章
+              </td>
+
+              <td>
+                -
+              </td>
+
+              <td>
+                2
+              </td>
+
+              <td>
+                NT$160
+              </td>
+
+              <td>
+
+                <span
+                  class="unpaid"
+                  id="payment-3"
+                >
+                  未收款
+                </span>
+
+                <button
+                  class="payment-button"
+                  onclick="markPaid(3)"
+                >
+                  標記已收
+                </button>
+
+              </td>
+
+            </tr>
+
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <!-- 底部 -->
+
+      <div class="bottom-summary">
+
+        <div>
+
+          <div>
+            已收：NT$850
+          </div>
+
+          <div>
+            未收：NT$610
+          </div>
+
+        </div>
+
+
+        <div class="amount">
+          應收：NT$1,750
+        </div>
+
+
+        <button
+          class="collect-button"
+          onclick="finishCollection()"
+        >
+          標記本班已收齊
+        </button>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    // 標記某筆訂單已收款
+
+    function markPaid(id) {
+
+      const payment =
+        document.getElementById(
+          "payment-" + id
+        );
+
+      if (payment) {
+
+        payment.textContent =
+          "已收款";
+
+        payment.className =
+          "paid";
+
+      }
+
+      alert("已標記為收款完成！");
+
+    }
+
+
+    // 標記整班已收齊
+
+    function finishCollection() {
+
+      const result =
+        confirm(
+          "確定 305 班已經收齊所有款項嗎？"
+        );
+
+      if (result) {
+
+        alert(
+          "305 班已標記為「已收齊」！"
+        );
+
+      }
+
+    }
+
+  </script>
+
+
+</body>
+
+</html>
