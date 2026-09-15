@@ -19,6 +19,8 @@
       color: #202020;
     }
 
+    /* ===== Header ===== */
+
     header {
       height: 72px;
       background: white;
@@ -51,6 +53,9 @@
       color: #777;
     }
 
+
+    /* ===== Main ===== */
+
     .page {
       max-width: 1050px;
       margin: 0 auto;
@@ -60,6 +65,7 @@
     .back-link {
       display: inline-block;
       margin-bottom: 25px;
+
       color: #555;
       text-decoration: none;
       font-size: 14px;
@@ -68,6 +74,9 @@
     .back-link:hover {
       color: #000;
     }
+
+
+    /* ===== Product ===== */
 
     .product-detail {
       background: white;
@@ -89,6 +98,7 @@
       justify-content: center;
 
       color: #999;
+      font-size: 14px;
     }
 
     .product-content {
@@ -117,6 +127,9 @@
       line-height: 1.8;
       margin-bottom: 30px;
     }
+
+
+    /* ===== Size ===== */
 
     .option-title {
       font-size: 15px;
@@ -148,6 +161,9 @@
       border-color: #202020;
     }
 
+
+    /* ===== Quantity ===== */
+
     .quantity-area {
       display: flex;
       align-items: center;
@@ -173,6 +189,9 @@
       text-align: center;
     }
 
+
+    /* ===== Add Order ===== */
+
     .add-button {
       width: 100%;
 
@@ -192,8 +211,12 @@
       background: #444;
     }
 
+
+    /* ===== Introduction ===== */
+
     .introduction {
       margin-top: 30px;
+
       background: white;
 
       border: 1px solid #e3e3e3;
@@ -211,6 +234,9 @@
       color: #666;
       line-height: 1.8;
     }
+
+
+    /* ===== Mobile ===== */
 
     @media (max-width: 750px) {
 
@@ -245,11 +271,17 @@
       .product-title {
         font-size: 26px;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
+
+
+  <!-- ===== Header ===== -->
 
   <header>
 
@@ -258,47 +290,91 @@
     </div>
 
     <nav>
-      <a href="index.html">首頁</a>
-      <a href="product.html">商品</a>
-      <a href="#">我的訂單</a>
-      <a href="#">登入</a>
+
+      <a href="index.html">
+        首頁
+      </a>
+
+      <a href="product.html">
+        商品
+      </a>
+
+      <a href="orders.html">
+        我的訂單
+      </a>
+
+      <a href="#">
+        登入
+      </a>
+
     </nav>
 
   </header>
 
 
+  <!-- ===== Main ===== -->
+
   <main class="page">
 
-    <a href="product.html" class="back-link">
+
+    <a
+      href="product.html"
+      class="back-link"
+    >
       ← 返回商品
     </a>
 
 
     <div class="product-detail">
 
+
+      <!-- 商品圖片 -->
+
       <div class="product-image">
+
         商品圖片
+
       </div>
 
 
+      <!-- 商品資訊 -->
+
       <div class="product-content">
 
-        <div class="product-category" id="productCategory">
+
+        <div
+          class="product-category"
+          id="productCategory"
+        >
           商品分類
         </div>
 
-        <h1 class="product-title" id="productName">
+
+        <h1
+          class="product-title"
+          id="productName"
+        >
           商品名稱
         </h1>
 
-        <div class="product-price" id="productPrice">
+
+        <div
+          class="product-price"
+          id="productPrice"
+        >
           NT$0
         </div>
 
-        <p class="description" id="productDescription">
+
+        <p
+          class="description"
+          id="productDescription"
+        >
           商品介紹
         </p>
 
+
+        <!-- 尺寸 -->
 
         <div id="sizeArea">
 
@@ -306,34 +382,56 @@
             尺寸
           </div>
 
+
           <div class="size-options">
 
-            <button class="size-button" onclick="selectSize(this)">
+
+            <button
+              class="size-button"
+              onclick="selectSize(this)"
+            >
               S
             </button>
 
-            <button class="size-button selected" onclick="selectSize(this)">
+
+            <button
+              class="size-button selected"
+              onclick="selectSize(this)"
+            >
               M
             </button>
 
-            <button class="size-button" onclick="selectSize(this)">
+
+            <button
+              class="size-button"
+              onclick="selectSize(this)"
+            >
               L
             </button>
 
-            <button class="size-button" onclick="selectSize(this)">
+
+            <button
+              class="size-button"
+              onclick="selectSize(this)"
+            >
               XL
             </button>
+
 
           </div>
 
         </div>
 
 
+        <!-- 數量 -->
+
         <div class="option-title">
           數量
         </div>
 
+
         <div class="quantity-area">
+
 
           <button
             class="quantity-button"
@@ -342,12 +440,14 @@
             −
           </button>
 
+
           <div
             class="quantity-number"
             id="quantity"
           >
             1
           </div>
+
 
           <button
             class="quantity-button"
@@ -356,8 +456,11 @@
             ＋
           </button>
 
+
         </div>
 
+
+        <!-- 加入訂單 -->
 
         <button
           class="add-button"
@@ -366,162 +469,270 @@
           加入訂單
         </button>
 
+
       </div>
 
     </div>
 
 
+    <!-- 商品介紹 -->
+
     <div class="introduction">
+
 
       <h2>
         商品介紹
       </h2>
 
+
       <p id="productLongDescription">
         商品詳細介紹。
       </p>
 
+
     </div>
+
 
   </main>
 
 
   <script>
 
+
     /*
+     * =========================
      * 取得網址中的商品種類
+     * =========================
      *
      * 例如：
+     *
      * product-detail.html?product=tshirt
      *
      * 就會得到：
+     *
      * tshirt
      */
 
-    const params = new URLSearchParams(
-      window.location.search
-    );
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
 
-    const productType = params.get("product");
+
+    const productType =
+      params.get("product");
 
 
     /*
+     * =========================
      * 商品資料
-     *
-     * 目前先把資料寫在 JavaScript 裡。
-     * 之後我們會把這裡升級成真正的資料庫。
+     * =========================
      */
 
     const products = {
 
+
+      /* T-shirt */
+
       tshirt: {
+
         name: "校園紀念 T-shirt",
+
         price: 450,
+
         category: "上衣",
-        description: "校園紀念 T-shirt，適合日常穿著與校園活動。",
-        longDescription: "這是一款校園紀念 T-shirt，可以作為校慶、社團活動或日常穿著使用。",
+
+        description:
+          "校園紀念 T-shirt，適合日常穿著與校園活動。",
+
+        longDescription:
+          "這是一款校園紀念 T-shirt，可以作為校慶、社團活動或日常穿著使用。",
+
         hasSize: true
+
       },
+
+
+      /* 外套 */
 
       jacket: {
+
         name: "校園紀念外套",
+
         price: 850,
+
         category: "外套",
-        description: "適合秋冬穿著的校園紀念外套。",
-        longDescription: "校園紀念外套，適合天氣較涼時穿著，也可以作為班級或校園活動服裝。",
+
+        description:
+          "適合秋冬穿著的校園紀念外套。",
+
+        longDescription:
+          "校園紀念外套，適合天氣較涼時穿著，也可以作為班級或校園活動服裝。",
+
         hasSize: true
+
       },
+
+
+      /* 校園紀念帆布袋 */
 
       canvasbag: {
+
         name: "校園紀念帆布袋",
+
         price: 250,
+
         category: "其他",
-        description: "簡單實用的校園紀念帆布袋。",
-        longDescription: "可以用來放置課本、筆記本或日常用品，適合學生平常使用。",
+
+        description:
+          "簡單實用的校園紀念帆布袋。",
+
+        longDescription:
+          "可以用來放置課本、筆記本或日常用品，適合學生平常使用。",
+
         hasSize: false
+
       },
+
+
+      /* 筆記本 */
 
       notebook: {
+
         name: "校園筆記本",
+
         price: 120,
+
         category: "文具",
-        description: "適合上課、讀書與日常筆記使用。",
-        longDescription: "校園筆記本可以用於課堂筆記、讀書計畫或其他學習紀錄。",
+
+        description:
+          "適合上課、讀書與日常筆記使用。",
+
+        longDescription:
+          "校園筆記本可以用於課堂筆記、讀書計畫或其他學習紀錄。",
+
         hasSize: false
+
       },
+
+
+      /* 徽章 */
 
       badge: {
+
         name: "校園徽章",
+
         price: 80,
+
         category: "其他",
-        description: "校園紀念徽章。",
-        longDescription: "可以別在書包、衣服或其他地方，作為校園紀念品。",
+
+        description:
+          "校園紀念徽章。",
+
+        longDescription:
+          "可以別在書包、衣服或其他地方，作為校園紀念品。",
+
         hasSize: false
+
       },
 
+
+      /* 帆布袋 */
+
       bag: {
+
         name: "校園帆布袋",
+
         price: 250,
+
         category: "其他",
-        description: "實用的校園帆布袋。",
-        longDescription: "適合上學、購物或日常使用的帆布袋。",
+
+        description:
+          "實用的校園帆布袋。",
+
+        longDescription:
+          "適合上學、購物或日常使用的帆布袋。",
+
         hasSize: false
+
       }
 
     };
 
 
     /*
+     * =========================
      * 找到目前商品
+     * =========================
      */
 
-    const product = products[productType];
+    const product =
+      products[productType];
 
 
     /*
-     * 如果找不到商品，
-     * 就回到商品列表。
+     * 如果網址沒有正確的商品
      */
 
     if (!product) {
 
       alert("找不到這個商品");
 
-      window.location.href = "product.html";
+      window.location.href =
+        "product.html";
 
     }
 
 
     /*
+     * =========================
      * 把商品資料放進畫面
+     * =========================
      */
 
     if (product) {
 
-      document.getElementById("productName").textContent =
+
+      document.getElementById(
+        "productName"
+      ).textContent =
         product.name;
 
-      document.getElementById("productPrice").textContent =
+
+      document.getElementById(
+        "productPrice"
+      ).textContent =
         "NT$" + product.price;
 
-      document.getElementById("productCategory").textContent =
+
+      document.getElementById(
+        "productCategory"
+      ).textContent =
         product.category;
 
-      document.getElementById("productDescription").textContent =
+
+      document.getElementById(
+        "productDescription"
+      ).textContent =
         product.description;
 
-      document.getElementById("productLongDescription").textContent =
+
+      document.getElementById(
+        "productLongDescription"
+      ).textContent =
         product.longDescription;
 
 
       /*
-       * 如果商品沒有尺寸，
-       * 就把尺寸選擇區隱藏。
+       * 沒有尺寸的商品
+       * 隱藏尺寸選擇
        */
 
       if (!product.hasSize) {
 
-        document.getElementById("sizeArea").style.display =
+        document.getElementById(
+          "sizeArea"
+        ).style.display =
           "none";
 
       }
@@ -530,7 +741,9 @@
 
 
     /*
+     * =========================
      * 數量
+     * =========================
      */
 
     let quantity = 1;
@@ -538,67 +751,172 @@
 
     function changeQuantity(number) {
 
+
       quantity += number;
 
+
       if (quantity < 1) {
+
         quantity = 1;
+
       }
 
-      document.getElementById("quantity").textContent =
+
+      document.getElementById(
+        "quantity"
+      ).textContent =
         quantity;
 
     }
 
 
     /*
+     * =========================
      * 選擇尺寸
+     * =========================
      */
 
     function selectSize(button) {
 
+
       const buttons =
-        document.querySelectorAll(".size-button");
+        document.querySelectorAll(
+          ".size-button"
+        );
 
-      buttons.forEach(function(item) {
 
-        item.classList.remove("selected");
+      buttons.forEach(
+        function(item) {
 
-      });
+          item.classList.remove(
+            "selected"
+          );
 
-      button.classList.add("selected");
+        }
+      );
+
+
+      button.classList.add(
+        "selected"
+      );
 
     }
 
 
     /*
+     * =========================
      * 加入訂單
-     *
-     * 目前只是測試功能。
-     * 真正的訂單資料庫之後再做。
+     * =========================
      */
 
     function addOrder() {
 
+
+      /*
+       * 取得選擇的尺寸
+       */
+
       let selectedSize = "";
 
+
       const selectedButton =
-        document.querySelector(".size-button.selected");
+        document.querySelector(
+          ".size-button.selected"
+        );
+
 
       if (selectedButton) {
 
         selectedSize =
-          selectedButton.textContent;
+          selectedButton.textContent.trim();
 
       }
 
-      alert(
-        "已加入訂單！\n\n" +
-        "商品：" + product.name + "\n" +
-        "數量：" + quantity +
-        (selectedSize
-          ? "\n尺寸：" + selectedSize
-          : "")
+
+      /*
+       * 取得之前已經儲存的訂單
+       */
+
+      let orders =
+        JSON.parse(
+          localStorage.getItem(
+            "schoolOrders"
+          )
+        ) || [];
+
+
+      /*
+       * 建立新的訂單
+       */
+
+      const newOrder = {
+
+
+        name:
+          product.name,
+
+
+        category:
+          product.category,
+
+
+        price:
+          product.price,
+
+
+        quantity:
+          quantity,
+
+
+        size:
+          selectedSize,
+
+
+        total:
+          product.price * quantity
+
+      };
+
+
+      /*
+       * 把新商品加入訂單
+       */
+
+      orders.push(
+        newOrder
       );
+
+
+      /*
+       * 儲存訂單
+       */
+
+      localStorage.setItem(
+
+        "schoolOrders",
+
+        JSON.stringify(
+          orders
+        )
+
+      );
+
+
+      /*
+       * 提示使用者
+       */
+
+      alert(
+        "已加入訂單！"
+      );
+
+
+      /*
+       * 前往我的訂單
+       */
+
+      window.location.href =
+        "orders.html";
 
     }
 
