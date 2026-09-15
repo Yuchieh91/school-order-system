@@ -843,25 +843,21 @@
 
   // 建立新的訂單
   const newOrder = {
-
     orderNumber: orderNumber,
-
     orderTime: orderTime,
-
     status: "等待班代收款",
 
+  // 學生資料（目前為測試資料）
+    academicYear: "115",
+    className: "305",
+    seatNumber: "03",
+
     name: product.name,
-
     category: product.category,
-
     price: product.price,
-
     quantity: quantity,
-
     size: selectedSize,
-
     total: product.price * quantity
-
   };
 
 
