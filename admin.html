@@ -437,26 +437,33 @@
 
       <div class="filter-area">
 
-        <label for="productSelect">
-          選擇商品
-        </label>
+  <label for="productSelect">
+    選擇商品
+  </label>
 
-        <select
-          id="productSelect"
-          class="product-select"
-          onchange="showProductStatistics()"
-        >
-          <option value="">請選擇商品</option>
-        </select>
+  <select
+    id="productSelect"
+    class="product-select"
+    onchange="showProductStatistics()"
+  >
+    <option value="">請選擇商品</option>
+  </select>
 
-        <button
-          class="export-button"
-          onclick="exportCSV()"
-        >
-          匯出 CSV
-        </button>
+  <button
+    class="export-button"
+    onclick="exportCSV()"
+  >
+    匯出訂貨統計
+  </button>
 
-      </div>
+  <button
+    class="export-button"
+    onclick="exportDetailedOrdersCSV()"
+  >
+    匯出詳細訂單
+  </button>
+
+</div>
 
 
       <div id="statisticsArea">
@@ -1154,7 +1161,156 @@ function exportCSV() {
 
   }
 
+/* ========================================
+   匯出詳細訂單 CSV
+======================================== */
 
+function exportDetailedOrdersCSV() {
+
+  // 只匯出有效訂單
+  const orders = allOrders.filter(order => {
+    return order.status !== "已取消";
+  });
+
+
+  if (orders.length === 0) {
+
+    alert("目前沒有可以匯出的訂單");
+
+    return;
+
+  }
+
+
+  // CSV 標題
+  let csv =
+    "訂單編號," +
+    "訂單時間," +
+    "學年度," +
+    "年級," +
+    "班級," +
+    "座號," +
+    "商品," +
+    "類別," +
+    "尺寸," +
+    "數量," +
+    "單價," +
+    "總金額," +
+    "收款狀態," +
+    "訂單狀態\n";
+
+
+  // 每一筆訂單
+  orders.forEach(order => {
+
+    const paymentText =
+      order.paymentStatus === "paid"
+        ? "已收款"
+        : "未收款";
+
+
+    const orderStatus =
+      order.status || "訂單成立";
+
+
+    csv +=
+      csvEscape(order.orderNumber) + "," +
+      csvEscape(order.orderTime) + "," +
+      csvEscape(order.academicYear) + "," +
+      csvEscape(order.grade) + "," +
+      csvEscape(order.className) + "," +
+      csvEscape(order.seatNumber) + "," +
+      csvEscape(order.name) + "," +
+      csvEscape(order.category) + "," +
+      csvEscape(order.size || "無尺寸") + "," +
+      csvEscape(order.quantity) + "," +
+      csvEscape(order.price) + "," +
+      csvEscape(order.total) + "," +
+      csvEscape(paymentText) + "," +
+      csvEscape(orderStatus) +
+      "\n";
+
+  });
+
+
+  // Excel / Google Sheets 比較容易正確讀取中文
+  const BOM =
+    "\uFEFF";
+
+
+  const blob =
+    new Blob(
+      [BOM + csv],
+      {
+        type: "text/csv;charset=utf-8;"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+
+
+  link.download =
+    "詳細訂單_" +
+    new Date().toISOString().slice(0, 10) +
+    ".csv";
+
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+/* ========================================
+   CSV 文字處理
+======================================== */
+
+function csvEscape(value) {
+
+  if (value === null || value === undefined) {
+
+    return "";
+
+  }
+
+
+  const text =
+    String(value);
+
+
+  // 如果內容包含逗號、雙引號或換行
+  // 就用雙引號包起來
+  if (
+    text.includes(",") ||
+    text.includes('"') ||
+    text.includes("\n")
+  ) {
+
+    return '"' +
+      text.replace(/"/g, '""') +
+      '"';
+
+  }
+
+
+  return text;
+
+}
   const data =
     currentStatistics;
 
