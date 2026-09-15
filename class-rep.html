@@ -20,8 +20,6 @@
       color: #222;
     }
 
-    /* ===== Header ===== */
-
     header {
       height: 72px;
       background: white;
@@ -50,12 +48,6 @@
       font-size: 15px;
     }
 
-    nav a:hover {
-      color: #777;
-    }
-
-    /* ===== Main ===== */
-
     main {
       max-width: 1100px;
       margin: 50px auto;
@@ -76,8 +68,6 @@
       color: #777;
     }
 
-    /* ===== Class Info ===== */
-
     .class-info {
       background: white;
       border: 1px solid #ddd;
@@ -95,8 +85,6 @@
       margin: 0;
       color: #777;
     }
-
-    /* ===== Statistics ===== */
 
     .stats {
       display: grid;
@@ -123,8 +111,6 @@
       font-weight: bold;
     }
 
-    /* ===== Order Table ===== */
-
     .order-section {
       background: white;
       border: 1px solid #ddd;
@@ -146,7 +132,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 800px;
+      min-width: 850px;
     }
 
     th,
@@ -166,15 +152,11 @@
       border-bottom: none;
     }
 
-    /* ===== Payment ===== */
-
     .paid {
       display: inline-block;
       padding: 6px 10px;
-
       border: 1px solid #bbb;
       border-radius: 4px;
-
       font-size: 13px;
       background: #f5f5f5;
     }
@@ -182,23 +164,19 @@
     .unpaid {
       display: inline-block;
       padding: 6px 10px;
-
       border: 1px solid #ccc;
       border-radius: 4px;
-
       font-size: 13px;
       background: white;
     }
 
     .payment-button {
+      margin-left: 8px;
       padding: 7px 12px;
-
       background: #222;
       color: white;
-
       border: none;
       border-radius: 4px;
-
       cursor: pointer;
     }
 
@@ -206,11 +184,8 @@
       background: #444;
     }
 
-    /* ===== Bottom ===== */
-
     .bottom-summary {
       padding: 24px;
-
       border-top: 1px solid #eee;
 
       display: flex;
@@ -225,21 +200,18 @@
 
     .collect-button {
       padding: 12px 20px;
-
       background: #222;
       color: white;
-
       border: none;
       border-radius: 4px;
-
       cursor: pointer;
     }
 
-    .collect-button:hover {
-      background: #444;
+    .empty {
+      padding: 50px 20px;
+      text-align: center;
+      color: #777;
     }
-
-    /* ===== Mobile ===== */
 
     @media (max-width: 700px) {
 
@@ -278,7 +250,6 @@
 
 <body>
 
-  <!-- ===== Header ===== -->
 
   <header>
 
@@ -300,7 +271,7 @@
         我的訂單
       </a>
 
-      <a href="#">
+      <a href="class-rep.html">
         班代
       </a>
 
@@ -309,9 +280,8 @@
   </header>
 
 
-  <!-- ===== Main ===== -->
-
   <main>
+
 
     <div class="page-title">
 
@@ -326,8 +296,6 @@
     </div>
 
 
-    <!-- 班級資訊 -->
-
     <div class="class-info">
 
       <h2>
@@ -341,8 +309,6 @@
     </div>
 
 
-    <!-- 統計 -->
-
     <div class="stats">
 
       <div class="stat-card">
@@ -351,8 +317,11 @@
           訂購人數
         </div>
 
-        <div class="stat-number">
-          3 人
+        <div
+          class="stat-number"
+          id="studentCount"
+        >
+          0 人
         </div>
 
       </div>
@@ -364,8 +333,11 @@
           商品總數
         </div>
 
-        <div class="stat-number">
-          4 件
+        <div
+          class="stat-number"
+          id="productCount"
+        >
+          0 件
         </div>
 
       </div>
@@ -377,16 +349,17 @@
           應收金額
         </div>
 
-        <div class="stat-number">
-          NT$1,750
+        <div
+          class="stat-number"
+          id="totalAmount"
+        >
+          NT$0
         </div>
 
       </div>
 
     </div>
 
-
-    <!-- 訂單 -->
 
     <div class="order-section">
 
@@ -403,172 +376,26 @@
 
             <tr>
 
-              <th>
-                座號
-              </th>
+              <th>座號</th>
 
-              <th>
-                訂單編號
-              </th>
+              <th>訂單編號</th>
 
-              <th>
-                商品
-              </th>
+              <th>商品</th>
 
-              <th>
-                尺寸
-              </th>
+              <th>尺寸</th>
 
-              <th>
-                數量
-              </th>
+              <th>數量</th>
 
-              <th>
-                金額
-              </th>
+              <th>金額</th>
 
-              <th>
-                收款狀態
-              </th>
+              <th>收款狀態</th>
 
             </tr>
 
           </thead>
 
 
-          <tbody>
-
-
-            <tr>
-
-              <td>
-                03
-              </td>
-
-              <td>
-                1150001
-              </td>
-
-              <td>
-                校園紀念 T-shirt
-              </td>
-
-              <td>
-                M
-              </td>
-
-              <td>
-                1
-              </td>
-
-              <td>
-                NT$450
-              </td>
-
-              <td>
-
-                <span
-                  class="unpaid"
-                  id="payment-1"
-                >
-                  未收款
-                </span>
-
-                <button
-                  class="payment-button"
-                  onclick="markPaid(1)"
-                >
-                  標記已收
-                </button>
-
-              </td>
-
-            </tr>
-
-
-            <tr>
-
-              <td>
-                08
-              </td>
-
-              <td>
-                1150002
-              </td>
-
-              <td>
-                校園紀念外套
-              </td>
-
-              <td>
-                L
-              </td>
-
-              <td>
-                1
-              </td>
-
-              <td>
-                NT$850
-              </td>
-
-              <td>
-
-                <span class="paid">
-                  已收款
-                </span>
-
-              </td>
-
-            </tr>
-
-
-            <tr>
-
-              <td>
-                15
-              </td>
-
-              <td>
-                1150003
-              </td>
-
-              <td>
-                校園徽章
-              </td>
-
-              <td>
-                -
-              </td>
-
-              <td>
-                2
-              </td>
-
-              <td>
-                NT$160
-              </td>
-
-              <td>
-
-                <span
-                  class="unpaid"
-                  id="payment-3"
-                >
-                  未收款
-                </span>
-
-                <button
-                  class="payment-button"
-                  onclick="markPaid(3)"
-                >
-                  標記已收
-                </button>
-
-              </td>
-
-            </tr>
-
+          <tbody id="orderTable">
 
           </tbody>
 
@@ -577,25 +404,29 @@
       </div>
 
 
-      <!-- 底部 -->
-
-      <div class="bottom-summary">
+      <div
+        class="bottom-summary"
+        id="summary"
+      >
 
         <div>
 
-          <div>
-            已收：NT$850
+          <div id="paidAmount">
+            已收：NT$0
           </div>
 
-          <div>
-            未收：NT$610
+          <div id="unpaidAmount">
+            未收：NT$0
           </div>
 
         </div>
 
 
-        <div class="amount">
-          應收：NT$1,750
+        <div
+          class="amount"
+          id="bottomTotal"
+        >
+          應收：NT$0
         </div>
 
 
@@ -610,43 +441,243 @@
 
     </div>
 
+
   </main>
 
 
   <script>
 
-    // 標記某筆訂單已收款
+    /*
+      目前班代測試帳號
+      只查看 115 年 305 班
+    */
 
-    function markPaid(id) {
+    const currentAcademicYear = "115";
+    const currentClass = "305";
 
-      const payment =
-        document.getElementById(
-          "payment-" + id
+
+    // 讀取學生訂單
+
+    let allOrders =
+      JSON.parse(
+        localStorage.getItem("schoolOrders")
+      ) || [];
+
+
+    // 只留下 115 年 305 班
+
+    let classOrders =
+      allOrders.filter(function(order) {
+
+        return (
+          order.academicYear === currentAcademicYear &&
+          order.className === currentClass
         );
 
-      if (payment) {
+      });
 
-        payment.textContent =
-          "已收款";
 
-        payment.className =
-          "paid";
+    const orderTable =
+      document.getElementById("orderTable");
 
-      }
 
-      alert("已標記為收款完成！");
+    // 沒有訂單
+
+    if (classOrders.length === 0) {
+
+      orderTable.innerHTML = `
+
+        <tr>
+
+          <td
+            colspan="7"
+            class="empty"
+          >
+            目前沒有學生訂單
+          </td>
+
+        </tr>
+
+      `;
 
     }
 
 
-    // 標記整班已收齊
+    // 有訂單
+
+    else {
+
+      classOrders.forEach(function(order, index) {
+
+        const row =
+          document.createElement("tr");
+
+
+        row.innerHTML = `
+
+          <td>
+            ${order.seatNumber || "-"}
+          </td>
+
+          <td>
+            ${order.orderNumber || "-"}
+          </td>
+
+          <td>
+            ${order.name}
+          </td>
+
+          <td>
+            ${order.size || "-"}
+          </td>
+
+          <td>
+            ${order.quantity}
+          </td>
+
+          <td>
+            NT$${order.total}
+          </td>
+
+          <td>
+
+            <span
+              id="payment-${index}"
+              class="unpaid"
+            >
+              未收款
+            </span>
+
+            <button
+              class="payment-button"
+              onclick="markPaid(${index})"
+            >
+              標記已收
+            </button>
+
+          </td>
+
+        `;
+
+
+        orderTable.appendChild(row);
+
+      });
+
+    }
+
+
+    // ===== 計算統計資料 =====
+
+    let studentSet =
+      new Set();
+
+    let productCount = 0;
+    let totalAmount = 0;
+
+
+    classOrders.forEach(function(order) {
+
+      // 用座號判斷不同學生
+
+      studentSet.add(
+        order.seatNumber
+      );
+
+      productCount +=
+        Number(order.quantity);
+
+      totalAmount +=
+        Number(order.total);
+
+    });
+
+
+    document.getElementById(
+      "studentCount"
+    ).textContent =
+      studentSet.size + " 人";
+
+
+    document.getElementById(
+      "productCount"
+    ).textContent =
+      productCount + " 件";
+
+
+    document.getElementById(
+      "totalAmount"
+    ).textContent =
+      "NT$" + totalAmount;
+
+
+    document.getElementById(
+      "bottomTotal"
+    ).textContent =
+      "應收：NT$" + totalAmount;
+
+
+    document.getElementById(
+      "unpaidAmount"
+    ).textContent =
+      "未收：NT$" + totalAmount;
+
+
+    // ===== 標記已收 =====
+
+    function markPaid(index) {
+
+      const payment =
+        document.getElementById(
+          "payment-" + index
+        );
+
+
+      if (!payment) {
+        return;
+      }
+
+
+      payment.textContent =
+        "已收款";
+
+      payment.className =
+        "paid";
+
+
+      const button =
+        payment.nextElementSibling;
+
+      button.remove();
+
+
+      alert(
+        "這筆訂單已標記為已收款！"
+      );
+
+    }
+
+
+    // ===== 標記整班已收齊 =====
 
     function finishCollection() {
+
+      if (classOrders.length === 0) {
+
+        alert(
+          "目前沒有需要收款的訂單。"
+        );
+
+        return;
+
+      }
+
 
       const result =
         confirm(
           "確定 305 班已經收齊所有款項嗎？"
         );
+
 
       if (result) {
 
