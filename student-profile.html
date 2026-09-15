@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-
+<html lang="zh-TW">
 <head>
-
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>學生資料｜校園訂購系統</title>
-
+  <title>我的資料｜校園訂購系統</title>
 
   <style>
 
@@ -19,504 +12,501 @@
       box-sizing: border-box;
     }
 
-
     body {
       margin: 0;
-
-      font-family:
-        Arial,
-        "Noto Sans TC",
-        sans-serif;
-
+      font-family: Arial, "Noto Sans TC", sans-serif;
       background: #f6f6f4;
       color: #222;
     }
 
-
-    /* ===== Header ===== */
-
     header {
       height: 72px;
-
       background: white;
-
       border-bottom: 1px solid #ddd;
 
       display: flex;
-
       align-items: center;
-
       justify-content: space-between;
 
       padding: 0 40px;
     }
-
 
     .logo {
       font-size: 20px;
       font-weight: bold;
     }
 
-
-    nav {
-      display: flex;
-      gap: 28px;
-    }
-
-
     nav a {
+      margin-left: 24px;
       text-decoration: none;
       color: #333;
       font-size: 15px;
     }
 
+    nav a:hover {
+      text-decoration: underline;
+    }
 
-    /* ===== Main ===== */
-
-    main {
-      max-width: 650px;
-
-      margin: 60px auto;
-
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
       padding: 0 20px;
     }
 
-
-    .title {
-      margin-bottom: 30px;
-    }
-
-
-    .title h1 {
-      margin: 0 0 8px;
-
-      font-size: 32px;
-    }
-
-
-    .title p {
-      margin: 0;
-
-      color: #777;
-    }
-
-
-    /* ===== Card ===== */
-
-    .card {
+    .profile-card {
       background: white;
-
       border: 1px solid #ddd;
-
       border-radius: 5px;
-
       padding: 30px;
     }
 
-
-    .field {
-      margin-bottom: 22px;
+    h1 {
+      margin-top: 0;
+      margin-bottom: 10px;
     }
 
+    .description {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
 
-    .field label {
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
       display: block;
-
-      margin-bottom: 8px;
-
-      font-size: 14px;
-
       font-weight: bold;
+      margin-bottom: 8px;
     }
 
-
-    .field select,
-    .field input {
+    input,
+    select {
       width: 100%;
-
-      height: 44px;
-
-      padding: 0 12px;
-
-      border: 1px solid #ccc;
-
+      padding: 11px;
+      border: 1px solid #bbb;
       border-radius: 4px;
-
-      background: white;
-
       font-size: 15px;
+      background: white;
     }
-
 
     .save-button {
       width: 100%;
-
-      height: 46px;
-
-      margin-top: 10px;
+      padding: 13px;
 
       background: #222;
-
       color: white;
 
       border: none;
-
       border-radius: 4px;
 
-      font-size: 15px;
-
       cursor: pointer;
+      font-size: 16px;
     }
-
 
     .save-button:hover {
       background: #444;
     }
 
-
     .message {
-      margin-top: 18px;
+      margin-top: 15px;
+      padding: 12px;
+      background: #f1f1f1;
+      border: 1px solid #ddd;
 
-      text-align: center;
-
-      font-size: 14px;
-
-      color: #555;
+      display: none;
     }
 
+    .student-id-box {
+      margin-top: 25px;
+      padding: 15px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .student-id {
+      font-family: monospace;
+      font-weight: bold;
+      word-break: break-all;
+    }
 
     @media (max-width: 700px) {
 
       header {
-        padding: 0 20px;
+        padding: 0 15px;
       }
-
-
-      nav {
-        gap: 12px;
-      }
-
 
       nav a {
+        margin-left: 9px;
         font-size: 13px;
       }
 
-
-      main {
-        margin-top: 35px;
+      .profile-card {
+        padding: 20px;
       }
 
     }
 
   </style>
-
 </head>
 
 
 <body>
 
+<header>
 
-  <!-- ===== Header ===== -->
+  <div class="logo">
+    校園訂購系統
+  </div>
 
-  <header>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="product.html">商品</a>
+    <a href="orders.html">我的訂單</a>
+    <a href="student-profile.html">我的資料</a>
+  </nav>
 
-    <div class="logo">
-      校園訂購系統
-    </div>
-
-
-    <nav>
-
-      <a href="index.html">
-        首頁
-      </a>
-
-
-      <a href="product.html">
-        商品
-      </a>
+</header>
 
 
-      <a href="orders.html">
-        我的訂單
-      </a>
+<div class="container">
 
+  <div class="profile-card">
 
-      <a href="student-profile.html">
-        我的資料
-      </a>
+    <h1>我的資料</h1>
 
-    </nav>
+    <div class="description">
 
-  </header>
-
-
-  <!-- ===== Main ===== -->
-
-  <main>
-
-
-    <div class="title">
-
-      <h1>
-        學生資料
-      </h1>
-
-      <p>
-        設定你的學校基本資料
-      </p>
+      請填寫目前學年度的班級資料。
+      <br>
+      如果未來升級、轉班或座號改變，
+      可以直接修改這裡。
+      <br>
+      舊訂單會保留當時的資料，不會跟著改變。
 
     </div>
 
 
-    <div class="card">
+    <!-- 學年度 -->
+
+    <div class="form-group">
+
+      <label for="academicYear">
+        學年度
+      </label>
+
+      <select id="academicYear">
+
+        <option value="115">
+          115
+        </option>
+
+        <option value="116">
+          116
+        </option>
+
+        <option value="117">
+          117
+        </option>
+
+      </select>
+
+    </div>
 
 
-      <!-- 學年度 -->
+    <!-- 年級 -->
 
-      <div class="field">
+    <div class="form-group">
 
-        <label>
-          學年度
-        </label>
+      <label for="grade">
+        年級
+      </label>
 
+      <select id="grade">
 
-        <select id="academicYear">
+        <option value="高一">
+          高一
+        </option>
 
-          <option value="115">
-            115
-          </option>
+        <option value="高二">
+          高二
+        </option>
 
-          <option value="116">
-            116
-          </option>
+        <option value="高三">
+          高三
+        </option>
 
-          <option value="117">
-            117
-          </option>
+      </select>
 
-        </select>
-
-      </div>
-
-
-      <!-- 年級 -->
-
-      <div class="field">
-
-        <label>
-          年級
-        </label>
+    </div>
 
 
-        <select id="grade">
+    <!-- 班級 -->
 
-          <option value="高一">
-            高一
-          </option>
+    <div class="form-group">
 
-          <option value="高二">
-            高二
-          </option>
+      <label for="className">
+        班級
+      </label>
 
-          <option value="高三">
-            高三
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <!-- 班級 -->
-
-      <div class="field">
-
-        <label>
-          班級
-        </label>
-
-
-        <input
-          id="className"
-          type="text"
-          placeholder="例如：305"
-        >
-
-      </div>
-
-
-      <!-- 座號 -->
-
-      <div class="field">
-
-        <label>
-          座號
-        </label>
-
-
-        <input
-          id="seatNumber"
-          type="number"
-          min="1"
-          max="60"
-          placeholder="例如：03"
-        >
-
-      </div>
-
-
-      <button
-        class="save-button"
-        onclick="saveProfile()"
+      <input
+        id="className"
+        type="text"
+        placeholder="例如：305"
       >
-        儲存學生資料
-      </button>
 
+    </div>
+
+
+    <!-- 座號 -->
+
+    <div class="form-group">
+
+      <label for="seatNumber">
+        座號
+      </label>
+
+      <input
+        id="seatNumber"
+        type="number"
+        min="1"
+        max="99"
+        placeholder="例如：3"
+      >
+
+    </div>
+
+
+    <button
+      class="save-button"
+      onclick="saveProfile()"
+    >
+      儲存資料
+    </button>
+
+
+    <div
+      class="message"
+      id="message"
+    >
+      資料已儲存！
+    </div>
+
+
+    <!-- 學生識別 ID -->
+
+    <div class="student-id-box">
+
+      <strong>學生識別 ID</strong>
+
+      <br>
+
+      這組 ID 是目前測試版用來辨識你的資料。
+      <br>
+      之後接上 Google 登入後，會改成真正的帳號識別。
 
       <div
-        class="message"
-        id="message"
-      ></div>
-
+        class="student-id"
+        id="studentId"
+      >
+        建立中...
+      </div>
 
     </div>
 
-  </main>
+  </div>
+
+</div>
 
 
-  <script>
+<script>
+
+  /*
+   * =====================================
+   * 建立學生識別 ID
+   * =====================================
+   *
+   * 如果第一次使用，就建立一組 ID。
+   *
+   * 之後即使修改班級或座號，
+   * ID 仍然保持不變。
+   *
+   */
+
+  function getStudentId() {
+
+    let studentId =
+      localStorage.getItem("studentId");
 
 
-    // =========================
-    // 開啟頁面時讀取原本資料
-    // =========================
+    if (!studentId) {
 
-    const savedProfile =
-      JSON.parse(
-        localStorage.getItem(
-          "studentProfile"
-        )
-      );
+      studentId =
+        "student_" +
+        Date.now() +
+        "_" +
+        Math.random()
+          .toString(36)
+          .substring(2, 8);
 
-
-    if (savedProfile) {
-
-      document.getElementById(
-        "academicYear"
-      ).value =
-        savedProfile.academicYear;
-
-
-      document.getElementById(
-        "grade"
-      ).value =
-        savedProfile.grade;
-
-
-      document.getElementById(
-        "className"
-      ).value =
-        savedProfile.className;
-
-
-      document.getElementById(
-        "seatNumber"
-      ).value =
-        savedProfile.seatNumber;
-
-    }
-
-
-    // =========================
-    // 儲存資料
-    // =========================
-
-    function saveProfile() {
-
-
-      const academicYear =
-        document.getElementById(
-          "academicYear"
-        ).value;
-
-
-      const grade =
-        document.getElementById(
-          "grade"
-        ).value;
-
-
-      const className =
-        document.getElementById(
-          "className"
-        ).value.trim();
-
-
-      const seatNumber =
-        document.getElementById(
-          "seatNumber"
-        ).value;
-
-
-      // 檢查是否填寫
-
-      if (
-        className === "" ||
-        seatNumber === ""
-      ) {
-
-        document.getElementById(
-          "message"
-        ).textContent =
-          "請完整填寫班級與座號。";
-
-        return;
-
-      }
-
-
-      // 建立學生資料
-
-      const profile = {
-
-        academicYear:
-          academicYear,
-
-        grade:
-          grade,
-
-        className:
-          className,
-
-        seatNumber:
-          seatNumber
-
-      };
-
-
-      // 存進瀏覽器
 
       localStorage.setItem(
-
-        "studentProfile",
-
-        JSON.stringify(profile)
-
+        "studentId",
+        studentId
       );
-
-
-      document.getElementById(
-        "message"
-      ).textContent =
-        "資料已儲存！";
-
 
     }
 
-  </script>
 
+    return studentId;
+
+  }
+
+
+  /*
+   * =====================================
+   * 顯示學生 ID
+   * =====================================
+   */
+
+  document.getElementById("studentId").textContent =
+    getStudentId();
+
+
+  /*
+   * =====================================
+   * 讀取原本的資料
+   * =====================================
+   */
+
+  const savedProfile =
+    JSON.parse(
+      localStorage.getItem("studentProfile")
+    );
+
+
+  if (savedProfile) {
+
+    document.getElementById("academicYear").value =
+      savedProfile.academicYear || "115";
+
+    document.getElementById("grade").value =
+      savedProfile.grade || "高一";
+
+    document.getElementById("className").value =
+      savedProfile.className || "";
+
+    document.getElementById("seatNumber").value =
+      savedProfile.seatNumber || "";
+
+  }
+
+
+  /*
+   * =====================================
+   * 儲存資料
+   * =====================================
+   */
+
+  function saveProfile() {
+
+    const academicYear =
+      document.getElementById("academicYear").value;
+
+    const grade =
+      document.getElementById("grade").value;
+
+    const className =
+      document.getElementById("className").value.trim();
+
+    const seatNumber =
+      document.getElementById("seatNumber").value;
+
+
+    /*
+     * 檢查班級
+     */
+
+    if (!className) {
+
+      alert("請輸入班級！");
+      return;
+
+    }
+
+
+    /*
+     * 檢查座號
+     */
+
+    if (!seatNumber) {
+
+      alert("請輸入座號！");
+      return;
+
+    }
+
+
+    /*
+     * 取得學生 ID
+     */
+
+    const studentId =
+      getStudentId();
+
+
+    /*
+     * 儲存學生資料
+     */
+
+    const profile = {
+
+      studentId: studentId,
+
+      academicYear: academicYear,
+
+      grade: grade,
+
+      className: className,
+
+      seatNumber: seatNumber
+
+    };
+
+
+    localStorage.setItem(
+      "studentProfile",
+      JSON.stringify(profile)
+    );
+
+
+    /*
+     * 顯示成功訊息
+     */
+
+    const message =
+      document.getElementById("message");
+
+    message.style.display = "block";
+
+    message.textContent =
+      "資料已儲存！";
+
+
+    /*
+     * 重新顯示 ID
+     */
+
+    document.getElementById("studentId").textContent =
+      studentId;
+
+  }
+
+</script>
 
 </body>
-
 </html>
