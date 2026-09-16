@@ -93,8 +93,6 @@
       font-size: 20px;
     }
 
-    /* 統計 */
-
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -117,8 +115,6 @@
       font-size: 28px;
       font-weight: 700;
     }
-
-    /* 商品管理 */
 
     .product-toolbar {
       display: flex;
@@ -208,8 +204,6 @@
       justify-content: flex-end;
     }
 
-    /* 表單 */
-
     .form-area {
       border-top: 1px solid #eee;
       margin-top: 20px;
@@ -264,6 +258,12 @@
       width: auto;
     }
 
+    .size-help {
+      color: #777;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     .form-buttons {
       margin-top: 18px;
       display: flex;
@@ -290,8 +290,6 @@
       border: 1px solid #e7c2bf;
       color: #a33a32;
     }
-
-    /* 原本的管理功能 */
 
     .feature-grid {
       display: grid;
@@ -395,7 +393,6 @@
     <p id="loginStatus">正在確認管理員身分...</p>
   </div>
 
-  <!-- 統計 -->
   <section class="section">
     <h3>訂單統計</h3>
 
@@ -423,7 +420,6 @@
   </section>
 
 
-  <!-- 商品管理 -->
   <section class="section">
 
     <div class="product-toolbar">
@@ -443,7 +439,7 @@
       <div class="loading">正在載入商品...</div>
     </div>
 
-    <!-- 商品表單 -->
+
     <div id="formArea" class="form-area" style="display:none;">
 
       <h3 id="formTitle">新增商品</h3>
@@ -482,25 +478,56 @@
           <label>尺寸</label>
 
           <div class="checkbox-row">
-            <input id="productHasSize" type="checkbox" />
+            <input id="productHasSize" type="checkbox" onchange="toggleSizeInput()" />
+
             <label for="productHasSize" style="font-weight:normal;">
               此商品需要選擇尺寸
             </label>
           </div>
         </div>
 
+
+        <div
+          class="form-group full"
+          id="sizeInputGroup"
+          style="display:none;"
+        >
+
+          <label for="productSizes">
+            尺寸選項
+          </label>
+
+          <input
+            id="productSizes"
+            type="text"
+            placeholder="例如：S, M, L, XL"
+          />
+
+          <div class="size-help">
+            請用逗號分隔不同尺寸，例如：S, M, L, XL
+          </div>
+
+        </div>
+
+
         <div class="form-group full">
-          <label for="productDescription">商品說明</label>
+
+          <label for="productDescription">
+            商品說明
+          </label>
 
           <textarea
             id="productDescription"
             placeholder="輸入商品介紹、注意事項等..."
           ></textarea>
+
         </div>
 
       </div>
 
+
       <div class="form-buttons">
+
         <button class="primary-btn" onclick="saveProduct()">
           儲存商品
         </button>
@@ -508,6 +535,7 @@
         <button onclick="cancelForm()">
           取消
         </button>
+
       </div>
 
       <div id="formMessage" class="message"></div>
@@ -517,7 +545,6 @@
   </section>
 
 
-  <!-- 班級付款狀態 -->
   <section class="section">
 
     <h3>班級付款狀態</h3>
@@ -531,7 +558,6 @@
   </section>
 
 
-  <!-- 商品統計 -->
   <section class="section">
 
     <h3>商品訂購統計</h3>
@@ -557,7 +583,6 @@
   </section>
 
 
-  <!-- 系統管理 -->
   <section class="section">
 
     <h3>系統管理</h3>
@@ -594,10 +619,6 @@
 
 <script>
 
-  /* =========================
-     Supabase
-  ========================= */
-
   const SUPABASE_URL = "https://oanccvcpiixtameutjdl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_PdSvLOKj8kYTJWan7ivnbQ_G5QIO2ma";
 
@@ -611,10 +632,6 @@
   let editingProductId = null;
   let products = [];
 
-
-  /* =========================
-     啟動
-  ========================= */
 
   async function init() {
 
@@ -640,10 +657,6 @@
 
   }
 
-
-  /* =========================
-     確認管理員
-  ========================= */
 
   async function checkAdmin() {
 
@@ -683,16 +696,12 @@
   }
 
 
-  /* =========================
-     商品
-  ========================= */
-
   async function loadProducts() {
 
     const { data, error } = await supabaseClient
       .from("products")
       .select(
-        "id,name,category,price,has_size,description,active"
+        "id,name,category,price,has_size,sizes,description,active"
       )
       .order("id", { ascending: true });
 
@@ -742,7 +751,11 @@
 
       const sizeText =
         product.has_size
-          ? "需要尺寸"
+          ? (
+              product.sizes && product.sizes.length
+                ? "尺寸：" + product.sizes.join(" / ")
+                : "需要尺寸"
+            )
           : "不需要尺寸";
 
       return `
@@ -763,7 +776,7 @@
               </span>
 
               <span class="tag">
-                ${sizeText}
+                ${escapeHtml(sizeText)}
               </span>
 
               <span class="tag ${statusClass}">
@@ -811,9 +824,23 @@
   }
 
 
-  /* =========================
-     新增商品
-  ========================= */
+  function toggleSizeInput() {
+
+    const hasSize =
+      document.getElementById("productHasSize").checked;
+
+    const sizeGroup =
+      document.getElementById("sizeInputGroup");
+
+    sizeGroup.style.display =
+      hasSize ? "flex" : "none";
+
+    if (!hasSize) {
+      document.getElementById("productSizes").value = "";
+    }
+
+  }
+
 
   function openAddForm() {
 
@@ -826,7 +853,10 @@
     document.getElementById("productCategory").value = "";
     document.getElementById("productPrice").value = "";
     document.getElementById("productHasSize").checked = false;
+    document.getElementById("productSizes").value = "";
     document.getElementById("productDescription").value = "";
+
+    toggleSizeInput();
 
     clearMessage();
 
@@ -841,10 +871,6 @@
 
   }
 
-
-  /* =========================
-     編輯商品
-  ========================= */
 
   function editProduct(id) {
 
@@ -870,8 +896,15 @@
     document.getElementById("productHasSize").checked =
       !!product.has_size;
 
+    document.getElementById("productSizes").value =
+      Array.isArray(product.sizes)
+        ? product.sizes.join(", ")
+        : "";
+
     document.getElementById("productDescription").value =
       product.description || "";
+
+    toggleSizeInput();
 
     clearMessage();
 
@@ -886,10 +919,6 @@
 
   }
 
-
-  /* =========================
-     儲存商品
-  ========================= */
 
   async function saveProduct() {
 
@@ -910,6 +939,10 @@
     const hasSize =
       document.getElementById("productHasSize")
         .checked;
+
+    const sizeText =
+      document.getElementById("productSizes")
+        .value.trim();
 
     const description =
       document.getElementById("productDescription")
@@ -932,11 +965,34 @@
     }
 
 
+    let sizes = [];
+
+    if (hasSize) {
+
+      sizes = sizeText
+        .split(",")
+        .map(size => size.trim())
+        .filter(size => size !== "");
+
+      if (!sizes.length) {
+
+        showMessage(
+          "此商品需要尺寸，請至少輸入一個尺寸。",
+          "error"
+        );
+
+        return;
+      }
+
+    }
+
+
     const productData = {
       name,
       category,
       price,
       has_size: hasSize,
+      sizes,
       description
     };
 
@@ -994,10 +1050,6 @@
   }
 
 
-  /* =========================
-     上架 / 下架
-  ========================= */
-
   async function toggleProduct(id, currentActive) {
 
     const action =
@@ -1034,10 +1086,6 @@
   }
 
 
-  /* =========================
-     關閉表單
-  ========================= */
-
   function cancelForm() {
 
     document.getElementById("formArea").style.display =
@@ -1049,10 +1097,6 @@
 
   }
 
-
-  /* =========================
-     訊息
-  ========================= */
 
   function showMessage(text, type) {
 
@@ -1079,10 +1123,6 @@
   }
 
 
-  /* =========================
-     防止 HTML 注入
-  ========================= */
-
   function escapeHtml(value) {
 
     return String(value)
@@ -1094,10 +1134,6 @@
 
   }
 
-
-  /* =========================
-     舊版訂單統計
-  ========================= */
 
   function loadOldOrderStats() {
 
@@ -1222,10 +1258,6 @@
   }
 
 
-  /* =========================
-     商品統計下拉
-  ========================= */
-
   function loadProductSelect() {
 
     const select =
@@ -1323,10 +1355,6 @@
 
   }
 
-
-  /* =========================
-     CSV
-  ========================= */
 
   function exportProductCSV() {
 
@@ -1490,10 +1518,6 @@
 
   }
 
-
-  /* =========================
-     啟動
-  ========================= */
 
   init();
 
